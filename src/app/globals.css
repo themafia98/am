@@ -67,3 +67,124 @@ body::after {
   background: rgba(6, 182, 212, 0.25);
   color: #e0f2fe;
 }
+
+/* ─── Print styles ───────────────────────────────────────────────────── */
+@media print {
+  @page {
+    size: A4;
+    margin: 1.8cm 2cm;
+  }
+
+  /* White canvas, no overflow tricks */
+  html,
+  body {
+    background: #fff !important;
+    color: #111 !important;
+    overflow: visible !important;
+    font-size: 10pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Hide everything interactive / decorative */
+  header,
+  footer,
+  body::after,
+  [aria-hidden='true'],
+  [class*='animate-'],
+  [class*='blur-'] {
+    display: none !important;
+  }
+
+  /* Hero: hide buttons and marquee, keep name + status + stats */
+  .hero-buttons,
+  .hero-marquee,
+  .hero-scroll-cue {
+    display: none !important;
+  }
+
+  /* Kill all animations & transitions */
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Gradient text → solid cyan so it's visible on white */
+  .gradient-text {
+    -webkit-text-fill-color: #0e7490 !important;
+    background: none !important;
+  }
+
+  /* Universal color reset: dark text on white */
+  * {
+    color: #111 !important;
+    background-color: transparent !important;
+    border-color: #ddd !important;
+  }
+
+  /* Restore cyan for accents (company names, badges, section numbers) */
+  [class*='text-cyan'],
+  .text-cyan-400,
+  .text-cyan-500,
+  .text-cyan-400\/80 {
+    color: #0e7490 !important;
+  }
+
+  /* Cards get a light-grey background */
+  [class*='rounded-xl'],
+  [class*='rounded-lg'] {
+    background-color: #f7f7f7 !important;
+    border-color: #e0e0e0 !important;
+  }
+
+  /* Badges */
+  [class*='rounded-full'] {
+    background-color: #f0f0f0 !important;
+    border-color: #ddd !important;
+  }
+
+  /* Timeline vertical line & dot */
+  [class*='bg-gradient-to-b'] {
+    background: #ccc !important;
+  }
+  [class*='bg-cyan-500'] {
+    background-color: #0e7490 !important;
+  }
+  [class*='border-cyan'] {
+    border-color: #0e7490 !important;
+  }
+
+  /* Sections: reduce vertical padding for paper */
+  section {
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+
+  /* Avoid splitting cards across pages */
+  [class*='rounded-xl'],
+  [class*='rounded-lg'],
+  li {
+    break-inside: avoid;
+  }
+
+  /* Page breaks between heavy sections */
+  #skills {
+    break-before: page;
+  }
+
+  /* Headings scale down a bit */
+  h1 {
+    font-size: 36pt !important;
+    line-height: 1 !important;
+  }
+  h2 {
+    font-size: 18pt !important;
+  }
+  h3 {
+    font-size: 14pt !important;
+  }
+}

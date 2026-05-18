@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Syne, Space_Mono } from 'next/font/google'
 import { preconnect, prefetchDNS } from 'react-dom'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="relative z-10">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   )

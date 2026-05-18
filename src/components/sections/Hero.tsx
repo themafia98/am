@@ -68,8 +68,8 @@ export function Hero() {
           {PERSONAL.title}&nbsp;&nbsp;·&nbsp;&nbsp;{PERSONAL.subtitle}
         </p>
 
-        {/* CTA row — full-width stack on mobile, inline on sm+ */}
-        <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 mb-10 sm:mb-14">
+        {/* CTA row — full-width stack on mobile, inline on sm+, hidden on print */}
+        <div className="hero-buttons flex flex-col sm:flex-row sm:flex-wrap gap-3 mb-10 sm:mb-14">
           <Button
             variant="primary"
             href={PERSONAL.cvPath}
@@ -122,7 +122,7 @@ export function Hero() {
       </div>
 
       {/* Marquee strip */}
-      <div className="relative z-10 w-full overflow-hidden border-t border-white/[0.05] py-3 sm:py-4 bg-white/[0.01]">
+      <div className="hero-marquee relative z-10 w-full overflow-hidden border-t border-white/[0.05] py-3 sm:py-4 bg-white/[0.01]">
         <div className="flex animate-marquee whitespace-nowrap">
           {doubled.map((skill, i) => (
             <span key={i} className="inline-flex items-center gap-3 sm:gap-4 mx-3 sm:mx-4">
@@ -134,7 +134,7 @@ export function Hero() {
       </div>
 
       {/* Scroll cue — hidden on very short screens */}
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-1.5 pointer-events-none">
+      <div className="hero-scroll-cue absolute bottom-5 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-1.5 pointer-events-none">
         <span className="font-mono text-[9px] text-white/15 tracking-[0.3em] uppercase">Scroll</span>
         <div className="w-px h-7 bg-gradient-to-b from-white/15 to-transparent" />
       </div>
