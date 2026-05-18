@@ -1,8 +1,9 @@
-import { PERSONAL, HERO_STATS, MARQUEE_SKILLS } from '@/shared/config/cv'
 import { Button } from '@/shared/ui'
+import type { CvData } from '@/shared/types'
 
-export function Hero() {
-  const doubled = [...MARQUEE_SKILLS, ...MARQUEE_SKILLS]
+export function Hero({ cv }: { cv: CvData }) {
+  const { personal, heroStats, marqueeSkills } = cv
+  const doubled = [...marqueeSkills, ...marqueeSkills]
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center pt-16 overflow-hidden">
@@ -42,38 +43,38 @@ export function Hero() {
           <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse-dot flex-shrink-0" />
           <span className="font-mono text-[10px] sm:text-xs text-white/40 truncate">
             Currently @{' '}
-            <span className="text-white/60">{PERSONAL.currentCompany}</span>
-            <span className="hidden sm:inline"> &nbsp;·&nbsp; {PERSONAL.location}</span>
+            <span className="text-white/60">{personal.currentCompany}</span>
+            <span className="hidden sm:inline"> &nbsp;·&nbsp; {personal.location}</span>
           </span>
         </div>
 
         <div className="mb-4">
           <h1 className="font-syne font-bold leading-[0.88] tracking-tighter">
             <span className="block text-[clamp(2.75rem,11vw,8.5rem)] text-white">
-              {PERSONAL.firstName}
+              {personal.firstName}
             </span>
             <span className="block text-[clamp(2.75rem,11vw,8.5rem)] gradient-text">
-              {PERSONAL.lastName}
+              {personal.lastName}
             </span>
           </h1>
         </div>
 
         <p className="font-mono text-white/30 text-[10px] sm:text-sm tracking-[0.2em] sm:tracking-[0.28em] uppercase mb-8 sm:mb-10">
-          {PERSONAL.title}&nbsp;&nbsp;·&nbsp;&nbsp;{PERSONAL.subtitle}
+          {personal.title}&nbsp;&nbsp;·&nbsp;&nbsp;{personal.subtitle}
         </p>
 
         <div className="hero-buttons flex flex-col sm:flex-row sm:flex-wrap gap-3 mb-10 sm:mb-14">
           <Button
             variant="primary"
-            href={PERSONAL.cvPath}
-            download={PERSONAL.cvFileName}
+            href={personal.cvPath}
+            download={personal.cvFileName}
             className="justify-center sm:justify-start"
           >
             ↓ Download CV
           </Button>
           <Button
             variant="ghost"
-            href={PERSONAL.cvPath}
+            href={personal.cvPath}
             target="_blank"
             rel="noopener noreferrer"
             className="justify-center sm:justify-start"
@@ -82,7 +83,7 @@ export function Hero() {
           </Button>
           <Button
             variant="ghost"
-            href={PERSONAL.linkedinUrl}
+            href={personal.linkedinUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="justify-center sm:justify-start"
@@ -91,7 +92,7 @@ export function Hero() {
           </Button>
           <Button
             variant="ghost"
-            href={`mailto:${PERSONAL.email}`}
+            href={`mailto:${personal.email}`}
             className="justify-center sm:justify-start"
           >
             Email
@@ -99,7 +100,7 @@ export function Hero() {
         </div>
 
         <div className="grid grid-cols-2 w-fit divide-x divide-white/[0.06] border border-white/[0.08] rounded-xl overflow-hidden">
-          {HERO_STATS.map((stat) => (
+          {heroStats.map((stat) => (
             <div
               key={stat.label}
               className="flex flex-col items-center justify-center px-6 sm:px-8 py-4 bg-white/[0.02] hover:bg-white/[0.04] transition-colors"

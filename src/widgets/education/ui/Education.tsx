@@ -1,8 +1,10 @@
-import { EDUCATIONS, CERTIFICATIONS, LANGUAGES } from '@/shared/config/cv'
 import { SectionHeader } from '@/shared/ui'
 import { EducationCard, CertificationCard } from '@/entities/education'
+import type { CvData } from '@/shared/types'
 
-export function Education() {
+export function Education({ cv }: { cv: CvData }) {
+  const { educations, certifications, languages } = cv
+
   return (
     <section id="education" className="py-16 sm:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -14,7 +16,7 @@ export function Education() {
               Degree
             </h3>
             <div className="space-y-4">
-              {EDUCATIONS.map((edu) => (
+              {educations.map((edu) => (
                 <EducationCard key={edu.degree} edu={edu} />
               ))}
             </div>
@@ -25,7 +27,7 @@ export function Education() {
               Certifications
             </h3>
             <div className="space-y-4">
-              {CERTIFICATIONS.map((cert) => (
+              {certifications.map((cert) => (
                 <CertificationCard key={cert.name} cert={cert} />
               ))}
             </div>
@@ -37,7 +39,7 @@ export function Education() {
             Languages
           </h3>
           <div className="flex flex-col sm:flex-row gap-6 max-w-xl">
-            {LANGUAGES.map((lang) => (
+            {languages.map((lang) => (
               <div key={lang.name} className="flex-1">
                 <div className="flex justify-between items-center mb-2">
                   <span className="font-mono text-sm text-white/55">{lang.name}</span>

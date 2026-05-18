@@ -1,4 +1,5 @@
 import type {
+  Personal,
   Job,
   SkillCategory,
   Education,
@@ -11,7 +12,7 @@ import type {
   ArchLayer,
 } from '@/shared/types'
 
-export const PERSONAL = {
+export const PERSONAL: Personal = {
   name: 'Pavel Piatrovich',
   firstName: 'Pavel',
   lastName: 'Piatrovich',
@@ -33,7 +34,7 @@ export const PERSONAL = {
     cross-functional Agile teams delivering production-grade features end to end. Open to B2B
     contracts — product companies, startups, and ambitious side projects.`,
   yearsOfExperience: 6,
-} as const
+}
 
 export const HERO_STATS: Stat[] = [
   { value: '6+', label: 'Years XP' },

@@ -1,3 +1,35 @@
+export type Personal = {
+  name: string
+  firstName: string
+  lastName: string
+  title: string
+  subtitle: string
+  location: string
+  email: string
+  linkedin: string
+  linkedinUrl: string
+  phone: string
+  currentCompany: string
+  cvPath: string
+  cvFileName: string
+  summary: string
+  yearsOfExperience: number
+}
+
+export type CvData = {
+  personal: Personal
+  heroStats: Stat[]
+  aboutTags: string[]
+  jobs: Job[]
+  skillCategories: SkillCategory[]
+  personalProjects: PersonalProject[]
+  educations: Education[]
+  certifications: Certification[]
+  languages: Language[]
+  contactItems: ContactItem[]
+  marqueeSkills: string[]
+}
+
 export type BadgeVariant =
   | 'default'
   | 'cyan'

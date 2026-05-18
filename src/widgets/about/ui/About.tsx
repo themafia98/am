@@ -1,7 +1,9 @@
-import { PERSONAL, ABOUT_TAGS } from '@/shared/config/cv'
 import { SectionHeader } from '@/shared/ui'
+import type { CvData } from '@/shared/types'
 
-export function About() {
+export function About({ cv }: { cv: CvData }) {
+  const { personal, aboutTags } = cv
+
   return (
     <section id="about" className="py-16 sm:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -10,11 +12,11 @@ export function About() {
         <div className="grid lg:grid-cols-[1fr_200px] gap-12 items-start">
           <div>
             <p className="text-lg text-white/55 leading-relaxed max-w-2xl">
-              {PERSONAL.summary}
+              {personal.summary}
             </p>
 
             <div className="mt-8 flex flex-wrap gap-2">
-              {ABOUT_TAGS.map((tag) => (
+              {aboutTags.map((tag) => (
                 <span
                   key={tag}
                   className="font-mono text-xs text-white/35 border border-white/[0.08] px-3 py-1.5 rounded-full hover:border-cyan-500/30 hover:text-cyan-400/70 transition-colors cursor-default"
@@ -30,7 +32,7 @@ export function About() {
               aria-hidden
               className="font-syne font-bold text-[120px] leading-none text-white/[0.04] select-none"
             >
-              {PERSONAL.yearsOfExperience}+
+              {personal.yearsOfExperience}+
             </div>
             <p className="font-mono text-xs text-white/25 tracking-[0.2em] uppercase -mt-4">
               years of

@@ -1,8 +1,10 @@
-import { PERSONAL, CONTACT_ITEMS } from '@/shared/config/cv'
 import { SectionHeader, Button } from '@/shared/ui'
 import { ContactCard } from '@/entities/contact'
+import type { CvData } from '@/shared/types'
 
-export function Contact() {
+export function Contact({ cv }: { cv: CvData }) {
+  const { personal, contactItems } = cv
+
   return (
     <section id="contact" className="py-16 sm:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -19,13 +21,13 @@ export function Contact() {
               Product companies, startups, or ambitious side projects — if clean code and great
               UX matter to you, let&apos;s talk.
             </p>
-            <Button variant="primary" href={`mailto:${PERSONAL.email}`}>
+            <Button variant="primary" href={`mailto:${personal.email}`}>
               ✦ Get in touch
             </Button>
           </div>
 
           <div className="space-y-3">
-            {CONTACT_ITEMS.map((item) => (
+            {contactItems.map((item) => (
               <ContactCard key={item.label} item={item} />
             ))}
           </div>
