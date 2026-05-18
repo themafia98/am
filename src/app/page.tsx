@@ -1,9 +1,10 @@
-import { Hero } from '@/components/sections/Hero'
-import { About } from '@/components/sections/About'
-import { Experience } from '@/components/sections/Experience'
-import { Skills } from '@/components/sections/Skills'
-import { Education } from '@/components/sections/Education'
-import { Contact } from '@/components/sections/Contact'
+import { Hero } from '@/widgets/hero'
+import { About } from '@/widgets/about'
+import { Experience } from '@/widgets/experience'
+import { Skills } from '@/widgets/skills'
+import { Projects } from '@/widgets/projects'
+import { Education } from '@/widgets/education'
+import { Contact } from '@/widgets/contact'
 
 export default function HomePage() {
   return (
@@ -12,6 +13,7 @@ export default function HomePage() {
       <About />
       <Experience />
       <Skills />
+      <Projects />
       <Education />
       <Contact />
     </>

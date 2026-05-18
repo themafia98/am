@@ -3,8 +3,8 @@ import { Syne, Space_Mono } from 'next/font/google'
 import { preconnect, prefetchDNS } from 'react-dom'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
-import { Header } from '@/components/layout/Header'
-import { Footer } from '@/components/layout/Footer'
+import { Header } from '@/widgets/header'
+import { Footer } from '@/widgets/footer'
 
 const syne = Syne({
   subsets: ['latin'],
@@ -19,8 +19,6 @@ const spaceMono = Space_Mono({
   display: 'swap',
 })
 
-// metadataBase enables absolute OG/Twitter image URLs required by Vercel + social crawlers.
-// VERCEL_PROJECT_PRODUCTION_URL is set automatically by Vercel on every deployment.
 const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   : 'http://localhost:3000'
@@ -55,11 +53,8 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // React 19 resource APIs — emits <link> hints into <head> during SSR.
-  // preconnect: establish early connections to external origins.
   preconnect('https://fonts.googleapis.com')
   preconnect('https://fonts.gstatic.com', { crossOrigin: 'anonymous' })
-  // prefetchDNS: cheap DNS lookup for origins the user may navigate to.
   prefetchDNS('https://linkedin.com')
   prefetchDNS('https://wa.me')
 
