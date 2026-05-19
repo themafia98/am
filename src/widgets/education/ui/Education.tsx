@@ -12,7 +12,7 @@ export function Education({ cv }: { cv: CvData }): React.ReactElement {
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           <div>
-            <h3 className="font-mono text-[11px] text-white/20 uppercase tracking-[0.25em] mb-5">
+            <h3 className="font-mono text-[11px] text-white/35 uppercase tracking-[0.25em] mb-5">
               Degree
             </h3>
             <div className="space-y-4">
@@ -23,7 +23,7 @@ export function Education({ cv }: { cv: CvData }): React.ReactElement {
           </div>
 
           <div>
-            <h3 className="font-mono text-[11px] text-white/20 uppercase tracking-[0.25em] mb-5">
+            <h3 className="font-mono text-[11px] text-white/35 uppercase tracking-[0.25em] mb-5">
               Certifications
             </h3>
             <div className="space-y-4">
@@ -35,7 +35,7 @@ export function Education({ cv }: { cv: CvData }): React.ReactElement {
         </div>
 
         <div>
-          <h3 className="font-mono text-[11px] text-white/20 uppercase tracking-[0.25em] mb-6">
+          <h3 className="font-mono text-[11px] text-white/35 uppercase tracking-[0.25em] mb-6">
             Languages
           </h3>
           <div className="flex flex-col sm:flex-row gap-6 max-w-xl">

@@ -50,7 +50,7 @@ export function Hero({ cv }: { cv: CvData }) {
           </h1>
         </div>
 
-        <p className="font-mono text-white/30 text-[10px] sm:text-sm tracking-[0.2em] sm:tracking-[0.28em] uppercase mb-3">
+        <p className="font-mono text-white/40 text-[10px] sm:text-sm tracking-[0.2em] sm:tracking-[0.28em] uppercase mb-3">
           {personal.title}&nbsp;&nbsp;·&nbsp;&nbsp;{personal.subtitle}
         </p>
         <p className="font-mono text-white/45 text-[9px] sm:text-xs tracking-[0.2em] uppercase mb-8 sm:mb-10 flex items-center gap-2">

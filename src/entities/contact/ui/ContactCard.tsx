@@ -14,7 +14,7 @@ export function ContactCard({ item }: { item: ContactItem }) {
         {item.icon}
       </span>
       <div className="min-w-0 flex-1 overflow-hidden">
-        <p className="font-mono text-[10px] text-white/25 uppercase tracking-[0.2em]">{item.label}</p>
+        <p className="font-mono text-[10px] text-white/40 uppercase tracking-[0.2em]">{item.label}</p>
         <p className="font-mono text-xs sm:text-sm text-white/60 group-hover:text-white/85 transition-colors mt-0.5 truncate">
           {item.value}
         </p>

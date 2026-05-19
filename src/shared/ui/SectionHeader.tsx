@@ -6,7 +6,7 @@ interface SectionHeaderProps {
 export function SectionHeader({ number, title }: SectionHeaderProps): React.ReactElement {
   return (
     <div className="mb-14">
-      <span className="block font-mono text-[11px] text-white/20 tracking-[0.35em] uppercase mb-3">
+      <span className="block font-mono text-[11px] text-white/30 tracking-[0.35em] uppercase mb-3">
         {number}
       </span>
       <div className="flex items-end gap-6">

@@ -31,7 +31,7 @@ export function JobCard({ job }: { job: Job }): React.ReactElement {
 
           <div className="sm:text-right shrink-0">
             <p className="font-mono text-xs text-white/40">{job.period}</p>
-            <p className="font-mono text-xs text-white/25 mt-0.5">{job.location}</p>
+            <p className="font-mono text-xs text-white/40 mt-0.5">{job.location}</p>
           </div>
         </div>
 
@@ -50,7 +50,7 @@ export function JobCard({ job }: { job: Job }): React.ReactElement {
 
         {job.projects && (
           <div className="pt-5 border-t border-white/[0.06]">
-            <p className="font-mono text-[10px] text-white/20 uppercase tracking-[0.25em] mb-4">
+            <p className="font-mono text-[10px] text-white/35 uppercase tracking-[0.25em] mb-4">
               Key Projects
             </p>
             <div className="grid sm:grid-cols-2 gap-3">
