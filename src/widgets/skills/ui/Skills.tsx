@@ -4,7 +4,7 @@ import type { CvData } from '@/shared/types'
 
 export function Skills({ cv }: { cv: CvData }): React.ReactElement {
   return (
-    <section id="skills" className="py-16 sm:py-24 bg-white/[0.015]">
+    <section id="skills" data-reveal className="py-16 sm:py-24 bg-white/[0.015]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeader number="03" title="Skills" />
 

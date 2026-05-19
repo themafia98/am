@@ -5,7 +5,7 @@ export function About({ cv }: { cv: CvData }): React.ReactElement {
   const { personal, aboutTags } = cv
 
   return (
-    <section id="about" className="py-16 sm:py-24 bg-white/[0.015]">
+    <section id="about" data-reveal className="py-16 sm:py-24 bg-white/[0.015]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeader number="01" title="About" />
 

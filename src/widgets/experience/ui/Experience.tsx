@@ -4,7 +4,7 @@ import type { CvData } from '@/shared/types'
 
 export function Experience({ cv }: { cv: CvData }) {
   return (
-    <section id="experience" className="py-16 sm:py-24">
+    <section id="experience" data-reveal className="py-16 sm:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeader number="02" title="Experience" />
 

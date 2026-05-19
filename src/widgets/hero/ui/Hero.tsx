@@ -39,15 +39,6 @@ export function Hero({ cv }: { cv: CvData }) {
       </svg>
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 w-full">
-        <div className="inline-flex items-center gap-2 mb-8 px-3 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] max-w-full">
-          <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse-dot flex-shrink-0" />
-          <span className="font-mono text-[10px] sm:text-xs text-white/40 truncate">
-            Currently @{' '}
-            <span className="text-white/60">{personal.currentCompany}</span>
-            <span className="hidden sm:inline"> &nbsp;·&nbsp; {personal.location}</span>
-          </span>
-        </div>
-
         <div className="mb-4">
           <h1 className="font-syne font-bold leading-[0.88] tracking-tighter">
             <span className="block text-[clamp(2.75rem,11vw,8.5rem)] text-white">
@@ -59,15 +50,19 @@ export function Hero({ cv }: { cv: CvData }) {
           </h1>
         </div>
 
-        <p className="font-mono text-white/30 text-[10px] sm:text-sm tracking-[0.2em] sm:tracking-[0.28em] uppercase mb-8 sm:mb-10">
+        <p className="font-mono text-white/30 text-[10px] sm:text-sm tracking-[0.2em] sm:tracking-[0.28em] uppercase mb-3">
           {personal.title}&nbsp;&nbsp;·&nbsp;&nbsp;{personal.subtitle}
+        </p>
+        <p className="font-mono text-white/45 text-[9px] sm:text-xs tracking-[0.2em] uppercase mb-8 sm:mb-10 flex items-center gap-2">
+          <span>📍</span>
+          <span>{personal.location}</span>
         </p>
 
         <div className="hero-buttons flex flex-col gap-4 mb-10 sm:mb-14">
           <div className="flex flex-col sm:flex-row gap-3">
             <Button
               variant="primary"
-              href={personal.cvPath}
+              href="/api/cv-download"
               download={personal.cvFileName}
               className="justify-center sm:justify-start"
             >

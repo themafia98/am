@@ -6,6 +6,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
 import { Header } from '@/widgets/header'
 import { Footer } from '@/widgets/footer'
+import { ClientOnlyWidgets } from '@/shared/ui/ClientOnlyWidgets'
 
 const syne = Syne({
   subsets: ['latin'],
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-[#0a0a0a] text-white antialiased">
+        <ClientOnlyWidgets />
         <Header />
         <main className="relative z-10">{children}</main>
         <Footer />

@@ -9,7 +9,7 @@ export async function Contact({ cv }: { cv: CvData }) {
   const features = await getFeatures()
 
   return (
-    <section id="contact" className="py-16 sm:py-24">
+    <section id="contact" data-reveal className="py-16 sm:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeader number="06" title="Contact" />
 
