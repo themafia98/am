@@ -3,7 +3,8 @@
 import { useActionState } from 'react'
 import { useFormStatus } from 'react-dom'
 import { cn } from '@/shared/lib/cn'
-import { sendContact, contactInitialState, ContactStatus } from '@/shared/api/sendContact'
+import { ContactStatus, contactInitialState } from '@/shared/types'
+import { sendContact } from '@/shared/api/sendContact'
 
 const inputClass = cn(
   'w-full bg-white/[0.03] border border-white/[0.08] rounded-lg px-4 py-3',

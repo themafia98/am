@@ -2,19 +2,7 @@
 
 import { Resend } from 'resend'
 import { logger } from '@/shared/lib/logger'
-
-export enum ContactStatus {
-  Idle    = 'idle',
-  Success = 'success',
-  Error   = 'error',
-}
-
-export type ContactState =
-  | { readonly status: ContactStatus.Idle }
-  | { readonly status: ContactStatus.Success }
-  | { readonly status: ContactStatus.Error; readonly message: string }
-
-export const contactInitialState: ContactState = { status: ContactStatus.Idle }
+import { ContactStatus, type ContactState } from '@/shared/types'
 
 function getField(formData: FormData, key: string): string {
   return String(formData.get(key) ?? '').trim()

@@ -15,6 +15,19 @@ export enum ProjectStatus {
   Live       = 'live',
 }
 
+export enum ContactStatus {
+  Idle    = 'idle',
+  Success = 'success',
+  Error   = 'error',
+}
+
+export type ContactState =
+  | { readonly status: ContactStatus.Idle }
+  | { readonly status: ContactStatus.Success }
+  | { readonly status: ContactStatus.Error; readonly message: string }
+
+export const contactInitialState: ContactState = { status: ContactStatus.Idle }
+
 export interface Personal {
   readonly name: string
   readonly firstName: string
