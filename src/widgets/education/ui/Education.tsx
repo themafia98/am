@@ -2,11 +2,11 @@ import { SectionHeader } from '@/shared/ui'
 import { EducationCard, CertificationCard } from '@/entities/education'
 import type { CvData } from '@/shared/types'
 
-export function Education({ cv }: { cv: CvData }) {
+export function Education({ cv }: { cv: CvData }): React.ReactElement {
   const { educations, certifications, languages } = cv
 
   return (
-    <section id="education" className="py-16 sm:py-24">
+    <section id="education" className="py-16 sm:py-24 bg-white/[0.015]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeader number="05" title="Education" />
 
@@ -42,8 +42,8 @@ export function Education({ cv }: { cv: CvData }) {
             {languages.map((lang) => (
               <div key={lang.name} className="flex-1">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="font-mono text-sm text-white/55">{lang.name}</span>
-                  <span className="font-mono text-xs text-cyan-500/70">{lang.level}</span>
+                  <span className="font-mono text-sm text-white/65">{lang.name}</span>
+                  <span className="font-mono text-xs text-white/40">{lang.level}</span>
                 </div>
                 <div className="h-1 bg-white/[0.06] rounded-full overflow-hidden">
                   <div

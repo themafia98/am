@@ -2,9 +2,9 @@ import { SectionHeader } from '@/shared/ui'
 import { SkillCategoryCard } from '@/entities/skill'
 import type { CvData } from '@/shared/types'
 
-export function Skills({ cv }: { cv: CvData }) {
+export function Skills({ cv }: { cv: CvData }): React.ReactElement {
   return (
-    <section id="skills" className="py-16 sm:py-24">
+    <section id="skills" className="py-16 sm:py-24 bg-white/[0.015]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeader number="03" title="Skills" />
 

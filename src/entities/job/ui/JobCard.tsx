@@ -3,7 +3,7 @@ import { cn } from '@/shared/lib/cn'
 import type { Job } from '@/shared/types'
 import { ProjectCard } from './ProjectCard'
 
-export function JobCard({ job }: { job: Job }) {
+export function JobCard({ job }: { job: Job }): React.ReactElement {
   return (
     <div className="relative">
       <div
@@ -26,23 +26,23 @@ export function JobCard({ job }: { job: Job }) {
                 </span>
               )}
             </div>
-            <p className="font-mono text-sm text-cyan-400/80">{job.company}</p>
+            <p className="font-mono text-sm text-white/65">{job.company}</p>
           </div>
 
           <div className="sm:text-right shrink-0">
-            <p className="font-mono text-xs text-white/30">{job.period}</p>
-            <p className="font-mono text-xs text-white/20 mt-0.5">{job.location}</p>
+            <p className="font-mono text-xs text-white/40">{job.period}</p>
+            <p className="font-mono text-xs text-white/25 mt-0.5">{job.location}</p>
           </div>
         </div>
 
         {job.summary && (
-          <p className="text-sm text-white/35 italic mb-5 leading-relaxed">{job.summary}</p>
+          <p className="text-sm text-white/50 italic mb-5 leading-relaxed">{job.summary}</p>
         )}
 
         <ul className="space-y-2 mb-6">
           {job.bullets.map((bullet, i) => (
-            <li key={i} className="flex gap-3 text-sm text-white/45 leading-relaxed">
-              <span className="text-cyan-500/40 shrink-0 mt-0.5">—</span>
+            <li key={i} className="flex gap-3 text-sm text-white/60 leading-relaxed">
+              <span className="text-white/20 shrink-0 mt-0.5">—</span>
               {bullet}
             </li>
           ))}

@@ -63,40 +63,43 @@ export function Hero({ cv }: { cv: CvData }) {
           {personal.title}&nbsp;&nbsp;·&nbsp;&nbsp;{personal.subtitle}
         </p>
 
-        <div className="hero-buttons flex flex-col sm:flex-row sm:flex-wrap gap-3 mb-10 sm:mb-14">
-          <Button
-            variant="primary"
-            href={personal.cvPath}
-            download={personal.cvFileName}
-            className="justify-center sm:justify-start"
-          >
-            ↓ Download CV
-          </Button>
-          <Button
-            variant="ghost"
-            href={personal.cvPath}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="justify-center sm:justify-start"
-          >
-            ↗ View CV
-          </Button>
-          <Button
-            variant="ghost"
-            href={personal.linkedinUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="justify-center sm:justify-start"
-          >
-            LinkedIn
-          </Button>
-          <Button
-            variant="ghost"
-            href={`mailto:${personal.email}`}
-            className="justify-center sm:justify-start"
-          >
-            Email
-          </Button>
+        <div className="hero-buttons flex flex-col gap-4 mb-10 sm:mb-14">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Button
+              variant="primary"
+              href={personal.cvPath}
+              download={personal.cvFileName}
+              className="justify-center sm:justify-start"
+            >
+              ↓ Download CV
+            </Button>
+            <Button
+              variant="ghost"
+              href={personal.cvPath}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="justify-center sm:justify-start"
+            >
+              ↗ View CV
+            </Button>
+          </div>
+          <div className="flex items-center gap-5">
+            <a
+              href={personal.linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs text-white/30 hover:text-white/65 transition-colors duration-200"
+            >
+              LinkedIn ↗
+            </a>
+            <span className="text-white/10">·</span>
+            <a
+              href={`mailto:${personal.email}`}
+              className="font-mono text-xs text-white/30 hover:text-white/65 transition-colors duration-200"
+            >
+              {personal.email}
+            </a>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 w-fit divide-x divide-white/[0.06] border border-white/[0.08] rounded-xl overflow-hidden">

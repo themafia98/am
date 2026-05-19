@@ -8,7 +8,7 @@ export function ContactCard({ item }: { item: ContactItem }) {
       href={item.href}
       target={isExternal ? '_blank' : undefined}
       rel={isExternal ? 'noopener noreferrer' : undefined}
-      className="flex items-center gap-4 p-4 sm:p-5 rounded-xl border border-white/[0.07] bg-white/[0.02] hover:border-cyan-500/30 hover:bg-cyan-500/[0.03] transition-all duration-200 group overflow-hidden"
+      className="flex items-center gap-4 p-4 sm:p-5 rounded-xl border border-white/[0.07] bg-white/[0.02] hover:border-cyan-500/40 hover:bg-cyan-500/[0.05] transition-all duration-200 group overflow-hidden"
     >
       <span className="font-mono text-lg text-white/15 group-hover:text-cyan-500/50 transition-colors w-5 shrink-0 text-center">
         {item.icon}
