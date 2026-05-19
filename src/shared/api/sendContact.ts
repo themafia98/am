@@ -19,6 +19,9 @@ export async function sendContact(
   if (!name || !email || !message) {
     return { status: ContactStatus.Error, message: 'All fields are required' }
   }
+  if (name.length > 200) {
+    return { status: ContactStatus.Error, message: 'Name is too long' }
+  }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { status: ContactStatus.Error, message: 'Invalid email address' }
   }
