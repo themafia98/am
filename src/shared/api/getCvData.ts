@@ -12,6 +12,7 @@ import {
   CONTACT_ITEMS,
   MARQUEE_SKILLS,
 } from '@/shared/config/cv'
+import { logger } from '@/shared/lib/logger'
 
 const staticData: CvData = {
   personal: PERSONAL,
@@ -33,13 +34,26 @@ const staticData: CvData = {
  * Anything present in Edge Config under the key "cv" overrides the static default.
  */
 export async function getCvData(): Promise<CvData> {
-  if (!process.env.EDGE_CONFIG) return staticData
+  if (!process.env.EDGE_CONFIG) {
+    logger.info('cv:static', { reason: 'EDGE_CONFIG env not set' })
+    return staticData
+  }
+
+  const t0 = Date.now()
   try {
     const { get } = await import('@vercel/edge-config')
     const overrides = await get<Partial<CvData>>('cv')
-    if (!overrides) return staticData
+    const ms = Date.now() - t0
+
+    if (!overrides) {
+      logger.info('cv:edge-config-miss', { ms })
+      return staticData
+    }
+
+    logger.info('cv:edge-config-hit', { ms, keys: Object.keys(overrides) })
     return { ...staticData, ...overrides }
-  } catch {
+  } catch (err) {
+    logger.error('cv:edge-config-error', { ms: Date.now() - t0, error: String(err) })
     return staticData
   }
 }

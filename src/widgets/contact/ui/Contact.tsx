@@ -1,9 +1,12 @@
 import { SectionHeader, Button } from '@/shared/ui'
 import { ContactCard } from '@/entities/contact'
+import { ContactForm } from './ContactForm'
+import { getFeatures } from '@/shared/api/getFeatures'
 import type { CvData } from '@/shared/types'
 
-export function Contact({ cv }: { cv: CvData }) {
+export async function Contact({ cv }: { cv: CvData }) {
   const { personal, contactItems } = cv
+  const features = await getFeatures()
 
   return (
     <section id="contact" className="py-16 sm:py-24">
@@ -21,9 +24,13 @@ export function Contact({ cv }: { cv: CvData }) {
               Product companies, startups, or ambitious side projects — if clean code and great
               UX matter to you, let&apos;s talk.
             </p>
-            <Button variant="primary" href={`mailto:${personal.email}`}>
-              ✦ Get in touch
-            </Button>
+            {features.contactForm ? (
+              <ContactForm />
+            ) : (
+              <Button variant="primary" href={`mailto:${personal.email}`}>
+                ✦ Get in touch
+              </Button>
+            )}
           </div>
 
           <div className="space-y-3">

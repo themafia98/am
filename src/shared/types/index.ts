@@ -1,117 +1,123 @@
-export type Personal = {
-  name: string
-  firstName: string
-  lastName: string
-  title: string
-  subtitle: string
-  location: string
-  email: string
-  linkedin: string
-  linkedinUrl: string
-  phone: string
-  currentCompany: string
-  cvPath: string
-  cvFileName: string
-  summary: string
-  yearsOfExperience: number
+export enum BadgeVariant {
+  Default = 'default',
+  Cyan    = 'cyan',
+  Blue    = 'blue',
+  Purple  = 'purple',
+  Green   = 'green',
+  Pink    = 'pink',
+  Orange  = 'orange',
+  Yellow  = 'yellow',
+  Teal    = 'teal',
 }
 
-export type CvData = {
-  personal: Personal
-  heroStats: Stat[]
-  aboutTags: string[]
-  jobs: Job[]
-  skillCategories: SkillCategory[]
-  personalProjects: PersonalProject[]
-  educations: Education[]
-  certifications: Certification[]
-  languages: Language[]
-  contactItems: ContactItem[]
-  marqueeSkills: string[]
+export enum ProjectStatus {
+  InProgress = 'in-progress',
+  Live       = 'live',
 }
 
-export type BadgeVariant =
-  | 'default'
-  | 'cyan'
-  | 'blue'
-  | 'purple'
-  | 'green'
-  | 'pink'
-  | 'orange'
-  | 'yellow'
-  | 'teal'
-
-export type SkillCategory = {
-  label: string
-  color: BadgeVariant
-  skills: string[]
+export interface Personal {
+  readonly name: string
+  readonly firstName: string
+  readonly lastName: string
+  readonly title: string
+  readonly subtitle: string
+  readonly location: string
+  readonly email: string
+  readonly linkedin: string
+  readonly linkedinUrl: string
+  readonly phone: string
+  readonly currentCompany: string
+  readonly cvPath: string
+  readonly cvFileName: string
+  readonly summary: string
+  readonly yearsOfExperience: number
 }
 
-export type Project = {
-  name: string
-  tech: string
-  highlights: string[]
+export interface Stat {
+  readonly value: string
+  readonly label: string
 }
 
-export type Job = {
-  id: string
-  title: string
-  company: string
-  location: string
-  period: string
-  current: boolean
-  summary?: string
-  bullets: string[]
-  projects?: Project[]
+export interface SkillCategory {
+  readonly label: string
+  readonly color: BadgeVariant
+  readonly skills: readonly string[]
 }
 
-export type Education = {
-  degree: string
-  institution: string
-  location: string
-  year: string
+export interface Project {
+  readonly name: string
+  readonly tech: string
+  readonly highlights: readonly string[]
 }
 
-export type Certification = {
-  name: string
-  issuer: string
-  period: string
+export interface Job {
+  readonly id: string
+  readonly title: string
+  readonly company: string
+  readonly location: string
+  readonly period: string
+  readonly current: boolean
+  readonly summary?: string
+  readonly bullets: readonly string[]
+  readonly projects?: readonly Project[]
 }
 
-export type Language = {
-  name: string
-  level: string
-  percent: number
+export interface Education {
+  readonly degree: string
+  readonly institution: string
+  readonly location: string
+  readonly year: string
 }
 
-export type NavItem = {
-  label: string
-  href: string
+export interface Certification {
+  readonly name: string
+  readonly issuer: string
+  readonly period: string
 }
 
-export type ContactItem = {
-  label: string
-  value: string
-  href: string
-  icon: string
+export interface Language {
+  readonly name: string
+  readonly level: string
+  readonly percent: number
 }
 
-export type Stat = {
-  value: string
-  label: string
+export interface NavItem {
+  readonly label: string
+  readonly href: string
 }
 
-export type ArchLayer = {
-  label: string
-  items: string[]
+export interface ContactItem {
+  readonly label: string
+  readonly value: string
+  readonly href: string
+  readonly icon: string
 }
 
-export type PersonalProject = {
-  name: string
-  tagline: string
-  description: string
-  url: string
-  status: 'in-progress' | 'live'
-  tags: string[]
-  arch?: ArchLayer[]
+export interface ArchLayer {
+  readonly label: string
+  readonly items: readonly string[]
+}
+
+export interface PersonalProject {
+  readonly name: string
+  readonly tagline: string
+  readonly description: string
+  readonly url: string
+  readonly status: ProjectStatus
+  readonly tags: readonly string[]
+  readonly arch?: readonly ArchLayer[]
+}
+
+export interface CvData {
+  readonly personal: Personal
+  readonly heroStats: readonly Stat[]
+  readonly aboutTags: readonly string[]
+  readonly jobs: readonly Job[]
+  readonly skillCategories: readonly SkillCategory[]
+  readonly personalProjects: readonly PersonalProject[]
+  readonly educations: readonly Education[]
+  readonly certifications: readonly Certification[]
+  readonly languages: readonly Language[]
+  readonly contactItems: readonly ContactItem[]
+  readonly marqueeSkills: readonly string[]
 }

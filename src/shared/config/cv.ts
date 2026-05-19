@@ -1,15 +1,17 @@
-import type {
-  Personal,
-  Job,
-  SkillCategory,
-  Education,
-  Certification,
-  Language,
-  NavItem,
-  ContactItem,
-  Stat,
-  PersonalProject,
-  ArchLayer,
+import {
+  BadgeVariant,
+  ProjectStatus,
+  type Personal,
+  type Job,
+  type SkillCategory,
+  type Education,
+  type Certification,
+  type Language,
+  type NavItem,
+  type ContactItem,
+  type Stat,
+  type PersonalProject,
+  type ArchLayer,
 } from '@/shared/types'
 
 export const PERSONAL: Personal = {
@@ -41,7 +43,7 @@ export const HERO_STATS: Stat[] = [
   { value: 'B2', label: 'English' },
 ]
 
-export const ABOUT_TAGS = [
+export const ABOUT_TAGS: readonly string[] = [
   'Component-Driven Dev',
   'TypeScript-first',
   'Agile / Scrum',
@@ -158,42 +160,42 @@ export const JOBS: Job[] = [
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     label: 'Languages',
-    color: 'cyan',
+    color: BadgeVariant.Cyan,
     skills: ['JavaScript (ES6+)', 'TypeScript', 'HTML5', 'CSS3'],
   },
   {
     label: 'Frameworks & Libraries',
-    color: 'blue',
+    color: BadgeVariant.Blue,
     skills: ['React', 'React Native (Expo SDK)', 'Next.js', 'Node.js', 'Apache Cordova'],
   },
   {
     label: 'State Management',
-    color: 'purple',
+    color: BadgeVariant.Purple,
     skills: ['Redux', 'Redux Toolkit', 'MobX', 'Zustand'],
   },
   {
     label: 'Data Fetching & Realtime',
-    color: 'green',
+    color: BadgeVariant.Green,
     skills: ['TanStack React Query', 'Apollo GraphQL', 'WebSockets', 'Fetch API'],
   },
   {
     label: 'UI & Styling',
-    color: 'pink',
+    color: BadgeVariant.Pink,
     skills: ['Tailwind CSS', 'Material UI', 'Ant Design', 'styled-components', 'SCSS', 'CSS Modules', 'CSS-in-JS'],
   },
   {
     label: 'Testing',
-    color: 'orange',
+    color: BadgeVariant.Orange,
     skills: ['Jest', 'React Testing Library', 'Enzyme', 'Playwright'],
   },
   {
     label: 'Build & Tooling',
-    color: 'yellow',
+    color: BadgeVariant.Yellow,
     skills: ['Webpack', 'Vite', 'Babel', 'Storybook', 'Docker', 'Firebase', 'GitHub CI/CD', 'CircleCI', 'GCP', 'Turborepo', 'Nx', 'ESLint', 'Prettier'],
   },
   {
     label: 'AI Dev Tools',
-    color: 'teal',
+    color: BadgeVariant.Teal,
     skills: ['Claude Code', 'GitHub Copilot', 'Codex'],
   },
 ]
@@ -250,7 +252,7 @@ export const PERSONAL_PROJECTS: PersonalProject[] = [
       'Edge cases, and Problem-solving. Supports sandboxed code execution, human-review payments, ' +
       'and an AICoach for personalised feedback. Available in EN, DE, ES, and RU.',
     url: 'https://themafia98.github.io/mentara-ai-landing-page/',
-    status: 'in-progress',
+    status: ProjectStatus.InProgress,
     tags: ['React Native', 'Expo 55', 'Fastify', 'TypeScript', 'Redis', 'Postgres', 'Stripe', 'Clerk'],
     arch: [
       { label: 'Client',   items: ['React Native · Expo 55', 'Clerk Auth', 'REST + WebSocket'] },
@@ -261,7 +263,7 @@ export const PERSONAL_PROJECTS: PersonalProject[] = [
   },
 ]
 
-export const MARQUEE_SKILLS = [
+export const MARQUEE_SKILLS: readonly string[] = [
   'React', 'React Native', 'TypeScript', 'Next.js', 'Redux Toolkit',
   'Tailwind CSS', 'Playwright', 'Storybook', 'GraphQL', 'TanStack Query',
   'Node.js', 'Zustand', 'Vite', 'Docker', 'MobX', 'WebSockets',

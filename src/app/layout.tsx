@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Syne, Space_Mono } from 'next/font/google'
 import { preconnect, prefetchDNS } from 'react-dom'
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
 import { Header } from '@/widgets/header'
 import { Footer } from '@/widgets/footer'
@@ -45,11 +46,27 @@ export const metadata: Metadata = {
     url: siteUrl,
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'Pavel Piatrovich — Frontend Engineer',
     description: 'Frontend Engineer · React · React Native · TypeScript · Warsaw',
   },
   robots: { index: true, follow: true },
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Pavel Piatrovich',
+  jobTitle: 'Frontend Engineer',
+  url: siteUrl,
+  email: 'pasha.petrovich98@gmail.com',
+  sameAs: ['https://linkedin.com/in/pavel-software-anywhere'],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Warsaw',
+    addressCountry: 'PL',
+  },
+  knowsAbout: ['React', 'React Native', 'TypeScript', 'JavaScript', 'Frontend Engineering'],
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -60,11 +77,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="en" className={`${syne.variable} ${spaceMono.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="bg-[#0a0a0a] text-white antialiased">
         <Header />
         <main className="relative z-10">{children}</main>
         <Footer />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )

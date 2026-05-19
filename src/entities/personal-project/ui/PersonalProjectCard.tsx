@@ -1,5 +1,5 @@
 import { Badge } from '@/shared/ui'
-import type { PersonalProject } from '@/shared/types'
+import { BadgeVariant, ProjectStatus, type PersonalProject } from '@/shared/types'
 
 export function PersonalProjectCard({ project }: { project: PersonalProject }) {
   return (
@@ -17,7 +17,7 @@ export function PersonalProjectCard({ project }: { project: PersonalProject }) {
           <p className="font-mono text-sm text-cyan-400/70 mt-1">{project.tagline}</p>
         </div>
 
-        {project.status === 'in-progress' && (
+        {project.status === ProjectStatus.InProgress && (
           <span className="inline-flex items-center gap-2 font-mono text-[10px] text-amber-400/80 border border-amber-400/20 bg-amber-400/[0.06] px-3 py-1.5 rounded-full shrink-0 self-start">
             <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse-dot" />
             In Progress
@@ -46,7 +46,7 @@ export function PersonalProjectCard({ project }: { project: PersonalProject }) {
 
       <div className="flex flex-wrap gap-2 mb-5">
         {project.tags.map((tag) => (
-          <Badge key={tag} variant="default">{tag}</Badge>
+          <Badge key={tag} variant={BadgeVariant.Default}>{tag}</Badge>
         ))}
       </div>
 
