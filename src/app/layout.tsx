@@ -83,6 +83,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Intercept Cmd+P / Ctrl+P before React mounts — opens CV PDF inline */}
+        <script dangerouslySetInnerHTML={{
+          __html: `!function(){document.addEventListener('keydown',function(e){if((e.metaKey||e.ctrlKey)&&'p'===e.key.toLowerCase()){e.preventDefault();e.stopImmediatePropagation();window.open('/api/cv-view','_blank');}},true);}();`
+        }} />
       </head>
       <body className="bg-[#0a0a0a] text-white antialiased">
         <ClientOnlyWidgets />

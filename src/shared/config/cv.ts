@@ -26,7 +26,7 @@ export const PERSONAL: Personal = {
   linkedinUrl: 'https://linkedin.com/in/pavel-software-anywhere',
   phone: '+48 516 532 323',
   currentCompany: 'Solbeg_',
-  cvPath: '/Pavel_Piatrovich_CV_2026_1405.pdf',
+  cvPath: '/api/cv-view',
   cvFileName: 'Pavel_Piatrovich_CV.pdf',
   summary: `Frontend Engineer with 6+ years of commercial experience building scalable web and
     mobile applications with React, React Native, and TypeScript. Strong background in
@@ -252,6 +252,7 @@ export const PERSONAL_PROJECTS: PersonalProject[] = [
       'Edge cases, and Problem-solving. Supports sandboxed code execution, human-review payments, ' +
       'and an AICoach for personalised feedback. Available in EN, DE, ES, and RU.',
     url: 'https://themafia98.github.io/mentara-ai-landing-page/',
+    githubRepo: 'themafia98/mentara-ai-landing-page',
     status: ProjectStatus.InProgress,
     tags: ['React Native', 'Expo 55', 'Fastify', 'TypeScript', 'Redis', 'Postgres', 'Stripe', 'Clerk'],
     arch: [

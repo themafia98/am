@@ -119,6 +119,7 @@ export interface PersonalProject {
   readonly status: ProjectStatus
   readonly tags: readonly string[]
   readonly arch?: readonly ArchLayer[]
+  readonly githubRepo?: string
 }
 
 export interface CvData {

@@ -1,4 +1,5 @@
 import { Button } from '@/shared/ui'
+import { OpenToWorkBadge } from '@/shared/ui/OpenToWorkBadge'
 import type { CvData } from '@/shared/types'
 
 export function Hero({ cv }: { cv: CvData }) {
@@ -53,10 +54,13 @@ export function Hero({ cv }: { cv: CvData }) {
         <p className="font-mono text-white/40 text-[10px] sm:text-sm tracking-[0.2em] sm:tracking-[0.28em] uppercase mb-3">
           {personal.title}&nbsp;&nbsp;·&nbsp;&nbsp;{personal.subtitle}
         </p>
-        <p className="font-mono text-white/45 text-[9px] sm:text-xs tracking-[0.2em] uppercase mb-8 sm:mb-10 flex items-center gap-2">
-          <span>📍</span>
-          <span>{personal.location}</span>
-        </p>
+        <div className="flex flex-wrap items-center gap-3 mb-8 sm:mb-10">
+          <p className="font-mono text-white/45 text-[9px] sm:text-xs tracking-[0.2em] uppercase flex items-center gap-2">
+            <span>📍</span>
+            <span>{personal.location}</span>
+          </p>
+          <OpenToWorkBadge />
+        </div>
 
         <div className="hero-buttons flex flex-col gap-4 mb-10 sm:mb-14">
           <div className="flex flex-col sm:flex-row gap-3">

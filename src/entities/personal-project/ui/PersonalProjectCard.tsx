@@ -1,5 +1,6 @@
 import { Badge } from '@/shared/ui'
 import { BadgeVariant, ProjectStatus, type PersonalProject } from '@/shared/types'
+import { GitHubStats } from './GitHubStats'
 
 export function PersonalProjectCard({ project }: { project: PersonalProject }) {
   return (
@@ -50,9 +51,12 @@ export function PersonalProjectCard({ project }: { project: PersonalProject }) {
         ))}
       </div>
 
-      <div className="mt-auto flex items-center gap-2 font-mono text-xs text-white/20 group-hover:text-cyan-500/50 transition-colors">
-        <span>↗</span>
-        <span>{project.url.replace(/^https?:\/\//, '')}</span>
+      <div className="mt-auto flex items-center justify-between gap-4">
+        <div className="flex items-center gap-2 font-mono text-xs text-white/20 group-hover:text-cyan-500/50 transition-colors">
+          <span>↗</span>
+          <span>{project.url.replace(/^https?:\/\//, '')}</span>
+        </div>
+        {project.githubRepo && <GitHubStats repo={project.githubRepo} />}
       </div>
     </a>
   )
