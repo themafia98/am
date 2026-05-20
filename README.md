@@ -67,7 +67,7 @@ Node >= 20 required (see `engines` in `package.json`).
 
 ## CV PDF
 
-Drop the PDF at `public/Pavel_Piatrovich_CV_2026_1405.pdf` — the "Download CV" and "View CV" buttons in the Hero point to it automatically via `PERSONAL.cvPath` in `shared/config/cv.ts`.
+Drop the PDF at `public/Pavel_Piatrovich_CV_2026_1905.pdf` — the "Download CV" and "View CV" buttons in the Hero point to it automatically via `PERSONAL.cvPath` in `shared/config/cv.ts`.
 
 ---
 

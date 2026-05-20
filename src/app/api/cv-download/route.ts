@@ -3,7 +3,7 @@ import { readFile } from 'fs/promises'
 import { join } from 'path'
 import { logger } from '@/shared/lib/logger'
 
-const PDF_FILENAME = 'Pavel_Piatrovich_CV_2026_1405.pdf'
+const PDF_FILENAME = 'Pavel_Piatrovich_CV_2026_1905.pdf'
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
   logger.info('cv:download', {

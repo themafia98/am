@@ -27,7 +27,7 @@ export const PERSONAL: Personal = {
   phone: '+48 516 532 323',
   currentCompany: 'Solbeg_',
   cvPath: '/api/cv-view',
-  cvFileName: 'Pavel_Piatrovich_CV.pdf',
+  cvFileName: 'Pavel_Piatrovich_CV_2026_1905.pdf',
   summary: `Frontend Engineer with 6+ years of commercial experience building scalable web and
     mobile applications with React, React Native, and TypeScript. Strong background in
     component-driven development, modern state management (Redux / Redux Toolkit, MobX, Zustand),
