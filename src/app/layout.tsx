@@ -27,7 +27,7 @@ const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Pavel Piatrovich — Frontend Engineer',
+  title: 'Pavel Piatrovich - Frontend Engineer',
   description:
     'Frontend Engineer with 6+ years of experience specialising in React, React Native, and TypeScript. Based in Warsaw, Poland.',
   keywords: [
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     'Pavel Piatrovich',
   ],
   openGraph: {
-    title: 'Pavel Piatrovich — Frontend Engineer',
+    title: 'Pavel Piatrovich - Frontend Engineer',
     description:
       'Frontend Engineer with 6+ years of experience specialising in React, React Native, and TypeScript.',
     type: 'website',
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Pavel Piatrovich — Frontend Engineer',
+    title: 'Pavel Piatrovich - Frontend Engineer',
     description: 'Frontend Engineer · React · React Native · TypeScript · Warsaw',
   },
   robots: { index: true, follow: true },
@@ -83,7 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* Intercept Cmd+P / Ctrl+P before React mounts — opens CV PDF inline */}
+        {/* Intercept Cmd+P / Ctrl+P before React mounts - opens CV PDF inline */}
         <script dangerouslySetInnerHTML={{
           __html: `!function(){document.addEventListener('keydown',function(e){if((e.metaKey||e.ctrlKey)&&'p'===e.key.toLowerCase()){e.preventDefault();e.stopImmediatePropagation();window.open('/api/cv-view','_blank');}},true);}();`
         }} />

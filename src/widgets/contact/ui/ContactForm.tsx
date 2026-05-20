@@ -40,7 +40,7 @@ export function ContactForm(): React.ReactElement {
       <div className="flex flex-col gap-2 p-5 rounded-xl border border-cyan-500/20 bg-cyan-500/[0.04]">
         <span className="font-mono text-xs text-cyan-400 tracking-widest uppercase">Message sent</span>
         <p className="font-mono text-sm text-white/50">
-          Thanks — I&apos;ll get back to you soon.
+          Thanks - I&apos;ll get back to you soon.
         </p>
       </div>
     )

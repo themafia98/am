@@ -1,6 +1,6 @@
-# Pavel Piatrovich — Portfolio
+# Pavel Piatrovich - Portfolio
 
-Personal portfolio and CV site for Pavel Piatrovich, Frontend Engineer with 6+ years of experience in React, React Native, and TypeScript. Built as a static Next.js app — fully server-rendered, print-ready, and deployable to Vercel in one click.
+Personal portfolio and CV site for Pavel Piatrovich, Frontend Engineer with 6+ years of experience in React, React Native, and TypeScript. Built as a static Next.js app - fully server-rendered, print-ready, and deployable to Vercel in one click.
 
 ---
 
@@ -19,13 +19,13 @@ Personal portfolio and CV site for Pavel Piatrovich, Frontend Engineer with 6+ y
 
 ## Architecture
 
-Structured with **Feature-Sliced Design** (FSD) — layers import only downward:
+Structured with **Feature-Sliced Design** (FSD) - layers import only downward:
 
 ```
 src/
 ├── app/                  Next.js App Router (layout, page, globals.css)
 │
-├── shared/               No project deps — safe to import anywhere
+├── shared/               No project deps - safe to import anywhere
 │   ├── config/cv.ts      Single source of truth for all CV data
 │   ├── lib/cn.ts         clsx + tailwind-merge utility
 │   ├── types/            All TypeScript interfaces and types
@@ -48,7 +48,7 @@ src/
     └── footer/
 ```
 
-Each slice exposes a single `index.ts` public API — consumers never import from internal `ui/` paths directly.
+Each slice exposes a single `index.ts` public API - consumers never import from internal `ui/` paths directly.
 
 ---
 
@@ -67,7 +67,7 @@ Node >= 20 required (see `engines` in `package.json`).
 
 ## CV PDF
 
-Drop the PDF at `public/Pavel_Piatrovich_CV_2026_1905.pdf` — the "Download CV" and "View CV" buttons in the Hero point to it automatically via `PERSONAL.cvPath` in `shared/config/cv.ts`.
+Drop the PDF at `public/Pavel_Piatrovich_CV_2026_1905.pdf` - the "Download CV" and "View CV" buttons in the Hero point to it automatically via `PERSONAL.cvPath` in `shared/config/cv.ts`.
 
 ---
 
@@ -75,7 +75,7 @@ Drop the PDF at `public/Pavel_Piatrovich_CV_2026_1905.pdf` — the "Download CV"
 
 All CV data lives in one file: **`src/shared/config/cv.ts`**.
 
-Change anything there — name, jobs, skills, contact links — and the entire site updates. No other files need to be touched for content changes.
+Change anything there - name, jobs, skills, contact links - and the entire site updates. No other files need to be touched for content changes.
 
 ---
 
@@ -108,6 +108,6 @@ Security headers (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Perm
 - Dark theme (`#0a0a0a` background), electric cyan accent (`#06b6d4`)
 - Dot-matrix background with radial mask + SVG concentric arcs
 - CSS-only gradient text animation and marquee strip
-- Responsive from 320 px — hamburger menu on mobile, full nav on desktop
-- `@media print` — full print stylesheet for clean A4 CV export
+- Responsive from 320 px - hamburger menu on mobile, full nav on desktop
+- `@media print` - full print stylesheet for clean A4 CV export
 - Accessible: `aria-hidden` on decorative elements, `aria-label` / `aria-expanded` on interactive controls

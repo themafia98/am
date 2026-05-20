@@ -21,7 +21,7 @@ export async function Contact({ cv }: { cv: CvData }) {
             </h3>
             <p className="text-white/40 leading-relaxed mb-8 w-full">
               Open to interesting frontend challenges, collaborative teams, and B2B contracts.
-              Product companies, startups, or ambitious side projects — if clean code and great
+              Product companies, startups, or ambitious side projects - if clean code and great
               UX matter to you, let&apos;s talk.
             </p>
             {features.contactForm ? (

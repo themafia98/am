@@ -83,13 +83,13 @@ body::after {
 @media print {
   @page { size: A4; margin: 2cm; }
 
-  /* Hide the entire page — CV PDF will be opened in a new tab */
+  /* Hide the entire page - CV PDF will be opened in a new tab */
   body > * { display: none !important; }
   body::after { display: none !important; }
 
   body::before {
     display: block !important;
-    content: 'To print the CV: press Cmd+P (Mac) or Ctrl+P (Windows) on this page — it will open the PDF viewer automatically.';
+    content: 'To print the CV: press Cmd+P (Mac) or Ctrl+P (Windows) on this page - it will open the PDF viewer automatically.';
     font-family: monospace;
     font-size: 11pt;
     color: #111;

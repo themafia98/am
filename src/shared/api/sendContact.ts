@@ -26,7 +26,7 @@ export async function sendContact(
     return { status: ContactStatus.Error, message: 'Invalid email address' }
   }
   if (message.length < 10 || message.length > 2000) {
-    return { status: ContactStatus.Error, message: 'Message must be 10–2000 characters' }
+    return { status: ContactStatus.Error, message: 'Message must be 10-2000 characters' }
   }
 
   const { RESEND_API_KEY, RESEND_TEMPLATE_ID, CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL } = process.env

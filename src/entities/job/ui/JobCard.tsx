@@ -42,7 +42,7 @@ export function JobCard({ job }: { job: Job }): React.ReactElement {
         <ul className="space-y-2 mb-6">
           {job.bullets.map((bullet, i) => (
             <li key={i} className="flex gap-3 text-sm text-white/60 leading-relaxed">
-              <span className="text-white/20 shrink-0 mt-0.5">—</span>
+              <span className="text-white/20 shrink-0 mt-0.5">-</span>
               {bullet}
             </li>
           ))}
