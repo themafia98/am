@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { readFile } from 'fs/promises'
 import { join } from 'path'
 
-const PDF_FILENAME = 'Pavel_Piatrovich_CV_2026_1905.pdf'
+const PDF_FILENAME = 'pavel-piatrovich-cv-2026-06-02-up.pdf'
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
   try {
