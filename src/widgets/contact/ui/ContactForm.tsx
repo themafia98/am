@@ -5,13 +5,7 @@ import { useFormStatus } from 'react-dom'
 import { cn } from '@/shared/lib/cn'
 import { ContactStatus, contactInitialState } from '@/shared/types'
 import { sendContact } from '@/shared/api/sendContact'
-
-const inputClass = cn(
-  'w-full bg-white/[0.03] border border-white/[0.08] rounded-lg px-4 py-3',
-  'font-mono text-sm text-white placeholder:text-white/20',
-  'focus:outline-none focus:border-cyan-500/50 focus:bg-white/[0.05]',
-  'transition-all duration-200',
-)
+import { CONTACT_INPUT_CLASS } from '../constants'
 
 function SubmitButton(): React.ReactElement {
   const { pending } = useFormStatus()
@@ -57,7 +51,7 @@ export function ContactForm(): React.ReactElement {
             placeholder="John Doe"
             required
             maxLength={100}
-            className={inputClass}
+            className={CONTACT_INPUT_CLASS}
           />
         </div>
         <div className="flex flex-col gap-1.5">
@@ -67,7 +61,7 @@ export function ContactForm(): React.ReactElement {
             type="email"
             placeholder="john@company.com"
             required
-            className={inputClass}
+            className={CONTACT_INPUT_CLASS}
           />
         </div>
       </div>
@@ -81,7 +75,7 @@ export function ContactForm(): React.ReactElement {
           minLength={10}
           maxLength={2000}
           rows={4}
-          className={cn(inputClass, 'resize-none')}
+          className={cn(CONTACT_INPUT_CLASS, 'resize-none')}
         />
       </div>
 

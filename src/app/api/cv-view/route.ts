@@ -1,12 +1,11 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { readFile } from 'fs/promises'
 import { join } from 'path'
-
-const PDF_FILENAME = 'pavel-piatrovich-cv-2026-06-02-up.pdf'
+import { CV_PDF_FILENAME } from '@/shared/config/cv-pdf'
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
   try {
-    const filePath = join(process.cwd(), 'public', PDF_FILENAME)
+    const filePath = join(process.cwd(), 'public', CV_PDF_FILENAME)
     const buffer = await readFile(filePath)
 
     return new NextResponse(buffer, {
@@ -17,6 +16,6 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       },
     })
   } catch {
-    return NextResponse.redirect(new URL(`/${PDF_FILENAME}`, req.url))
+    return NextResponse.redirect(new URL(`/${CV_PDF_FILENAME}`, req.url))
   }
 }

@@ -13,6 +13,7 @@ import {
   type PersonalProject,
   type ArchLayer,
 } from '@/shared/types'
+import { CV_PDF_FILENAME } from './cv-pdf'
 
 export const PERSONAL: Personal = {
   name: 'Pavel Piatrovich',
@@ -27,7 +28,7 @@ export const PERSONAL: Personal = {
   phone: '+48 516 532 323',
   currentCompany: 'Solbeg_',
   cvPath: '/api/cv-view',
-  cvFileName: 'pavel-piatrovich-cv-2026-06-02-up.pdf',
+  cvFileName: CV_PDF_FILENAME,
   summary: `Frontend Engineer with 6+ years of commercial experience building scalable web and
     mobile applications with React, React Native, and TypeScript. Strong background in
     component-driven development, modern state management (Redux / Redux Toolkit, MobX, Zustand),

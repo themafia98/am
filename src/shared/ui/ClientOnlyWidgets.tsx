@@ -1,16 +1,6 @@
 'use client'
 
-import dynamic from 'next/dynamic'
-
-const ScrollProgressBar = dynamic(
-  () => import('./ScrollProgressBar').then((m) => m.ScrollProgressBar),
-  { ssr: false },
-)
-
-const ScrollRevealObserver = dynamic(
-  () => import('./ScrollRevealObserver').then((m) => m.ScrollRevealObserver),
-  { ssr: false },
-)
+import { ScrollProgressBar, ScrollRevealObserver } from './client-constants'
 
 export function ClientOnlyWidgets() {
   return (
