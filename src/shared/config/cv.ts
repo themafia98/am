@@ -271,6 +271,16 @@ export const PERSONAL_PROJECTS: PersonalProject[] = [
       { label: 'Infra',    items: ['Judge0 (code execution)', 'Stripe (human-review payments)'] },
     ] satisfies ArchLayer[],
   },
+  {
+    name: 'Space View',
+    tagline: 'Immersive Single-Page Space Experience',
+    description:
+      'A single-page space-themed experience built with Next.js and Three.js, featuring an ' +
+      'interactive 3D scene rendered directly in the browser.',
+    url: 'https://space-view-one.vercel.app/',
+    status: ProjectStatus.Live,
+    tags: ['Next.js', 'Three.js', 'TypeScript'],
+  },
 ]
 
 export const MARQUEE_SKILLS: readonly string[] = [
