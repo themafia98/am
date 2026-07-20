@@ -31,22 +31,6 @@ body::after {
   background-size: 250px 250px;
 }
 
-@layer components {
-  .gradient-text {
-    background: linear-gradient(135deg, #06b6d4 0%, #e0f2fe 45%, #06b6d4 100%);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: gradientText 5s ease infinite;
-  }
-}
-
-@keyframes gradientText {
-  0%, 100% { background-position: 0% 50%; }
-  50%       { background-position: 100% 50%; }
-}
-
 .reveal {
   opacity: 0;
   transform: translateY(20px);

@@ -6,7 +6,7 @@ export function Projects({ cv }: { cv: CvData }) {
   return (
     <section id="projects" data-reveal className="py-16 sm:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <SectionHeader number="04" title="Projects" />
+        <SectionHeader title="Projects" />
 
         <div className="grid md:grid-cols-2 gap-6">
           {cv.personalProjects.map((project) => (

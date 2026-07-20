@@ -9,7 +9,7 @@ export function JobCard({ job }: { job: Job }): React.ReactElement {
       <div
         className={cn(
           'absolute -left-[1.6rem] sm:-left-[2.35rem] top-7 w-3 h-3 rounded-full border-2',
-          job.current ? 'bg-cyan-500 border-cyan-400 animate-pulse-dot' : 'bg-[#0a0a0a] border-white/20',
+          job.current ? 'bg-cyan-500 border-cyan-400' : 'bg-[#0a0a0a] border-white/20',
         )}
       />
 
@@ -21,7 +21,7 @@ export function JobCard({ job }: { job: Job }): React.ReactElement {
                 {job.title}
               </h3>
               {job.current && (
-                <span className="font-mono text-[10px] text-cyan-500 border border-cyan-500/30 px-2.5 py-0.5 rounded-full">
+                <span className="font-mono text-[10px] text-cyan-500 border border-cyan-500/30 px-2.5 py-0.5 rounded-md">
                   Current
                 </span>
               )}

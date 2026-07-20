@@ -8,7 +8,7 @@ export function Education({ cv }: { cv: CvData }): React.ReactElement {
   return (
     <section id="education" data-reveal className="py-16 sm:py-24 bg-white/[0.015]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <SectionHeader number="05" title="Education" />
+        <SectionHeader title="Education" />
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           <div>

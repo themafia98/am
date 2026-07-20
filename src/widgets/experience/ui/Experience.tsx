@@ -6,7 +6,7 @@ export function Experience({ cv }: { cv: CvData }) {
   return (
     <section id="experience" data-reveal className="py-16 sm:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <SectionHeader number="02" title="Experience" />
+        <SectionHeader title="Experience" />
 
         <div className="relative">
           <div className="absolute left-3 sm:left-4 top-6 bottom-6 w-px bg-gradient-to-b from-cyan-500/50 via-white/10 to-transparent" />

@@ -28,7 +28,7 @@ export function SkillCategoryCard({ category }: { category: SkillCategory }) {
               rel="noreferrer"
               aria-label={`Open ${skill} documentation`}
               title={`Open ${skill} documentation`}
-              className="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950"
+              className="rounded-md outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950"
             >
               <Badge variant={category.color} interactive>
                 {skill}

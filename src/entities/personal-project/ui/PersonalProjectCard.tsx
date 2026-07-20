@@ -1,4 +1,5 @@
 import { Badge } from '@/shared/ui'
+import { ArrowUpRightIcon } from '@/shared/ui/icons'
 import { BadgeVariant, ProjectStatus, type PersonalProject } from '@/shared/types'
 import { GitHubStats } from './GitHubStats'
 
@@ -19,8 +20,7 @@ export function PersonalProjectCard({ project }: { project: PersonalProject }) {
         </div>
 
         {project.status === ProjectStatus.InProgress && (
-          <span className="inline-flex items-center gap-2 font-mono text-[10px] text-amber-400/80 border border-amber-400/20 bg-amber-400/[0.06] px-3 py-1.5 rounded-full shrink-0 self-start">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse-dot" />
+          <span className="inline-flex items-center font-mono text-[10px] text-amber-400/80 border border-amber-400/20 bg-amber-400/[0.06] px-3 py-1.5 rounded-md shrink-0 self-start">
             In Progress
           </span>
         )}
@@ -53,7 +53,7 @@ export function PersonalProjectCard({ project }: { project: PersonalProject }) {
 
       <div className="mt-auto flex items-center justify-between gap-4">
         <div className="flex items-center gap-2 font-mono text-xs text-white/20 group-hover:text-cyan-500/50 transition-colors">
-          <span>↗</span>
+          <ArrowUpRightIcon />
           <span>{project.url.replace(/^https?:\/\//, '')}</span>
         </div>
         {project.githubRepo && <GitHubStats repo={project.githubRepo} />}

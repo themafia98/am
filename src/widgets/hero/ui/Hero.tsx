@@ -1,51 +1,20 @@
 import { Button } from '@/shared/ui'
+import { ArrowDownIcon, ArrowUpRightIcon, PinIcon } from '@/shared/ui/icons'
 import { OpenToWorkBadge } from '@/shared/ui/OpenToWorkBadge'
 import type { CvData } from '@/shared/types'
 
 export function Hero({ cv }: { cv: CvData }) {
-  const { personal, heroStats, marqueeSkills } = cv
-  const doubled = [...marqueeSkills, ...marqueeSkills]
+  const { personal, heroStats } = cv
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center pt-16 overflow-hidden">
-      <div
-        aria-hidden
-        className="absolute top-1/3 right-[-10%] w-[550px] h-[550px] rounded-full bg-cyan-500/[0.04] blur-[120px] pointer-events-none"
-      />
-      <div
-        aria-hidden
-        className="absolute bottom-1/4 left-[-8%] w-[400px] h-[400px] rounded-full bg-blue-600/[0.04] blur-[100px] pointer-events-none"
-      />
-
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-          maskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%)',
-          WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%)',
-        }}
-      />
-
-      <svg
-        aria-hidden
-        className="absolute -top-32 -right-32 w-[600px] h-[600px] pointer-events-none opacity-[0.045]"
-        viewBox="0 0 600 600"
-        fill="none"
-      >
-        {[120, 200, 280, 360, 440].map((r) => (
-          <circle key={r} cx="600" cy="0" r={r} stroke="white" strokeWidth="1" />
-        ))}
-      </svg>
-
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 w-full">
         <div className="mb-4">
           <h1 className="font-syne font-bold leading-[0.88] tracking-tighter">
             <span className="block text-[clamp(2.75rem,11vw,8.5rem)] text-white">
               {personal.firstName}
             </span>
-            <span className="block text-[clamp(2.75rem,11vw,8.5rem)] gradient-text">
+            <span className="block text-[clamp(2.75rem,11vw,8.5rem)] text-cyan-400">
               {personal.lastName}
             </span>
           </h1>
@@ -56,7 +25,7 @@ export function Hero({ cv }: { cv: CvData }) {
         </p>
         <div className="flex flex-wrap items-center gap-3 mb-8 sm:mb-10">
           <p className="font-mono text-white/45 text-[9px] sm:text-xs tracking-[0.2em] uppercase flex items-center gap-2">
-            <span>📍</span>
+            <PinIcon className="text-white/35" />
             <span>{personal.location}</span>
           </p>
           <OpenToWorkBadge />
@@ -70,7 +39,8 @@ export function Hero({ cv }: { cv: CvData }) {
               download={personal.cvFileName}
               className="justify-center sm:justify-start"
             >
-              ↓ Download CV
+              <ArrowDownIcon />
+              Download CV
             </Button>
             <Button
               variant="ghost"
@@ -79,7 +49,8 @@ export function Hero({ cv }: { cv: CvData }) {
               rel="noopener noreferrer"
               className="justify-center sm:justify-start"
             >
-              ↗ View CV
+              <ArrowUpRightIcon />
+              View CV
             </Button>
           </div>
           <div className="flex items-center gap-5">
@@ -87,9 +58,10 @@ export function Hero({ cv }: { cv: CvData }) {
               href={personal.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs text-white/30 hover:text-white/65 transition-colors duration-200"
+              className="inline-flex items-center gap-1.5 font-mono text-xs text-white/30 hover:text-white/65 transition-colors duration-200"
             >
-              LinkedIn ↗
+              LinkedIn
+              <ArrowUpRightIcon />
             </a>
             <span className="text-white/10">·</span>
             <a
@@ -112,17 +84,6 @@ export function Hero({ cv }: { cv: CvData }) {
                 {stat.label}
               </span>
             </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="hero-marquee relative z-10 w-full overflow-hidden border-t border-white/[0.05] py-3 sm:py-4 bg-white/[0.01]">
-        <div className="flex animate-marquee whitespace-nowrap">
-          {doubled.map((skill, i) => (
-            <span key={i} className="inline-flex items-center gap-3 sm:gap-4 mx-3 sm:mx-4">
-              <span className="font-mono text-[10px] sm:text-xs text-white/25 tracking-widest">{skill}</span>
-              <span className="text-cyan-500/25 text-[7px] sm:text-[8px]">◆</span>
-            </span>
           ))}
         </div>
       </div>

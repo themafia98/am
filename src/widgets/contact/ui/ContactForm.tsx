@@ -21,7 +21,7 @@ function SubmitButton(): React.ReactElement {
         'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none',
       )}
     >
-      {pending ? 'Sending…' : '✦ Send message'}
+      {pending ? 'Sending…' : 'Send message'}
     </button>
   )
 }

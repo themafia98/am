@@ -18,7 +18,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        'inline-flex items-center px-3 py-1 rounded-full text-xs font-mono border',
+        'inline-flex items-center px-3 py-1 rounded-md text-xs font-mono border',
         'transition-all duration-200 hover:scale-[1.04]',
         interactive ? 'cursor-pointer' : 'cursor-default',
         BADGE_VARIANT_STYLES[variant],

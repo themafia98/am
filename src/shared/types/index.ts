@@ -103,7 +103,6 @@ export interface ContactItem {
   readonly label: string
   readonly value: string
   readonly href: string
-  readonly icon: string
 }
 
 export interface ArchLayer {
@@ -133,5 +132,4 @@ export interface CvData {
   readonly certifications: readonly Certification[]
   readonly languages: readonly Language[]
   readonly contactItems: readonly ContactItem[]
-  readonly marqueeSkills: readonly string[]
 }

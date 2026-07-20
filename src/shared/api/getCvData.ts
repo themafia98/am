@@ -10,7 +10,6 @@ import {
   CERTIFICATIONS,
   LANGUAGES,
   CONTACT_ITEMS,
-  MARQUEE_SKILLS,
 } from '@/shared/config/cv'
 import { logger } from '@/shared/lib/logger'
 
@@ -25,7 +24,6 @@ const staticData: CvData = {
   certifications: CERTIFICATIONS,
   languages: LANGUAGES,
   contactItems: CONTACT_ITEMS,
-  marqueeSkills: MARQUEE_SKILLS,
 }
 
 /**

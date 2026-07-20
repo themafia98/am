@@ -11,13 +11,13 @@ export async function Contact({ cv }: { cv: CvData }) {
   return (
     <section id="contact" data-reveal className="py-16 sm:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <SectionHeader number="06" title="Contact" />
+        <SectionHeader title="Contact" />
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h3 className="font-syne text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight mb-5 w-full break-words">
               Let&apos;s build something{' '}
-              <span className="gradient-text">great together.</span>
+              <span className="text-cyan-400">great together.</span>
             </h3>
             <p className="text-white/40 leading-relaxed mb-8 w-full">
               Open to interesting frontend challenges, collaborative teams, and B2B contracts.
@@ -28,7 +28,7 @@ export async function Contact({ cv }: { cv: CvData }) {
               <ContactForm />
             ) : (
               <Button variant="primary" href={`mailto:${personal.email}`}>
-                ✦ Get in touch
+                Get in touch
               </Button>
             )}
           </div>

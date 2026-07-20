@@ -236,19 +236,16 @@ export const CONTACT_ITEMS: ContactItem[] = [
     label: 'Email',
     value: 'pasha.petrovich98@gmail.com',
     href: 'mailto:pasha.petrovich98@gmail.com',
-    icon: '✦',
   },
   {
     label: 'LinkedIn',
     value: 'linkedin.com/in/pavel-software-anywhere',
     href: 'https://linkedin.com/in/pavel-software-anywhere',
-    icon: '◈',
   },
   {
     label: 'WhatsApp',
     value: '+48 516 532 323',
     href: 'https://wa.me/48516532323',
-    icon: '◎',
   },
 ]
 
@@ -281,10 +278,4 @@ export const PERSONAL_PROJECTS: PersonalProject[] = [
     status: ProjectStatus.Live,
     tags: ['Next.js', 'Three.js', 'TypeScript'],
   },
-]
-
-export const MARQUEE_SKILLS: readonly string[] = [
-  'React', 'React Native', 'TypeScript', 'Next.js', 'Redux Toolkit',
-  'Tailwind CSS', 'Playwright', 'Storybook', 'GraphQL', 'TanStack Query',
-  'Node.js', 'Zustand', 'Vite', 'Docker', 'MobX', 'Micro-frontends',
 ]
