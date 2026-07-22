@@ -257,8 +257,8 @@ export const PERSONAL_PROJECTS: PersonalProject[] = [
       'Full-stack AI interview simulator with real-time scoring across Technical depth, Communication, ' +
       'Edge cases, and Problem-solving. Supports sandboxed code execution, human-review payments, ' +
       'and an AICoach for personalised feedback. Available in EN, DE, ES, and RU.',
-    url: 'https://themafia98.github.io/mentara-ai-landing-page/',
-    githubRepo: 'themafia98/mentara-ai-landing-page',
+    url: 'https://mentara-ai-landing.web.app/',
+    // githubRepo: 'themafia98/mentara-ai-landing-page',
     status: ProjectStatus.InProgress,
     tags: ['React Native', 'Expo 55', 'Fastify', 'TypeScript', 'Redis', 'Postgres', 'Stripe', 'Clerk'],
     arch: [
