@@ -180,17 +180,17 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     label: 'Forms & Validation',
     color: BadgeVariant.Default,
-    skills: ['Formik', 'Zod'],
+    skills: ['Formik', 'React Hook Form', 'Zod'],
   },
   {
     label: 'UI & Styling',
     color: BadgeVariant.Pink,
-    skills: ['Material UI', 'Ant Design', 'Tailwind CSS', 'SCSS', 'CSS Modules', 'styled-components', 'CSS-in-JS'],
+    skills: ['Material UI', 'Fluent UI', 'Tailwind CSS', 'SCSS', 'CSS Modules', 'styled-components'],
   },
   {
     label: 'Testing',
     color: BadgeVariant.Orange,
-    skills: ['Jest', 'React Testing Library', 'Enzyme', 'Playwright (SDET experience)', 'integration testing'],
+    skills: ['Jest', 'React Testing Library', 'Playwright', 'Vitest'],
   },
   {
     label: 'Build & Tooling',
@@ -205,7 +205,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     label: 'Practices',
     color: BadgeVariant.Cyan,
-    skills: ['Component-Driven Development', 'Feature-Sliced Design', 'MVVM', 'MVC', 'OOP', 'Design Patterns', 'Performance Optimization (memoization, lazy loading, code splitting)', 'Micro-frontends', 'Responsive Design', 'KISS', 'DRY', 'TypeScript-first', 'Agile/Scrum'],
+    skills: ['Component-Driven Development', 'Feature-Sliced Design', 'MVVM', 'MVC', 'Design Patterns', 'Performance Optimization', 'Micro-frontends', 'Responsive Design', 'KISS', 'DRY', 'TypeScript-first', 'Agile/Scrum'],
   },
 ]
 
@@ -252,20 +252,21 @@ export const CONTACT_ITEMS: ContactItem[] = [
 export const PERSONAL_PROJECTS: PersonalProject[] = [
   {
     name: 'Mentara',
-    tagline: 'AI Mock Technical Interviews - Built for Engineers',
+    tagline: 'AI Mock Interview Training - Multi-Agent System',
     description:
-      'Full-stack AI interview simulator with real-time scoring across Technical depth, Communication, ' +
-      'Edge cases, and Problem-solving. Supports sandboxed code execution, human-review payments, ' +
-      'and an AICoach for personalised feedback. Available in EN, DE, ES, and RU.',
+      'Full-stack AI interview-training app (Expo/React Native + Fastify) powered by 3 orchestrated ' +
+      'LLM agents, with real-time token streaming over WebSocket for live interview conversations. ' +
+      'Adding voice input (speech-to-text) and voice output (text-to-speech) for a hands-free mode, ' +
+      'backed by a type-safe shared contract (TypeScript + Zod) across REST/WS.',
     url: 'https://mentara-ai-landing.web.app/',
     // githubRepo: 'themafia98/mentara-ai-landing-page',
     status: ProjectStatus.InProgress,
-    tags: ['React Native', 'Expo 55', 'Fastify', 'TypeScript', 'Redis', 'Postgres', 'Stripe', 'Clerk'],
+    tags: ['React Native', 'Expo', 'Fastify', 'TypeScript', 'PostgreSQL', 'WebSockets', 'Zod', 'Zustand', 'TanStack Query', 'Turborepo', 'Clerk', 'Stripe', 'RevenueCat'],
     arch: [
-      { label: 'Client',   items: ['React Native · Expo 55', 'Clerk Auth', 'REST + WebSocket'] },
-      { label: 'Backend',  items: ['Fastify', 'Redis (live session state)', 'Postgres (history & reports)'] },
+      { label: 'Client',   items: ['React Native · Expo', 'Clerk Auth', 'REST + WebSocket', 'Voice I/O (in progress)'] },
+      { label: 'Backend',  items: ['Fastify', 'PostgreSQL', 'Redis', 'Real-time WebSocket token streaming'] },
       { label: 'AI',       items: ['Interview Agent', 'Scoring Agent', 'Progress Agent', 'AICoach'] },
-      { label: 'Infra',    items: ['Judge0 (code execution)', 'Stripe (human-review payments)'] },
+      { label: 'Infra',    items: ['GitHub Actions', 'EAS cloud builds', 'Storybook workflow', 'Stripe', 'RevenueCat', 'Judge0 (code execution)'] },
     ] satisfies ArchLayer[],
   },
   {
