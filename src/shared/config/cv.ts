@@ -251,6 +251,37 @@ export const CONTACT_ITEMS: ContactItem[] = [
 
 export const PERSONAL_PROJECTS: PersonalProject[] = [
   {
+    name: 'Fishing Store',
+    tagline: 'Generic E-Commerce Solution - Redesign in Progress',
+    description:
+      'A production-oriented online store evolving from a fishing retail project into a reusable ' +
+      'e-commerce foundation. The redesign focuses on a clean App Router architecture, strict ' +
+      'TypeScript contracts, WooCommerce/WordPress integrations, resilient order flows, and a ' +
+      'component system that can be adapted for different retail domains.',
+    url: 'https://fishing-store.vercel.app/',
+    status: ProjectStatus.InProgress,
+    tags: [
+      'Next.js 16',
+      'React 19',
+      'TypeScript',
+      'Tailwind CSS 4',
+      'NextAuth',
+      'WooCommerce',
+      'WordPress',
+      'WPGraphQL',
+      'React Hook Form',
+      'Zod',
+      'next-intl',
+      'Playwright',
+    ],
+    arch: [
+      { label: 'Client',   items: ['Next.js App Router', 'React 19', 'Tailwind CSS 4', 'Headless UI', 'Heroicons'] },
+      { label: 'Commerce', items: ['WooCommerce REST API v3', 'WooCommerce Store API', 'Cart and order context flows'] },
+      { label: 'Content',  items: ['WordPress REST API', 'WPGraphQL', 'GraphQL Code Generator', 'sanitize-html'] },
+      { label: 'Quality',  items: ['Strict TypeScript', 'Jest', 'Playwright', 'ESLint 9 flat config', 'Zod env validation'] },
+    ] satisfies ArchLayer[],
+  },
+  {
     name: 'Mentara',
     tagline: 'AI Mock Interview Training - Multi-Agent System',
     description:
