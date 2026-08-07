@@ -21,7 +21,7 @@ export function PersonalProjectCard({ project }: { project: PersonalProject }) {
 
         {project.status === ProjectStatus.InProgress && (
           <span className="inline-flex items-center font-mono text-[10px] text-amber-400/80 border border-amber-400/20 bg-amber-400/[0.06] px-3 py-1.5 rounded-md shrink-0 self-start">
-            In Progress
+            {project.statusLabel ?? 'In Progress'}
           </span>
         )}
       </div>

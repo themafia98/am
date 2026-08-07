@@ -251,44 +251,14 @@ export const CONTACT_ITEMS: ContactItem[] = [
 
 export const PERSONAL_PROJECTS: PersonalProject[] = [
   {
-    name: 'Fishing Store',
-    tagline: 'Generic E-Commerce Solution - Redesign in Progress',
-    description:
-      'A production-oriented online store evolving from a fishing retail project into a reusable ' +
-      'e-commerce foundation. The redesign focuses on a clean App Router architecture, strict ' +
-      'TypeScript contracts, WooCommerce/WordPress integrations, resilient order flows, and a ' +
-      'component system that can be adapted for different retail domains.',
-    url: 'https://fishing-store.vercel.app/',
-    status: ProjectStatus.InProgress,
-    tags: [
-      'Next.js 16',
-      'React 19',
-      'TypeScript',
-      'Tailwind CSS 4',
-      'NextAuth',
-      'WooCommerce',
-      'WordPress',
-      'WPGraphQL',
-      'React Hook Form',
-      'Zod',
-      'next-intl',
-      'Playwright',
-    ],
-    arch: [
-      { label: 'Client',   items: ['Next.js App Router', 'React 19', 'Tailwind CSS 4', 'Headless UI', 'Heroicons'] },
-      { label: 'Commerce', items: ['WooCommerce REST API v3', 'WooCommerce Store API', 'Cart and order context flows'] },
-      { label: 'Content',  items: ['WordPress REST API', 'WPGraphQL', 'GraphQL Code Generator', 'sanitize-html'] },
-      { label: 'Quality',  items: ['Strict TypeScript', 'Jest', 'Playwright', 'ESLint 9 flat config', 'Zod env validation'] },
-    ] satisfies ArchLayer[],
-  },
-  {
     name: 'Mentara',
     tagline: 'AI Mock Interview Training - Multi-Agent System',
     description:
       'Full-stack AI interview-training app (Expo/React Native + Fastify) powered by 3 orchestrated ' +
       'LLM agents, with real-time token streaming over WebSocket for live interview conversations. ' +
       'Adding voice input (speech-to-text) and voice output (text-to-speech) for a hands-free mode, ' +
-      'backed by a type-safe shared contract (TypeScript + Zod) across REST/WS.',
+      'backed by a type-safe shared contract (TypeScript + Zod) across REST/WS. Planned launch ' +
+      'across all target platforms by the end of 2026.',
     url: 'https://mentara-ai-landing.web.app/',
     // githubRepo: 'themafia98/mentara-ai-landing-page',
     status: ProjectStatus.InProgress,
@@ -309,5 +279,38 @@ export const PERSONAL_PROJECTS: PersonalProject[] = [
     url: 'https://space-view-one.vercel.app/',
     status: ProjectStatus.Live,
     tags: ['Next.js', 'Three.js', 'TypeScript'],
+  },
+  {
+    name: 'Fishing Store',
+    tagline: 'Generic E-Commerce Solution - Redesign in Progress',
+    description:
+      'A production-oriented online store evolving from a fishing retail project into a reusable ' +
+      'e-commerce foundation. The redesign focuses on a clean App Router architecture, strict ' +
+      'TypeScript contracts, WooCommerce/WordPress integrations, resilient order flows, and ongoing ' +
+      'multilingual support with next-intl for localization-ready storefronts.',
+    url: 'https://fishing-store.vercel.app/',
+    status: ProjectStatus.InProgress,
+    statusLabel: 'Redesign + i18n in progress',
+    tags: [
+      'Next.js 16',
+      'React 19',
+      'TypeScript',
+      'Tailwind CSS 4',
+      'NextAuth',
+      'WooCommerce',
+      'WordPress',
+      'WPGraphQL',
+      'React Hook Form',
+      'Zod',
+      'next-intl',
+      'Playwright',
+    ],
+    arch: [
+      { label: 'Client',   items: ['Next.js App Router', 'React 19', 'Tailwind CSS 4', 'Headless UI', 'Heroicons'] },
+      { label: 'Commerce', items: ['WooCommerce REST API v3', 'WooCommerce Store API', 'Cart and order context flows'] },
+      { label: 'Content',  items: ['WordPress REST API', 'WPGraphQL', 'GraphQL Code Generator', 'sanitize-html'] },
+      { label: 'i18n',     items: ['next-intl', 'Localized routes and messages in progress', 'Multilingual storefront architecture'] },
+      { label: 'Quality',  items: ['Strict TypeScript', 'Jest', 'Playwright', 'ESLint 9 flat config', 'Zod env validation'] },
+    ] satisfies ArchLayer[],
   },
 ]

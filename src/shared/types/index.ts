@@ -116,6 +116,7 @@ export interface PersonalProject {
   readonly description: string
   readonly url: string
   readonly status: ProjectStatus
+  readonly statusLabel?: string
   readonly tags: readonly string[]
   readonly arch?: readonly ArchLayer[]
   readonly githubRepo?: string
