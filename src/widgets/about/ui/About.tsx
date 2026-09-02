@@ -5,41 +5,26 @@ export function About({ cv }: { cv: CvData }): React.ReactElement {
   const { personal, aboutTags } = cv
 
   return (
-    <section id="about" data-reveal className="py-16 sm:py-24 bg-white/[0.015]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <SectionHeader title="About" />
+    <section id="about" data-reveal className="border-t border-rule py-16 sm:py-24">
+      <div className="mx-auto max-w-5xl px-6">
+        <SectionHeader index="01" title="About" note={`${personal.yearsOfExperience}+ years`} />
 
-        <div className="grid lg:grid-cols-[1fr_200px] gap-12 items-start">
-          <div>
-            <p className="text-lg text-white/65 leading-relaxed max-w-2xl">
-              {personal.summary}
-            </p>
+        <div className="grid gap-10 lg:grid-cols-[1fr_16rem] lg:gap-16">
+          {/* Lead paragraph, set large with a drop-cap opening */}
+          <p className="max-w-measure font-display text-2xl leading-[1.35] sm:text-[1.75rem] first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:text-[3.75rem] first-letter:leading-[0.8] first-letter:text-accent">
+            {personal.summary}
+          </p>
 
-            <div className="mt-8 flex flex-wrap gap-2">
-              {aboutTags.map((tag) => (
-                <span
-                  key={tag}
-                  className="font-mono text-xs text-white/40 border border-white/[0.08] px-3 py-1.5 rounded-md hover:border-white/20 hover:text-white/65 transition-colors cursor-default"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="hidden lg:flex flex-col items-center text-center pt-2">
-            <div
-              aria-hidden
-              className="font-syne font-bold text-[120px] leading-none text-white/[0.04] select-none"
-            >
-              {personal.yearsOfExperience}+
-            </div>
-            <p className="font-mono text-xs text-white/25 tracking-[0.2em] uppercase -mt-4">
-              years of
-              <br />
-              experience
-            </p>
-          </div>
+          <ul className="flex flex-col self-start border-t border-rule">
+            {aboutTags.map((tag) => (
+              <li
+                key={tag}
+                className="border-b border-rule py-2.5 text-sm text-ink-soft transition-colors hover:text-ink"
+              >
+                {tag}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

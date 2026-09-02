@@ -4,11 +4,11 @@ import type { CvData } from '@/shared/types'
 
 export function Projects({ cv }: { cv: CvData }) {
   return (
-    <section id="projects" data-reveal className="py-16 sm:py-24">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <SectionHeader title="Projects" />
+    <section id="projects" data-reveal className="border-t border-rule py-16 sm:py-24">
+      <div className="mx-auto max-w-5xl px-6">
+        <SectionHeader index="04" title="Projects" note="Personal work" />
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="border-t border-ink">
           {cv.personalProjects.map((project) => (
             <PersonalProjectCard key={project.name} project={project} />
           ))}

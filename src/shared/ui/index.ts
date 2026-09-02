@@ -1,7 +1,5 @@
 export { Badge } from './Badge'
 export { Button } from './Button'
-export { Card } from './Card'
 export { SectionHeader } from './SectionHeader'
-export { ScrollProgressBar } from './ScrollProgressBar'
 export { ScrollRevealObserver } from './ScrollRevealObserver'
-export { ArrowUpRightIcon, ArrowDownIcon, PinIcon, MailIcon, LinkedInIcon, WhatsAppIcon } from './icons'
+export { ArrowUpRightIcon, ArrowDownIcon } from './icons'

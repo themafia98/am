@@ -1,21 +1,20 @@
 import { SectionHeader } from '@/shared/ui'
 import { EducationCard, CertificationCard } from '@/entities/education'
+import { LABEL_CLASS } from '@/shared/ui/constants'
 import type { CvData } from '@/shared/types'
 
 export function Education({ cv }: { cv: CvData }): React.ReactElement {
   const { educations, certifications, languages } = cv
 
   return (
-    <section id="education" data-reveal className="py-16 sm:py-24 bg-white/[0.015]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <SectionHeader title="Education" />
+    <section id="education" data-reveal className="border-t border-rule py-16 sm:py-24">
+      <div className="mx-auto max-w-5xl px-6">
+        <SectionHeader index="05" title="Education" />
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid gap-10 md:grid-cols-2 md:gap-12">
           <div>
-            <h3 className="font-mono text-[11px] text-white/35 uppercase tracking-[0.25em] mb-5">
-              Degree
-            </h3>
-            <div className="space-y-4">
+            <h3 className={`${LABEL_CLASS} mb-4`}>Degree</h3>
+            <div className="border-t border-ink">
               {educations.map((edu) => (
                 <EducationCard key={edu.degree} edu={edu} />
               ))}
@@ -23,10 +22,8 @@ export function Education({ cv }: { cv: CvData }): React.ReactElement {
           </div>
 
           <div>
-            <h3 className="font-mono text-[11px] text-white/35 uppercase tracking-[0.25em] mb-5">
-              Certifications
-            </h3>
-            <div className="space-y-4">
+            <h3 className={`${LABEL_CLASS} mb-4`}>Certifications</h3>
+            <div className="border-t border-ink">
               {certifications.map((cert) => (
                 <CertificationCard key={cert.name} cert={cert} />
               ))}
@@ -34,26 +31,19 @@ export function Education({ cv }: { cv: CvData }): React.ReactElement {
           </div>
         </div>
 
-        <div>
-          <h3 className="font-mono text-[11px] text-white/35 uppercase tracking-[0.25em] mb-6">
-            Languages
-          </h3>
-          <div className="flex flex-col sm:flex-row gap-6 max-w-xl">
+        <div className="mt-12 sm:mt-16">
+          <h3 className={`${LABEL_CLASS} mb-4`}>Languages</h3>
+          <dl className="max-w-xl border-t border-ink">
             {languages.map((lang) => (
-              <div key={lang.name} className="flex-1">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="font-mono text-sm text-white/65">{lang.name}</span>
-                  <span className="font-mono text-xs text-white/40">{lang.level}</span>
-                </div>
-                <div className="h-1 bg-white/[0.06] rounded-full overflow-hidden">
-                  <div
-                    className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-blue-500"
-                    style={{ width: `${lang.percent}%` }}
-                  />
-                </div>
+              <div
+                key={lang.name}
+                className="flex items-baseline justify-between gap-6 border-b border-rule py-3.5"
+              >
+                <dt className="font-display text-xl">{lang.name}</dt>
+                <dd className="text-sm text-ink-faint">{lang.level}</dd>
               </div>
             ))}
-          </div>
+          </dl>
         </div>
       </div>
     </section>

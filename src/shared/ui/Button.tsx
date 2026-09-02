@@ -11,8 +11,9 @@ export function Button({ variant = 'primary', children, className, ...props }: B
   return (
     <a
       className={cn(
-        'inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-mono text-sm',
-        'transition-all duration-200 cursor-pointer select-none',
+        'inline-flex items-center gap-2.5 px-5 py-3',
+        'text-[11px] uppercase tracking-label',
+        'transition-colors duration-200 cursor-pointer select-none',
         BUTTON_VARIANT_STYLES[variant],
         className,
       )}

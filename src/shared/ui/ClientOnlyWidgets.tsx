@@ -1,12 +1,7 @@
 'use client'
 
-import { ScrollProgressBar, ScrollRevealObserver } from './client-constants'
+import { ScrollRevealObserver } from './client-constants'
 
 export function ClientOnlyWidgets() {
-  return (
-    <>
-      <ScrollProgressBar />
-      <ScrollRevealObserver />
-    </>
-  )
+  return <ScrollRevealObserver />
 }

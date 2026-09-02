@@ -1,14 +1,15 @@
-import { Space_Mono, Syne } from 'next/font/google'
+import { Instrument_Serif, Inter } from 'next/font/google'
 
-export const syne = Syne({
+export const displaySerif = Instrument_Serif({
   subsets: ['latin'],
-  variable: '--font-syne',
+  weight: '400',
+  style: ['normal', 'italic'],
+  variable: '--font-display',
   display: 'swap',
 })
 
-export const spaceMono = Space_Mono({
+export const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-space-mono',
+  variable: '--font-sans',
   display: 'swap',
 })

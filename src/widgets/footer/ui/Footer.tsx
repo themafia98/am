@@ -4,14 +4,12 @@ export function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-white/[0.06] py-8 mt-8">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <p className="font-mono text-xs text-white/20">
+    <footer className="border-t border-ink">
+      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-2 px-6 py-8 text-[11px] uppercase tracking-label text-ink-faint sm:flex-row">
+        <p className="tnum">
           © {year} {PERSONAL.name}
         </p>
-        <p className="font-mono text-xs text-white/15">
-          Built with Next.js & TypeScript
-        </p>
+        <p>Set in Instrument Serif &amp; Inter</p>
       </div>
     </footer>
   )

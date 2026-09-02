@@ -1,63 +1,74 @@
 import { Badge } from '@/shared/ui'
 import { ArrowUpRightIcon } from '@/shared/ui/icons'
+import { LABEL_CLASS } from '@/shared/ui/constants'
+import { cn } from '@/shared/lib/cn'
 import { BadgeVariant, ProjectStatus, type PersonalProject } from '@/shared/types'
 import { GitHubStats } from './GitHubStats'
 
 export function PersonalProjectCard({ project }: { project: PersonalProject }) {
   return (
-    <a
-      href={project.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group flex flex-col p-6 sm:p-8 rounded-xl border border-white/[0.08] bg-white/[0.02] hover:border-cyan-500/25 hover:bg-cyan-500/[0.02] transition-all duration-300"
-    >
-      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
+    <article className="group border-b border-rule py-8 sm:py-10">
+      <div className="grid gap-x-8 gap-y-4 sm:grid-cols-[9rem_1fr]">
+        <div className="flex flex-col gap-2">
+          {project.status === ProjectStatus.InProgress ? (
+            <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-label text-accent">
+              <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-accent" />
+              {project.statusLabel ?? 'In progress'}
+            </span>
+          ) : (
+            <span className={LABEL_CLASS}>Live</span>
+          )}
+          {project.githubRepo && <GitHubStats repo={project.githubRepo} />}
+        </div>
+
         <div>
-          <h3 className="font-syne font-bold text-xl text-white group-hover:text-cyan-400 transition-colors leading-tight">
-            {project.name}
-          </h3>
-          <p className="font-mono text-sm text-cyan-400/70 mt-1">{project.tagline}</p>
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-baseline gap-2 transition-colors hover:text-accent"
+          >
+            <h3 className="font-display text-3xl leading-tight sm:text-4xl">{project.name}</h3>
+            <ArrowUpRightIcon className="shrink-0 text-ink-ghost transition-colors group-hover:text-accent" />
+          </a>
+          <p className="mt-1 font-display text-lg italic text-ink-soft">{project.tagline}</p>
+
+          <p className="mt-4 max-w-measure leading-relaxed text-ink-soft">{project.description}</p>
+
+          {project.arch && (
+            <dl className="mt-6 border-t border-rule">
+              {project.arch.map((layer) => (
+                <div
+                  key={layer.label}
+                  className="flex flex-col gap-1 border-b border-rule py-2.5 sm:flex-row sm:gap-4"
+                >
+                  <dt className={cn(LABEL_CLASS, 'w-20 shrink-0')}>{layer.label}</dt>
+                  <dd className="text-sm leading-relaxed text-ink-soft">
+                    {layer.items.join(' · ')}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          )}
+
+          <div className="mt-5 flex flex-wrap items-center gap-2">
+            {project.tags.map((tag) => (
+              <Badge key={tag} variant={BadgeVariant.Default}>
+                {tag}
+              </Badge>
+            ))}
+          </div>
+
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-5 inline-block text-sm text-ink-faint underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+          >
+            {project.url.replace(/^https?:\/\//, '')}
+          </a>
         </div>
-
-        {project.status === ProjectStatus.InProgress && (
-          <span className="inline-flex items-center font-mono text-[10px] text-amber-400/80 border border-amber-400/20 bg-amber-400/[0.06] px-3 py-1.5 rounded-md shrink-0 self-start">
-            {project.statusLabel ?? 'In Progress'}
-          </span>
-        )}
       </div>
-
-      <p className="text-sm text-white/40 leading-relaxed mb-6">
-        {project.description}
-      </p>
-
-      {project.arch && (
-        <div className="mb-6 rounded-lg border border-white/[0.06] overflow-hidden divide-y divide-white/[0.04]">
-          {project.arch.map((layer) => (
-            <div key={layer.label} className="flex gap-4 px-4 py-2.5 bg-white/[0.015]">
-              <span className="font-mono text-[10px] text-white/20 uppercase tracking-[0.2em] w-14 shrink-0 pt-px">
-                {layer.label}
-              </span>
-              <span className="font-mono text-xs text-white/45 leading-relaxed">
-                {layer.items.join(' · ')}
-              </span>
-            </div>
-          ))}
-        </div>
-      )}
-
-      <div className="flex flex-wrap gap-2 mb-5">
-        {project.tags.map((tag) => (
-          <Badge key={tag} variant={BadgeVariant.Default}>{tag}</Badge>
-        ))}
-      </div>
-
-      <div className="mt-auto flex items-center justify-between gap-4">
-        <div className="flex items-center gap-2 font-mono text-xs text-white/20 group-hover:text-cyan-500/50 transition-colors">
-          <ArrowUpRightIcon />
-          <span>{project.url.replace(/^https?:\/\//, '')}</span>
-        </div>
-        {project.githubRepo && <GitHubStats repo={project.githubRepo} />}
-      </div>
-    </a>
+    </article>
   )
 }

@@ -4,11 +4,11 @@ import type { CvData } from '@/shared/types'
 
 export function Skills({ cv }: { cv: CvData }): React.ReactElement {
   return (
-    <section id="skills" data-reveal className="py-16 sm:py-24 bg-white/[0.015]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <SectionHeader title="Skills" />
+    <section id="skills" data-reveal className="border-t border-rule bg-paper-deep py-16 sm:py-24">
+      <div className="mx-auto max-w-5xl px-6">
+        <SectionHeader index="03" title="Skills" />
 
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="border-t border-ink">
           {cv.skillCategories.map((category) => (
             <SkillCategoryCard key={category.label} category={category} />
           ))}

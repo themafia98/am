@@ -4,106 +4,79 @@ export const alt = 'Pavel Piatrovich - Frontend Engineer'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
+const PAPER = '#f2efe8'
+const INK = '#16150f'
+const FAINT = '#7d786c'
+const RULE = '#d5cfc1'
+const ACCENT = '#9c3b1c'
+
 export default function OgImage() {
   return new ImageResponse(
     (
       <div
         style={{
-          background: '#0a0a0a',
+          background: PAPER,
           width: '100%',
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
-          padding: '80px 88px',
-          position: 'relative',
+          justifyContent: 'space-between',
+          padding: '64px 72px',
         }}
       >
-        {/* top-right decorative circles */}
-        <div
-          style={{
-            position: 'absolute',
-            top: -80,
-            right: -80,
-            width: 440,
-            height: 440,
-            borderRadius: '50%',
-            border: '1px solid rgba(255,255,255,0.06)',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            top: -20,
-            right: -20,
-            width: 300,
-            height: 300,
-            borderRadius: '50%',
-            border: '1px solid rgba(255,255,255,0.04)',
-          }}
-        />
-
-        {/* status pill */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            marginBottom: 40,
-          }}
-        >
+        {/* Masthead rule */}
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div
             style={{
-              width: 8,
-              height: 8,
-              borderRadius: '50%',
-              background: '#06b6d4',
-            }}
-          />
-          <span
-            style={{
-              fontFamily: 'monospace',
-              fontSize: 16,
-              color: 'rgba(255,255,255,0.35)',
-              letterSpacing: '0.15em',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              fontSize: 18,
+              letterSpacing: '0.14em',
               textTransform: 'uppercase',
+              color: FAINT,
             }}
           >
-            Currently @ Solbeg · Warsaw, Poland
-          </span>
+            <span>Portfolio</span>
+            <span>Warsaw, Poland</span>
+          </div>
+          <div style={{ height: 1, background: RULE, marginTop: 16 }} />
         </div>
 
-        {/* name */}
-        <div style={{ display: 'flex', flexDirection: 'column', marginBottom: 40 }}>
-          <span style={{ fontSize: 112, fontWeight: 700, color: '#ffffff', lineHeight: 0.88 }}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <span style={{ fontSize: 132, lineHeight: 0.88, color: INK, letterSpacing: '-0.03em' }}>
             Pavel
           </span>
           <span
             style={{
-              fontSize: 112,
-              fontWeight: 700,
+              fontSize: 132,
               lineHeight: 0.88,
-              background: 'linear-gradient(135deg, #06b6d4 0%, #e0f2fe 50%, #06b6d4 100%)',
-              backgroundClip: 'text',
-              color: 'transparent',
+              color: ACCENT,
+              letterSpacing: '-0.03em',
+              fontStyle: 'italic',
             }}
           >
             Piatrovich
           </span>
         </div>
 
-        {/* subtitle */}
-        <span
-          style={{
-            fontFamily: 'monospace',
-            fontSize: 20,
-            color: 'rgba(255,255,255,0.25)',
-            letterSpacing: '0.25em',
-            textTransform: 'uppercase',
-          }}
-        >
-          React · React Native · TypeScript
-        </span>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <div style={{ height: 1, background: INK, marginBottom: 20 }} />
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              fontSize: 24,
+              color: INK,
+            }}
+          >
+            <span>Frontend Engineer</span>
+            <span style={{ color: FAINT, fontSize: 20, letterSpacing: '0.08em' }}>
+              React · React Native · TypeScript
+            </span>
+          </div>
+        </div>
       </div>
     ),
     { ...size },

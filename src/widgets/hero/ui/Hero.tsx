@@ -1,38 +1,42 @@
 import { Button } from '@/shared/ui'
-import { ArrowDownIcon, ArrowUpRightIcon, PinIcon } from '@/shared/ui/icons'
+import { ArrowDownIcon, ArrowUpRightIcon } from '@/shared/ui/icons'
 import { OpenToWorkBadge } from '@/shared/ui/OpenToWorkBadge'
+import { LABEL_CLASS } from '@/shared/ui/constants'
+import { cn } from '@/shared/lib/cn'
 import type { CvData } from '@/shared/types'
 
 export function Hero({ cv }: { cv: CvData }) {
   const { personal, heroStats } = cv
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center pt-16 overflow-hidden">
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 w-full">
-        <div className="mb-4">
-          <h1 className="font-syne font-bold leading-[0.88] tracking-tighter">
-            <span className="block text-[clamp(2.75rem,11vw,8.5rem)] text-white">
-              {personal.firstName}
-            </span>
-            <span className="block text-[clamp(2.75rem,11vw,8.5rem)] text-cyan-400">
-              {personal.lastName}
-            </span>
-          </h1>
+    <section className="relative flex min-h-[92vh] flex-col justify-center pt-16">
+      <div className="mx-auto w-full max-w-5xl px-6 py-16">
+        {/* Masthead line - the page announces itself like a printed cover */}
+        <div className="mb-10 flex items-center gap-5 sm:mb-14">
+          <span className={LABEL_CLASS}>Portfolio</span>
+          <span className="h-px flex-1 bg-rule" />
+          <span className={cn(LABEL_CLASS, 'tnum')}>{personal.location}</span>
         </div>
 
-        <p className="font-mono text-white/40 text-[10px] sm:text-sm tracking-[0.2em] sm:tracking-[0.28em] uppercase mb-3">
-          {personal.title}&nbsp;&nbsp;·&nbsp;&nbsp;{personal.subtitle}
-        </p>
-        <div className="flex flex-wrap items-center gap-3 mb-8 sm:mb-10">
-          <p className="font-mono text-white/45 text-[9px] sm:text-xs tracking-[0.2em] uppercase flex items-center gap-2">
-            <PinIcon className="text-white/35" />
-            <span>{personal.location}</span>
-          </p>
-          <OpenToWorkBadge />
+        <h1 className="font-display leading-[0.85] tracking-[-0.02em]">
+          <span className="block text-[clamp(3.25rem,13vw,10rem)]">{personal.firstName}</span>
+          <span className="block pl-[0.06em] text-[clamp(3.25rem,13vw,10rem)] italic text-accent">
+            {personal.lastName}
+          </span>
+        </h1>
+
+        <div className="mt-10 border-t border-ink pt-5 sm:mt-12">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-baseline sm:justify-between">
+            <p className="max-w-measure font-display text-xl leading-snug sm:text-2xl">
+              {personal.title}
+              <span className="text-ink-faint"> — {personal.subtitle}</span>
+            </p>
+            <OpenToWorkBadge />
+          </div>
         </div>
 
-        <div className="hero-buttons flex flex-col gap-4 mb-10 sm:mb-14">
-          <div className="flex flex-col sm:flex-row gap-3">
+        <div className="mt-10 flex flex-col gap-6 sm:mt-12 sm:flex-row sm:items-center sm:gap-8">
+          <div className="flex flex-col gap-3 sm:flex-row">
             <Button
               variant="primary"
               href="/api/cv-download"
@@ -50,47 +54,38 @@ export function Hero({ cv }: { cv: CvData }) {
               className="justify-center sm:justify-start"
             >
               <ArrowUpRightIcon />
-              View CV
+              Read online
             </Button>
           </div>
-          <div className="flex items-center gap-5">
+
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-ink-soft">
             <a
               href={personal.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-mono text-xs text-white/30 hover:text-white/65 transition-colors duration-200"
+              className="underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
             >
               LinkedIn
-              <ArrowUpRightIcon />
             </a>
-            <span className="text-white/10">·</span>
             <a
               href={`mailto:${personal.email}`}
-              className="font-mono text-xs text-white/30 hover:text-white/65 transition-colors duration-200"
+              className="underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
             >
               {personal.email}
             </a>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 w-fit divide-x divide-white/[0.06] border border-white/[0.08] rounded-xl overflow-hidden">
+        {/* Figures, set as a printed table rather than glowing stat cards */}
+        <dl className="mt-14 flex flex-wrap gap-x-12 gap-y-6 border-t border-rule pt-6 sm:mt-16">
           {heroStats.map((stat) => (
-            <div
-              key={stat.label}
-              className="flex flex-col items-center justify-center px-6 sm:px-8 py-4 bg-white/[0.02] hover:bg-white/[0.04] transition-colors"
-            >
-              <span className="font-syne font-bold text-xl sm:text-2xl text-white">{stat.value}</span>
-              <span className="font-mono text-[9px] sm:text-[10px] text-white/25 tracking-wider uppercase mt-1">
-                {stat.label}
-              </span>
+            <div key={stat.label} className="flex items-baseline gap-3">
+              <dt className="sr-only">{stat.label}</dt>
+              <dd className="tnum font-display text-3xl leading-none sm:text-4xl">{stat.value}</dd>
+              <span className={cn(LABEL_CLASS, 'max-w-[7rem] leading-tight')}>{stat.label}</span>
             </div>
           ))}
-        </div>
-      </div>
-
-      <div className="hero-scroll-cue absolute bottom-5 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-1.5 pointer-events-none">
-        <span className="font-mono text-[9px] text-white/15 tracking-[0.3em] uppercase">Scroll</span>
-        <div className="w-px h-7 bg-gradient-to-b from-white/15 to-transparent" />
+        </dl>
       </div>
     </section>
   )

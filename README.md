@@ -11,7 +11,7 @@ Personal portfolio and CV site for Pavel Piatrovich, Frontend Engineer with 6+ y
 | Framework | Next.js 15 (App Router, React 19) |
 | Language | TypeScript (strict) |
 | Styling | Tailwind CSS v3 |
-| Fonts | Syne (display) · Space Mono (code) via `next/font` |
+| Fonts | Instrument Serif (display) · Inter (text) via `next/font` |
 | Analytics | Vercel Analytics |
 | Deployment | Vercel |
 
@@ -29,7 +29,7 @@ src/
 │   ├── config/cv.ts      Single source of truth for all CV data
 │   ├── lib/cn.ts         clsx + tailwind-merge utility
 │   ├── types/            All TypeScript interfaces and types
-│   └── ui/               Badge · Button · Card · SectionHeader
+│   └── ui/               Badge · Button · SectionHeader
 │
 ├── entities/             Business entity cards, import from shared/ only
 │   ├── job/              JobCard · ProjectCard
@@ -105,9 +105,12 @@ Security headers (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Perm
 
 ## Design Notes
 
-- Dark theme (`#0a0a0a` background), electric cyan accent (`#06b6d4`)
-- Dot-matrix background with radial mask + SVG concentric arcs
-- CSS-only gradient text animation and marquee strip
+Editorial / print-inspired rather than the usual dark-glass dashboard look:
+
+- Warm paper ground (`#f2efe8`) with near-black ink (`#16150f`); a single burnt-sienna accent (`#9c3b1c`) reserved for links, italics and live state
+- Instrument Serif for display and italic emphasis, Inter for text and letterspaced caps labels
+- Structure carried by hairline rules and a left margin column - no cards, no rounded corners, no glow, blur or gradients
+- Sections numbered `01`-`06` like a printed contents page; figures set with tabular numerals
 - Responsive from 320 px - hamburger menu on mobile, full nav on desktop
-- `@media print` - full print stylesheet for clean A4 CV export
-- Accessible: `aria-hidden` on decorative elements, `aria-label` / `aria-expanded` on interactive controls
+- `@media print` - the print shortcut opens the real CV PDF instead of printing the page
+- Accessible: `aria-hidden` on decorative marks, `aria-label` / `aria-expanded` on controls, visible focus rings, reduced-motion honoured

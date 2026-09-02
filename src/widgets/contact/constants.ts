@@ -1,8 +1,8 @@
 import { cn } from '@/shared/lib/cn'
 
 export const CONTACT_INPUT_CLASS = cn(
-  'w-full bg-white/[0.03] border border-white/[0.08] rounded-lg px-4 py-3',
-  'font-mono text-sm text-white placeholder:text-white/20',
-  'focus:outline-none focus:border-cyan-500/50 focus:bg-white/[0.05]',
-  'transition-all duration-200',
+  'w-full border-0 border-b border-rule bg-transparent px-0 py-2.5',
+  'text-[15px] text-ink placeholder:text-ink-ghost',
+  'focus:border-ink focus:outline-none focus:ring-0',
+  'transition-colors duration-200',
 )

@@ -11,6 +11,7 @@ export function Header() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -51,62 +52,56 @@ export function Header() {
     <>
       <header
         className={cn(
-          'fixed inset-x-0 top-0 z-50 transition-all duration-300',
-          scrolled || mobileOpen
-            ? 'bg-[#0a0a0a]/95 backdrop-blur-md border-b border-white/[0.06]'
-            : 'bg-transparent',
+          'fixed inset-x-0 top-0 z-50 transition-colors duration-300',
+          scrolled || mobileOpen ? 'border-b border-rule bg-paper' : 'border-b border-transparent',
         )}
       >
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
           <a
             href="#"
             onClick={closeMobile}
-            className="font-mono text-sm text-white/30 hover:text-white/70 transition-colors duration-200"
+            className="font-display text-lg transition-colors hover:text-accent"
           >
-            <span className="text-cyan-500 font-bold">PP</span>
-            <span className="text-white/20 mx-1">/</span>
-            <span>portfolio</span>
+            {PERSONAL.name}
           </a>
 
-          <nav className="hidden md:flex items-center gap-7">
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  'font-mono text-[11px] tracking-[0.2em] uppercase transition-colors duration-200',
-                  activeSection === item.href.slice(1)
-                    ? 'text-cyan-400'
-                    : 'text-white/35 hover:text-white/70',
-                )}
-              >
-                {item.label}
-              </a>
-            ))}
+          <nav className="hidden items-center gap-8 md:flex">
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeSection === item.href.slice(1)
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    'text-[11px] uppercase tracking-label transition-colors duration-200',
+                    'border-b pb-0.5',
+                    isActive
+                      ? 'border-accent text-accent'
+                      : 'border-transparent text-ink-faint hover:text-ink',
+                  )}
+                >
+                  {item.label}
+                </a>
+              )
+            })}
           </nav>
 
           <button
             onClick={() => setMobileOpen((o) => !o)}
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
-            className="md:hidden flex flex-col justify-center items-end gap-[5px] w-8 h-8 shrink-0"
+            className="flex h-8 w-8 shrink-0 flex-col items-end justify-center gap-[6px] md:hidden"
           >
             <span
               className={cn(
-                'block h-px bg-white/60 transition-all duration-300 origin-right',
-                mobileOpen ? 'rotate-[-45deg] w-5 translate-y-[3px]' : 'w-5',
+                'block h-px w-6 origin-right bg-ink transition-transform duration-300',
+                mobileOpen && 'translate-y-[3px] rotate-[-45deg]',
               )}
             />
             <span
               className={cn(
-                'block h-px bg-white/60 transition-all duration-300',
-                mobileOpen ? 'opacity-0 w-0' : 'w-3',
-              )}
-            />
-            <span
-              className={cn(
-                'block h-px bg-white/60 transition-all duration-300 origin-right',
-                mobileOpen ? 'rotate-[45deg] w-5 -translate-y-[3px]' : 'w-5',
+                'block h-px w-6 origin-right bg-ink transition-transform duration-300',
+                mobileOpen && '-translate-y-[3px] rotate-[45deg]',
               )}
             />
           </button>
@@ -115,41 +110,39 @@ export function Header() {
 
       <div
         className={cn(
-          'fixed inset-0 z-40 flex flex-col bg-[#0a0a0a] pt-24 px-8 pb-10 md:hidden',
-          'transition-all duration-300',
-          mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
+          'fixed inset-0 z-40 flex flex-col bg-paper px-6 pb-10 pt-24 md:hidden',
+          'transition-opacity duration-300',
+          mobileOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0',
         )}
       >
-        <nav className="flex flex-col gap-2 mt-6">
-          {NAV_ITEMS.map((item) => (
+        <nav className="mt-4 flex flex-col">
+          {NAV_ITEMS.map((item, i) => (
             <a
               key={item.href}
               href={item.href}
               onClick={closeMobile}
               className={cn(
-                'font-syne font-bold text-5xl py-3 border-b border-white/[0.05] transition-colors duration-200',
-                activeSection === item.href.slice(1)
-                  ? 'text-cyan-400'
-                  : 'text-white/25 hover:text-white',
+                'flex items-baseline gap-4 border-b border-rule py-4 font-display text-4xl transition-colors',
+                activeSection === item.href.slice(1) ? 'text-accent' : 'text-ink',
               )}
             >
+              <span className="tnum text-[11px] uppercase tracking-label text-ink-ghost">
+                {String(i + 1).padStart(2, '0')}
+              </span>
               {item.label}
             </a>
           ))}
         </nav>
 
-        <div className="mt-auto flex flex-col gap-3">
-          <a
-            href={`mailto:${PERSONAL.email}`}
-            className="font-mono text-xs text-white/25 hover:text-white/60 transition-colors"
-          >
+        <div className="mt-auto flex flex-col gap-2 text-sm text-ink-soft">
+          <a href={`mailto:${PERSONAL.email}`} className="transition-colors hover:text-accent">
             {PERSONAL.email}
           </a>
           <a
             href={PERSONAL.linkedinUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs text-white/25 hover:text-white/60 transition-colors"
+            className="transition-colors hover:text-accent"
           >
             linkedin.com/in/{PERSONAL.linkedin}
           </a>

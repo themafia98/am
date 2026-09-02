@@ -1,12 +1,11 @@
-import { Card } from '@/shared/ui'
 import type { Certification } from '@/shared/types'
 
 export function CertificationCard({ cert }: { cert: Certification }) {
   return (
-    <Card className="p-6">
-      <p className="font-syne font-bold text-white text-sm mb-1 leading-snug">{cert.name}</p>
-      <p className="font-mono text-sm text-cyan-400/80 mb-4">{cert.issuer}</p>
-      <span className="font-mono text-xs text-white/40 block">{cert.period}</span>
-    </Card>
+    <div className="border-b border-rule py-5">
+      <p className="font-display text-xl leading-snug">{cert.name}</p>
+      <p className="mt-1 text-sm text-accent">{cert.issuer}</p>
+      <p className="tnum mt-2 text-[11px] uppercase tracking-label text-ink-faint">{cert.period}</p>
+    </div>
   )
 }

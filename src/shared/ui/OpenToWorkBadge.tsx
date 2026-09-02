@@ -5,7 +5,8 @@ export async function OpenToWorkBadge() {
   if (!openToWork) return null
 
   return (
-    <span className="inline-flex items-center font-mono text-[10px] text-green-400/90 border border-green-400/20 bg-green-400/[0.06] px-3 py-1.5 rounded-md">
+    <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-label text-accent">
+      <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-accent" />
       Open to opportunities
     </span>
   )

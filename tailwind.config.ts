@@ -10,16 +10,35 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        syne: ['var(--font-syne)', 'sans-serif'],
-        mono: ['var(--font-space-mono)', 'ui-monospace', 'monospace'],
+        display: ['var(--font-display)', 'Georgia', 'serif'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
       },
       colors: {
-        surface: '#0a0a0a',
-        accent: {
-          DEFAULT: '#06b6d4',
-          dark: '#0891b2',
-          glow: 'rgba(6, 182, 212, 0.15)',
+        paper: {
+          DEFAULT: '#f2efe8',
+          deep: '#eae5db',
+          card: '#f7f5f0',
         },
+        ink: {
+          DEFAULT: '#16150f',
+          soft: '#4b473d',
+          faint: '#7d786c',
+          ghost: '#a8a294',
+        },
+        rule: {
+          DEFAULT: '#d5cfc1',
+          soft: '#e2ddd1',
+        },
+        accent: {
+          DEFAULT: '#9c3b1c',
+          soft: '#bf5a33',
+        },
+      },
+      letterSpacing: {
+        label: '0.14em',
+      },
+      maxWidth: {
+        measure: '62ch',
       },
     },
   },

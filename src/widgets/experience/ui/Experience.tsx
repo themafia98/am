@@ -4,18 +4,18 @@ import type { CvData } from '@/shared/types'
 
 export function Experience({ cv }: { cv: CvData }) {
   return (
-    <section id="experience" data-reveal className="py-16 sm:py-24">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <SectionHeader title="Experience" />
+    <section id="experience" data-reveal className="border-t border-rule py-16 sm:py-24">
+      <div className="mx-auto max-w-5xl px-6">
+        <SectionHeader
+          index="02"
+          title="Experience"
+          note={`${cv.jobs.length} positions`}
+        />
 
-        <div className="relative">
-          <div className="absolute left-3 sm:left-4 top-6 bottom-6 w-px bg-gradient-to-b from-cyan-500/50 via-white/10 to-transparent" />
-
-          <div className="space-y-8 sm:space-y-10 pl-9 sm:pl-12">
-            {cv.jobs.map((job) => (
-              <JobCard key={job.id} job={job} />
-            ))}
-          </div>
+        <div className="border-t border-ink">
+          {cv.jobs.map((job) => (
+            <JobCard key={job.id} job={job} />
+          ))}
         </div>
       </div>
     </section>

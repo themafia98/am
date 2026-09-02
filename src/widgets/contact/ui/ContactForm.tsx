@@ -14,11 +14,11 @@ function SubmitButton(): React.ReactElement {
       type="submit"
       disabled={pending}
       className={cn(
-        'self-start inline-flex items-center gap-2 px-5 py-2.5 rounded-lg',
-        'font-mono text-sm font-semibold transition-all duration-200',
-        'bg-cyan-500 text-black hover:bg-cyan-400 active:scale-[0.98]',
-        'hover:shadow-[0_0_24px_rgba(6,182,212,0.45)]',
-        'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none',
+        'self-start inline-flex items-center gap-2.5 px-5 py-3',
+        'border border-ink bg-ink text-paper',
+        'text-[11px] uppercase tracking-label transition-colors duration-200',
+        'hover:border-accent hover:bg-accent',
+        'disabled:cursor-not-allowed disabled:opacity-40',
       )}
     >
       {pending ? 'Sending…' : 'Send message'}
@@ -31,20 +31,18 @@ export function ContactForm(): React.ReactElement {
 
   if (state.status === ContactStatus.Success) {
     return (
-      <div className="flex flex-col gap-2 p-5 rounded-xl border border-cyan-500/20 bg-cyan-500/[0.04]">
-        <span className="font-mono text-xs text-cyan-400 tracking-widest uppercase">Message sent</span>
-        <p className="font-mono text-sm text-white/50">
-          Thanks - I&apos;ll get back to you soon.
-        </p>
+      <div className="flex flex-col gap-2 border-t border-ink pt-5">
+        <span className="text-[11px] uppercase tracking-label text-accent">Message sent</span>
+        <p className="font-display text-xl">Thanks — I&apos;ll get back to you soon.</p>
       </div>
     )
   }
 
   return (
-    <form action={action} className="flex flex-col gap-3">
-      <div className="grid sm:grid-cols-2 gap-3">
-        <div className="flex flex-col gap-1.5">
-          <label className="font-mono text-[10px] text-white/25 tracking-[0.2em] uppercase">Name</label>
+    <form action={action} className="flex flex-col gap-5">
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div className="flex flex-col gap-1">
+          <label className="text-[11px] uppercase tracking-label text-ink-faint">Name</label>
           <input
             name="name"
             type="text"
@@ -54,8 +52,8 @@ export function ContactForm(): React.ReactElement {
             className={CONTACT_INPUT_CLASS}
           />
         </div>
-        <div className="flex flex-col gap-1.5">
-          <label className="font-mono text-[10px] text-white/25 tracking-[0.2em] uppercase">Email</label>
+        <div className="flex flex-col gap-1">
+          <label className="text-[11px] uppercase tracking-label text-ink-faint">Email</label>
           <input
             name="email"
             type="email"
@@ -66,8 +64,8 @@ export function ContactForm(): React.ReactElement {
         </div>
       </div>
 
-      <div className="flex flex-col gap-1.5">
-        <label className="font-mono text-[10px] text-white/25 tracking-[0.2em] uppercase">Message</label>
+      <div className="flex flex-col gap-1">
+        <label className="text-[11px] uppercase tracking-label text-ink-faint">Message</label>
         <textarea
           name="message"
           placeholder="Tell me about your project or opportunity…"
@@ -80,7 +78,7 @@ export function ContactForm(): React.ReactElement {
       </div>
 
       {state.status === ContactStatus.Error && (
-        <p className="font-mono text-xs text-red-400/80">{state.message}</p>
+        <p className="text-sm text-accent">{state.message}</p>
       )}
 
       <SubmitButton />

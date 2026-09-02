@@ -1,16 +1,26 @@
+import { LABEL_CLASS } from './constants'
+import { cn } from '@/shared/lib/cn'
+
 interface SectionHeaderProps {
   title: string
+  /** Two-digit section number, e.g. "01" - printed in the left margin. */
+  index: string
+  /** Optional right-hand note, set in the same caps as the number. */
+  note?: string
 }
 
-export function SectionHeader({ title }: SectionHeaderProps): React.ReactElement {
+export function SectionHeader({ title, index, note }: SectionHeaderProps): React.ReactElement {
   return (
-    <div className="mb-14">
-      <div className="flex items-end gap-6">
-        <h2 className="font-syne text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-none tracking-tight">
-          {title}
-        </h2>
-        <div className="hidden sm:block flex-1 h-px bg-gradient-to-r from-white/10 to-transparent mb-1.5" />
+    <header className="mb-10 sm:mb-14">
+      <div className="flex items-center gap-4 sm:gap-6">
+        <span className={cn(LABEL_CLASS, 'tnum text-ink-ghost')}>{index}</span>
+        <span className="h-px flex-1 bg-rule" />
+        {note && <span className={LABEL_CLASS}>{note}</span>}
       </div>
-    </div>
+
+      <h2 className="mt-6 font-display text-[2.75rem] sm:text-6xl lg:text-7xl leading-[0.92] tracking-[-0.015em]">
+        {title}
+      </h2>
+    </header>
   )
 }
