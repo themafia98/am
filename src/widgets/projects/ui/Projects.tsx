@@ -13,6 +13,18 @@ export function Projects({ cv }: { cv: CvData }) {
             <PersonalProjectCard key={project.name} project={project} />
           ))}
         </div>
+
+        {cv.sideProjects && cv.sideProjects.length > 0 && (
+          <div className="mt-16">
+            <SectionHeader index="05" title="Side projects" note="Experiments & learning" />
+
+            <div className="border-t border-ink">
+              {cv.sideProjects.map((project) => (
+                <PersonalProjectCard key={project.name} project={project} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )

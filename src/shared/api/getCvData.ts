@@ -1,4 +1,4 @@
-import type { CvData } from '@/shared/types'
+import type { CvData } from "@/shared/types";
 import {
   PERSONAL,
   HERO_STATS,
@@ -6,12 +6,13 @@ import {
   JOBS,
   SKILL_CATEGORIES,
   PERSONAL_PROJECTS,
+  SIDE_PROJECTS,
   EDUCATIONS,
   CERTIFICATIONS,
   LANGUAGES,
   CONTACT_ITEMS,
-} from '@/shared/config/cv'
-import { logger } from '@/shared/lib/logger'
+} from "@/shared/config/cv";
+import { logger } from "@/shared/lib/logger";
 
 const staticData: CvData = {
   personal: PERSONAL,
@@ -20,11 +21,12 @@ const staticData: CvData = {
   jobs: JOBS,
   skillCategories: SKILL_CATEGORIES,
   personalProjects: PERSONAL_PROJECTS,
+  sideProjects: SIDE_PROJECTS,
   educations: EDUCATIONS,
   certifications: CERTIFICATIONS,
   languages: LANGUAGES,
   contactItems: CONTACT_ITEMS,
-}
+};
 
 /**
  * Edge Config stores only the fields that change often (personal, projects, contacts).
@@ -33,25 +35,28 @@ const staticData: CvData = {
  */
 export async function getCvData(): Promise<CvData> {
   if (!process.env.EDGE_CONFIG) {
-    logger.info('cv:static', { reason: 'EDGE_CONFIG env not set' })
-    return staticData
+    logger.info("cv:static", { reason: "EDGE_CONFIG env not set" });
+    return staticData;
   }
 
-  const t0 = Date.now()
+  const t0 = Date.now();
   try {
-    const { get } = await import('@vercel/edge-config')
-    const overrides = await get<Partial<CvData>>('cv')
-    const ms = Date.now() - t0
+    const { get } = await import("@vercel/edge-config");
+    const overrides = await get<Partial<CvData>>("cv");
+    const ms = Date.now() - t0;
 
     if (!overrides) {
-      logger.info('cv:edge-config-miss', { ms })
-      return staticData
+      logger.info("cv:edge-config-miss", { ms });
+      return staticData;
     }
 
-    logger.info('cv:edge-config-hit', { ms, keys: Object.keys(overrides) })
-    return { ...staticData, ...overrides }
+    logger.info("cv:edge-config-hit", { ms, keys: Object.keys(overrides) });
+    return { ...staticData, ...overrides };
   } catch (err) {
-    logger.error('cv:edge-config-error', { ms: Date.now() - t0, error: String(err) })
-    return staticData
+    logger.error("cv:edge-config-error", {
+      ms: Date.now() - t0,
+      error: String(err),
+    });
+    return staticData;
   }
 }
