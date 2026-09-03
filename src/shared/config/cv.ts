@@ -20,7 +20,7 @@ export const PERSONAL: Personal = {
   lastName: "Piatrovich",
   title: "Frontend Engineer",
   subtitle:
-    "Building web and mobile products with React, React Native, TypeScript, and Playwright",
+    "Building web and mobile products with React, React Native, and TypeScript",
   location: "Warsaw, Poland",
   email: "pasha.petrovich98@gmail.com",
   github: "themafia98",
