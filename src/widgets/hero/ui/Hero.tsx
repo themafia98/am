@@ -12,20 +12,20 @@ export function Hero({ cv }: { cv: CvData }) {
     <section className="relative flex min-h-[92vh] flex-col justify-center pt-16">
       <div className="mx-auto w-full max-w-5xl px-6 py-16">
         {/* Masthead line - the page announces itself like a printed cover */}
-        <div className="mb-10 flex items-center gap-5 sm:mb-14">
+        <div className="mb-8 flex items-center gap-5 sm:mb-10">
           <span className={LABEL_CLASS}>Portfolio</span>
           <span className="h-px flex-1 bg-rule" />
           <span className={cn(LABEL_CLASS, 'tnum')}>{personal.location}</span>
         </div>
 
         <h1 className="font-display leading-[0.85] tracking-[-0.02em]">
-          <span className="block text-[clamp(3.25rem,12vw,8rem)]">{personal.firstName}</span>
-          <span className="block pl-[0.06em] text-[clamp(3.25rem,12vw,8rem)] italic text-accent">
+          <span className="block text-[clamp(3rem,10vw,6.5rem)]">{personal.firstName}</span>
+          <span className="block pl-[0.06em] text-[clamp(3rem,10vw,6.5rem)] italic text-accent">
             {personal.lastName}
           </span>
         </h1>
 
-        <div className="mt-12 border-t border-ink pt-5 sm:mt-14">
+        <div className="mt-10 border-t border-ink pt-5 sm:mt-12">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-baseline sm:justify-between">
             <p className="max-w-measure font-display text-xl leading-snug sm:text-2xl">
               {personal.title}
