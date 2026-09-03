@@ -9,7 +9,7 @@ export function Footer() {
         <p className="tnum">
           © {year} {PERSONAL.name}
         </p>
-        <p>Set in Instrument Serif &amp; Inter</p>
+        <p>Software Engineer</p>
       </div>
     </footer>
   )
