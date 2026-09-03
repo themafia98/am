@@ -30,7 +30,7 @@ const POSTS: readonly BlogPost[] = [
         items: [
           "Boilerplate and repetitive edits across many files: renaming a prop through 40 components, adding a new field to a form and its validation schema.",
           "Writing the first draft of tests for code that already exists, especially edge cases you would normally skip because they are tedious to set up by hand.",
-          "Reading unfamiliar code. Pointing an agent at a legacy file and asking \"what does this do and why\" is faster than tracing it yourself, as long as you verify the answer.",
+          'Reading unfamiliar code. Pointing an agent at a legacy file and asking "what does this do and why" is faster than tracing it yourself, as long as you verify the answer.',
           "Small, well-defined migrations: upgrading a deprecated API call across a codebase, converting class components to function components one file at a time.",
         ],
       },
@@ -60,7 +60,7 @@ const POSTS: readonly BlogPost[] = [
       },
       {
         type: "p",
-        text: "\"Vibe coding\", accepting whatever the agent produces without reading it closely, works fine for a throwaway prototype. It does not work for anything that will run in production, hold user data, or get maintained by someone else next year. The failure is not dramatic. It is quiet: a security check that got skipped, an edge case the tests never covered because the agent wrote both the code and the tests, a dependency that was never actually needed. Nothing crashes on day one. It shows up three months later as a support ticket nobody can explain.",
+        text: '"Vibe coding", accepting whatever the agent produces without reading it closely, works fine for a throwaway prototype. It does not work for anything that will run in production, hold user data, or get maintained by someone else next year. The failure is not dramatic. It is quiet: a security check that got skipped, an edge case the tests never covered because the agent wrote both the code and the tests, a dependency that was never actually needed. Nothing crashes on day one. It shows up three months later as a support ticket nobody can explain.',
       },
       {
         type: "list",
@@ -130,7 +130,7 @@ const POSTS: readonly BlogPost[] = [
       },
       {
         type: "p",
-        text: "Temporal shipping in browsers this year is the change I doubted the most, and it happened anyway. The old Date object has been broken since 1995: it can be mutated, months start counting from 0, and time zones cause silent bugs. Every team either lived with this or paid for a library like date-fns or Luxon. Temporal.PlainDate, Temporal.ZonedDateTime, and the rest are immutable, clear about time zones and calendars, and turn \"add one month, and handle the end of the month correctly\" into one line of code instead of a bug report.",
+        text: 'Temporal shipping in browsers this year is the change I doubted the most, and it happened anyway. The old Date object has been broken since 1995: it can be mutated, months start counting from 0, and time zones cause silent bugs. Every team either lived with this or paid for a library like date-fns or Luxon. Temporal.PlainDate, Temporal.ZonedDateTime, and the rest are immutable, clear about time zones and calendars, and turn "add one month, and handle the end of the month correctly" into one line of code instead of a bug report.',
       },
       {
         type: "quote",
@@ -195,7 +195,7 @@ const POSTS: readonly BlogPost[] = [
       },
       {
         type: "p",
-        text: 'One honest problem: the compiler is a static analysis tool, not magic. It quietly skips patterns it can\'t understand, like mutating props, closures that escape, or certain higher-order components. So teams still need eslint-plugin-react-compiler in CI to catch the components it missed. But the type of failure changed. Before, a stale closure caused a subtle bug in production. Now, it shows up as a lint warning in a pull request. That is a real improvement, not just marketing.',
+        text: "One honest problem: the compiler is a static analysis tool, not magic. It quietly skips patterns it can't understand, like mutating props, closures that escape, or certain higher-order components. So teams still need eslint-plugin-react-compiler in CI to catch the components it missed. But the type of failure changed. Before, a stale closure caused a subtle bug in production. Now, it shows up as a lint warning in a pull request. That is a real improvement, not just marketing.",
       },
       {
         type: "h2",
@@ -253,6 +253,120 @@ const POSTS: readonly BlogPost[] = [
       {
         type: "p",
         text: "If there's one takeaway, it's this: the biggest wins of this period were not new capabilities. React could already do most of this with enough manual work. The real win was removing decisions. Fewer settings, fewer ways to make mistakes, more of the framework's opinion built in by default. That's a less exciting story than \"React gets signals\" or \"React gets a new hook.\" But it's the one that actually shows up in how fast a team can ship.",
+      },
+    ],
+  },
+  {
+    slug: "legacy-game-rethinking-2026",
+    title:
+      "Legacy Game Rethinking: rebuilding an old prototype with cleaner architecture",
+    dek: "A 2019 browser game was rebuilt in 2026 with a cleaner structure, fixed-step simulation, and a WebAssembly hot path. The goal was not to make it look nicer. It was to make it easier to reason about, evolve, and debug.",
+    date: "2026-09-03",
+    readingTime: "7 min read",
+    tags: [
+      "Game Development",
+      "TypeScript",
+      "WebAssembly",
+      "Architecture",
+      "Learning",
+    ],
+    content: [
+      {
+        type: "p",
+        text: "A lot of old projects are not dead. They are just stuck in the architecture of the time they were built. That is exactly what happened here. The original project was a 2019 canvas game written in JavaScript. For a first project, it worked well: enemies moved, bullets fired, the score was saved, and the game was playable. But the code was also a classic example of student-project architecture: globals, hidden state, tight coupling, and a lot of logic doing several jobs at once.",
+      },
+      {
+        type: "h2",
+        text: "The old version was not wrong. It was just messy.",
+      },
+      {
+        type: "p",
+        text: "This is a very common pattern. A collision handler also played sounds. Damage logic sometimes wrote to Firebase. Rendering and simulation were mixed together. A few functions had too many responsibilities, and the codebase was hard to extend without breaking something else. That is not a sign of bad engineering. It is a sign of a project built for learning, not for long-term structure.",
+      },
+      {
+        type: "code",
+        lang: "ts",
+        code: "function update() {\n  player.x += 3\n  checkCollisions()\n  renderPlayer()\n  saveScore()\n  playHitSound()\n}\n\n// This mixes gameplay, rendering, persistence, and audio in one place.",
+      },
+      {
+        type: "p",
+        text: "The question was not 'how do I make this prettier?' The real question was: what would this game look like if it were designed around systems instead of convenience?",
+      },
+      {
+        type: "h2",
+        text: "The first big change: split responsibilities",
+      },
+      {
+        type: "p",
+        text: "The rewrite was not about moving from JavaScript to TypeScript alone. The real change was architectural. The game loop became a dedicated system. Movement, collisions, rendering, and audio each got their own clear boundary. The player, enemies, bullets, and pickups became mostly data containers, not logic-heavy objects that know too much about the world.",
+      },
+      {
+        type: "code",
+        lang: "ts",
+        code: "const movementSystem = new MovementSystem()\nconst collisionSystem = new CollisionSystem()\nconst renderSystem = new RenderSystem()\nconst audioSystem = new AudioSystem()\n\nconst game = new GameLoop({ fixedStep: 1000 / 60 })\n\ngame.addSystem(movementSystem)\ngame.addSystem(collisionSystem)\ngame.addSystem(renderSystem)\ngame.addSystem(audioSystem)",
+      },
+      {
+        type: "p",
+        text: "That is a very practical improvement. A collision system checks collisions. A render system renders. An audio system plays sounds. Nothing is trying to do everything at once. This makes debugging easier, and it makes new mechanics easier to add later.",
+      },
+      {
+        type: "h2",
+        text: "A fixed-step loop is much more stable",
+      },
+      {
+        type: "p",
+        text: "The next major change was the update loop. Instead of trusting the browser frame timing, the project uses a fixed-step simulation. The game updates at a stable 60 Hz, and rendering happens separately. This is a common pattern in game development and it makes the rules of the game much more predictable.",
+      },
+      {
+        type: "code",
+        lang: "ts",
+        code: "let accumulator = 0\nconst fixedStep = 1000 / 60\n\nfunction frame(timestamp: number) {\n  const delta = timestamp - lastTimestamp\n  accumulator += delta\n\n  while (accumulator >= fixedStep) {\n    update(fixedStep)\n    accumulator -= fixedStep\n  }\n\n  render()\n  requestAnimationFrame(frame)\n}",
+      },
+      {
+        type: "p",
+        text: "This matters because gameplay logic should not depend on tiny timing differences between frames. If one frame is 16ms and the next is 17ms, the game still behaves consistently. That is exactly the kind of issue that creates weird bugs in otherwise simple games.",
+      },
+      {
+        type: "h2",
+        text: "Why WebAssembly was interesting here",
+      },
+      {
+        type: "p",
+        text: "The hot path of the game was moved into WebAssembly. Movement, projectile physics, enemy decisions, collision checks, pickups, and combat resolution all run inside the compiled module. The browser stays in charge of input, rendering, and DOM work. That separation is useful for both performance and clarity.",
+      },
+      {
+        type: "code",
+        lang: "ts",
+        code: "export function movePlayer(x: number, dx: number, dt: number): number {\n  return x + dx * dt\n}\n\nexport function resolveHit(a: number, b: number): boolean {\n  return Math.abs(a - b) < 20\n}",
+      },
+      {
+        type: "p",
+        text: "This is not only a performance optimization. It also forces the project to define what the real critical logic is. Once the game core is separated from browser APIs, it becomes easier to reason about, easier to test, and easier to optimize later.",
+      },
+      {
+        type: "quote",
+        text: "The goal was not to make the same game prettier. It was to make the same game easier to understand, easier to debug, and easier to evolve.",
+      },
+      {
+        type: "h2",
+        text: "Why I still like this project",
+      },
+      {
+        type: "p",
+        text: "This project is not trying to become a huge production game. It is a learning project with a very clear purpose: take an old prototype, ask what was wrong with the design, and rebuild it with better boundaries. It is a good example of how a 'legacy' project can still be valuable when it is used as an architecture exercise instead of a nostalgia project.",
+      },
+      {
+        type: "list",
+        items: [
+          "One file should not handle movement, sound, collisions, rendering, and saving at the same time.",
+          "A fixed-step loop makes gameplay rules more stable than a raw browser frame loop.",
+          "WASM is useful when your logic is CPU-heavy and you want a clean separation from browser code.",
+          "A project can be old and still be a great way to practice better architecture.",
+        ],
+      },
+      {
+        type: "p",
+        text: "If you want to read more on the concepts behind this approach, these are useful starting points: MDN on requestAnimationFrame, MDN on WebAssembly, and ECS patterns in game architecture. The main lesson is simple: even a small game can teach a lot about architecture if you rebuild it with the right questions in mind.",
       },
     ],
   },
