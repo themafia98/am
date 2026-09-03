@@ -9,8 +9,8 @@ export function Hero({ cv }: { cv: CvData }) {
   const { personal, heroStats } = cv
 
   return (
-    <section className="relative flex min-h-[92vh] flex-col justify-center pt-16">
-      <div className="mx-auto w-full max-w-5xl px-6 py-16">
+    <section className="relative flex min-h-[92vh] flex-col justify-start pt-16 sm:justify-center">
+      <div className="mx-auto w-full max-w-5xl px-6 py-10 sm:py-16">
         {/* Masthead line - the page announces itself like a printed cover */}
         <div className="mb-8 flex items-center gap-5 sm:mb-10">
           <span className={LABEL_CLASS}>Portfolio</span>
