@@ -19,8 +19,8 @@ export function Hero({ cv }: { cv: CvData }) {
         </div>
 
         <h1 className="whitespace-nowrap font-display leading-[0.85] tracking-[-0.02em]">
-          <span className="inline-block text-[clamp(2.25rem,10vw,6.5rem)]">{personal.firstName}</span>{' '}
-          <span className="inline-block text-[clamp(2.25rem,10vw,6.5rem)] italic text-accent">
+          <span className="inline-block text-[clamp(2rem,9vw,5.5rem)]">{personal.firstName}</span>
+          <span className="ml-[0.12em] inline-block text-[clamp(2rem,9vw,5.5rem)] italic text-accent">
             {personal.lastName}
           </span>
         </h1>
