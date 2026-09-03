@@ -18,6 +18,9 @@ function isNavItemActive(href: string, pathname: string, activeSection: string):
   return pathname === href || pathname.startsWith(`${href}/`)
 }
 
+const SECTION_ITEMS = NAV_ITEMS.filter((item) => item.href.includes('#'))
+const PAGE_ITEMS = NAV_ITEMS.filter((item) => !item.href.includes('#'))
+
 export function Header() {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
@@ -34,7 +37,7 @@ export function Header() {
   useEffect(() => {
     if (pathname !== '/') return
 
-    const ids = NAV_ITEMS.map((item) => sectionId(item.href)).filter((id): id is string => id !== null)
+    const ids = SECTION_ITEMS.map((item) => sectionId(item.href)).filter((id): id is string => id !== null)
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -83,7 +86,7 @@ export function Header() {
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex">
-            {NAV_ITEMS.map((item) => {
+            {SECTION_ITEMS.map((item) => {
               const isActive = isNavItemActive(item.href, pathname, activeSection)
               return (
                 <Link
@@ -101,6 +104,23 @@ export function Header() {
                 </Link>
               )
             })}
+
+            {PAGE_ITEMS.length > 0 && <span aria-hidden className="h-4 w-px bg-rule" />}
+
+            {PAGE_ITEMS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  'font-display text-lg italic transition-colors duration-200',
+                  isNavItemActive(item.href, pathname, activeSection)
+                    ? 'text-accent'
+                    : 'text-ink hover:text-accent',
+                )}
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
 
           <button
@@ -133,7 +153,7 @@ export function Header() {
         )}
       >
         <nav className="mt-4 flex flex-col">
-          {NAV_ITEMS.map((item, i) => (
+          {SECTION_ITEMS.map((item, i) => (
             <Link
               key={item.href}
               href={item.href}
@@ -145,6 +165,23 @@ export function Header() {
             >
               <span className="tnum text-[11px] uppercase tracking-label text-ink-ghost">
                 {String(i + 1).padStart(2, '0')}
+              </span>
+              {item.label}
+            </Link>
+          ))}
+
+          {PAGE_ITEMS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={closeMobile}
+              className={cn(
+                'flex items-baseline gap-4 border-b border-rule py-4 font-display text-4xl italic transition-colors',
+                isNavItemActive(item.href, pathname, activeSection) ? 'text-accent' : 'text-ink',
+              )}
+            >
+              <span aria-hidden className="text-[11px] not-italic text-ink-ghost">
+                &rarr;
               </span>
               {item.label}
             </Link>
