@@ -110,6 +110,11 @@ export interface ArchLayer {
   readonly items: readonly string[]
 }
 
+export interface RelatedLink {
+  readonly label: string
+  readonly url: string
+}
+
 export interface PersonalProject {
   readonly name: string
   readonly tagline: string
@@ -120,6 +125,7 @@ export interface PersonalProject {
   readonly tags: readonly string[]
   readonly arch?: readonly ArchLayer[]
   readonly githubRepo?: string
+  readonly relatedLinks?: readonly RelatedLink[]
 }
 
 export interface CvData {

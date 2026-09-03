@@ -274,9 +274,15 @@ export const PERSONAL_PROJECTS: PersonalProject[] = [
       'per instance. Fishing Store is the live demo instance, running on a clean App Router ' +
       'architecture, strict TypeScript contracts, WooCommerce/WordPress integrations, resilient ' +
       'order flows, and multilingual support with next-intl for localization-ready storefronts. ' +
-      'Custom PHP plugins extend WooCommerce with product filters, wishlist flows, and product Q&A features.',
+      'Custom PHP plugins extend WooCommerce with product filters, wishlist flows, and product Q&A ' +
+      'features. The WordPress backend itself is a custom serverless deployment: WordPress and ' +
+      'WooCommerce running inside a single Vercel function via ServerlessWP, with TiDB Cloud as the ' +
+      'database and no persistent server or writable filesystem.',
     url: 'https://fishing-store.vercel.app/',
     status: ProjectStatus.Live,
+    relatedLinks: [
+      { label: 'Serverless WordPress backend', url: 'https://github.com/themafia98/fishing-store-serverless-wp' },
+    ],
     tags: [
       'Next.js 16',
       'React 19',
@@ -295,6 +301,7 @@ export const PERSONAL_PROJECTS: PersonalProject[] = [
       { label: 'Client',   items: ['Next.js App Router', 'React 19', 'Tailwind CSS 4', 'Headless UI', 'Heroicons'] },
       { label: 'Brands',   items: ['Per-instance brand config', 'Configurable catalog source', 'Fishing Store as the live demo instance'] },
       { label: 'Commerce', items: ['WooCommerce REST API v3', 'WooCommerce Store API', 'Cart and order context flows'] },
+      { label: 'Backend',  items: ['Serverless WordPress via ServerlessWP', 'Single Vercel function, no persistent server', 'TiDB Cloud database'] },
       { label: 'Plugins',  items: ['Custom PHP plugins', 'Product filters', 'Wishlist', 'Product Q&A'] },
       { label: 'Content',  items: ['WordPress REST API', 'WPGraphQL', 'GraphQL Code Generator', 'sanitize-html'] },
       { label: 'i18n',     items: ['next-intl', 'Localized routes and messages', 'Multilingual storefront architecture'] },

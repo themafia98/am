@@ -59,14 +59,28 @@ export function PersonalProjectCard({ project }: { project: PersonalProject }) {
             ))}
           </div>
 
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-5 inline-block text-sm text-ink-faint underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
-          >
-            {project.url.replace(/^https?:\/\//, '')}
-          </a>
+          <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1">
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-sm text-ink-faint underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+            >
+              {project.url.replace(/^https?:\/\//, '')}
+            </a>
+
+            {project.relatedLinks?.map((link) => (
+              <a
+                key={link.url}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block text-sm text-ink-faint underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </article>
