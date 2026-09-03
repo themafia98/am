@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { PostHeader, PostBody } from '@/widgets/blog'
+import { PostHeader, PostBody, PostCta } from '@/widgets/blog'
 import { BLOG_POSTS, getPostBySlug } from '@/shared/config/blog'
 import { SITE_URL } from '../../constants'
 
@@ -45,6 +45,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <article className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
       <PostHeader post={post} />
       <PostBody blocks={post.content} />
+      <PostCta />
     </article>
   )
 }
