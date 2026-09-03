@@ -23,6 +23,10 @@ export const metadata: Metadata = {
     'Poland',
     'Pavel Piatrovich',
   ],
+  authors: [{ name: 'Pavel Piatrovich', url: SITE_URL }],
+  creator: 'Pavel Piatrovich',
+  publisher: 'Pavel Piatrovich',
+  category: 'technology',
   alternates: { canonical: SITE_URL },
   openGraph: {
     title: 'Pavel Piatrovich - Frontend Engineer',
@@ -30,11 +34,22 @@ export const metadata: Metadata = {
       'Frontend Engineer with 7+ years of experience specialising in React, React Native, and TypeScript.',
     type: 'website',
     url: SITE_URL,
+    siteName: 'Pavel Piatrovich Portfolio',
+    locale: 'en_US',
+    images: [
+      {
+        url: '/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: 'Pavel Piatrovich - Frontend Engineer',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Pavel Piatrovich - Frontend Engineer',
     description: 'Frontend Engineer · React · React Native · TypeScript · Warsaw',
+    images: ['/opengraph-image'],
   },
   robots: { index: true, follow: true },
 }
