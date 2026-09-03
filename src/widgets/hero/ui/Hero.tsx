@@ -19,13 +19,13 @@ export function Hero({ cv }: { cv: CvData }) {
         </div>
 
         <h1 className="font-display leading-[0.85] tracking-[-0.02em]">
-          <span className="block text-[clamp(3.25rem,13vw,10rem)]">{personal.firstName}</span>
-          <span className="block pl-[0.06em] text-[clamp(3.25rem,13vw,10rem)] italic text-accent">
+          <span className="block text-[clamp(3.25rem,12vw,8rem)]">{personal.firstName}</span>
+          <span className="block pl-[0.06em] text-[clamp(3.25rem,12vw,8rem)] italic text-accent">
             {personal.lastName}
           </span>
         </h1>
 
-        <div className="mt-10 border-t border-ink pt-5 sm:mt-12">
+        <div className="mt-12 border-t border-ink pt-5 sm:mt-14">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-baseline sm:justify-between">
             <p className="max-w-measure font-display text-xl leading-snug sm:text-2xl">
               {personal.title}
