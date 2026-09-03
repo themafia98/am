@@ -1,10 +1,25 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { NAV_ITEMS, PERSONAL } from '@/shared/config/cv'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { PERSONAL } from '@/shared/config/cv'
+import { NAV_ITEMS } from '@/shared/config/nav'
 import { cn } from '@/shared/lib/cn'
 
+function sectionId(href: string): string | null {
+  const [, hash] = href.split('#')
+  return hash ?? null
+}
+
+function isNavItemActive(href: string, pathname: string, activeSection: string): boolean {
+  const id = sectionId(href)
+  if (id) return pathname === '/' && activeSection === id
+  return pathname === href || pathname.startsWith(`${href}/`)
+}
+
 export function Header() {
+  const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('')
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -17,7 +32,9 @@ export function Header() {
   }, [])
 
   useEffect(() => {
-    const ids = NAV_ITEMS.map((item) => item.href.slice(1))
+    if (pathname !== '/') return
+
+    const ids = NAV_ITEMS.map((item) => sectionId(item.href)).filter((id): id is string => id !== null)
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -31,7 +48,7 @@ export function Header() {
       if (el) observer.observe(el)
     })
     return () => observer.disconnect()
-  }, [])
+  }, [pathname])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -57,19 +74,19 @@ export function Header() {
         )}
       >
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-          <a
-            href="#"
+          <Link
+            href="/"
             onClick={closeMobile}
             className="font-display text-lg transition-colors hover:text-accent"
           >
             {PERSONAL.name}
-          </a>
+          </Link>
 
           <nav className="hidden items-center gap-8 md:flex">
             {NAV_ITEMS.map((item) => {
-              const isActive = activeSection === item.href.slice(1)
+              const isActive = isNavItemActive(item.href, pathname, activeSection)
               return (
-                <a
+                <Link
                   key={item.href}
                   href={item.href}
                   className={cn(
@@ -81,7 +98,7 @@ export function Header() {
                   )}
                 >
                   {item.label}
-                </a>
+                </Link>
               )
             })}
           </nav>
@@ -117,20 +134,20 @@ export function Header() {
       >
         <nav className="mt-4 flex flex-col">
           {NAV_ITEMS.map((item, i) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               onClick={closeMobile}
               className={cn(
                 'flex items-baseline gap-4 border-b border-rule py-4 font-display text-4xl transition-colors',
-                activeSection === item.href.slice(1) ? 'text-accent' : 'text-ink',
+                isNavItemActive(item.href, pathname, activeSection) ? 'text-accent' : 'text-ink',
               )}
             >
               <span className="tnum text-[11px] uppercase tracking-label text-ink-ghost">
                 {String(i + 1).padStart(2, '0')}
               </span>
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 

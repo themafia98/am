@@ -1,0 +1,40 @@
+import type { Metadata } from 'next'
+import { BlogList } from '@/widgets/blog'
+import { BLOG_POSTS } from '@/shared/config/blog'
+import { LABEL_CLASS } from '@/shared/ui/constants'
+import { SITE_URL } from '../constants'
+
+export const metadata: Metadata = {
+  title: 'Blog - Pavel Piatrovich',
+  description: 'Notes on React, TypeScript, and frontend engineering from Pavel Piatrovich.',
+  alternates: { canonical: `${SITE_URL}/blog` },
+  openGraph: {
+    title: 'Blog - Pavel Piatrovich',
+    description: 'Notes on React, TypeScript, and frontend engineering from Pavel Piatrovich.',
+    type: 'website',
+    url: `${SITE_URL}/blog`,
+  },
+}
+
+export default function BlogPage() {
+  return (
+    <div className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
+      <div className="mb-10 flex items-center gap-5 sm:mb-14">
+        <span className={LABEL_CLASS}>Portfolio</span>
+        <span className="h-px flex-1 bg-rule" />
+        <span className={LABEL_CLASS}>{BLOG_POSTS.length} posts</span>
+      </div>
+
+      <h1 className="font-display text-[2.75rem] leading-[0.9] tracking-[-0.015em] sm:text-7xl">
+        Blog
+      </h1>
+      <p className="mt-6 max-w-measure text-lg leading-relaxed text-ink-soft">
+        Notes on React, TypeScript, and shipping frontend systems - written between client work.
+      </p>
+
+      <div className="mt-14 sm:mt-16">
+        <BlogList posts={BLOG_POSTS} />
+      </div>
+    </div>
+  )
+}

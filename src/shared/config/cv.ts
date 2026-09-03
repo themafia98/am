@@ -7,7 +7,6 @@ import {
   type Education,
   type Certification,
   type Language,
-  type NavItem,
   type ContactItem,
   type Stat,
   type PersonalProject,
@@ -51,15 +50,6 @@ export const ABOUT_TAGS: readonly string[] = [
   'Micro-frontends',
   'Feature-Sliced Design',
   'Responsive Design',
-]
-
-export const NAV_ITEMS: NavItem[] = [
-  { label: 'About', href: '#about' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Education', href: '#education' },
-  { label: 'Contact', href: '#contact' },
 ]
 
 export const JOBS: Job[] = [
