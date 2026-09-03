@@ -267,16 +267,16 @@ export const PERSONAL_PROJECTS: PersonalProject[] = [
   },
   {
     name: 'Fishing Store',
-    tagline: 'Generic E-Commerce Solution - Redesign in Progress',
+    tagline: 'Reusable Multi-Brand E-Commerce Platform',
     description:
-      'A production-oriented online store evolving from a fishing retail project into a reusable ' +
-      'e-commerce foundation. The redesign focuses on a clean App Router architecture, strict ' +
-      'TypeScript contracts, WooCommerce/WordPress integrations, resilient order flows, and ongoing ' +
-      'multilingual support with next-intl for localization-ready storefronts. Custom PHP plugins ' +
-      'extend WooCommerce with product filters, wishlist flows, and product Q&A features.',
+      'A production-oriented e-commerce platform built to run multiple storefronts from a single ' +
+      'codebase through configuration, not forks - brand, catalog source, and locale are all set ' +
+      'per instance. Fishing Store is the live demo instance, running on a clean App Router ' +
+      'architecture, strict TypeScript contracts, WooCommerce/WordPress integrations, resilient ' +
+      'order flows, and multilingual support with next-intl for localization-ready storefronts. ' +
+      'Custom PHP plugins extend WooCommerce with product filters, wishlist flows, and product Q&A features.',
     url: 'https://fishing-store.vercel.app/',
-    status: ProjectStatus.InProgress,
-    statusLabel: 'Redesign + i18n in progress',
+    status: ProjectStatus.Live,
     tags: [
       'Next.js 16',
       'React 19',
@@ -293,10 +293,11 @@ export const PERSONAL_PROJECTS: PersonalProject[] = [
     ],
     arch: [
       { label: 'Client',   items: ['Next.js App Router', 'React 19', 'Tailwind CSS 4', 'Headless UI', 'Heroicons'] },
+      { label: 'Brands',   items: ['Per-instance brand config', 'Configurable catalog source', 'Fishing Store as the live demo instance'] },
       { label: 'Commerce', items: ['WooCommerce REST API v3', 'WooCommerce Store API', 'Cart and order context flows'] },
       { label: 'Plugins',  items: ['Custom PHP plugins', 'Product filters', 'Wishlist', 'Product Q&A'] },
       { label: 'Content',  items: ['WordPress REST API', 'WPGraphQL', 'GraphQL Code Generator', 'sanitize-html'] },
-      { label: 'i18n',     items: ['next-intl', 'Localized routes and messages in progress', 'Multilingual storefront architecture'] },
+      { label: 'i18n',     items: ['next-intl', 'Localized routes and messages', 'Multilingual storefront architecture'] },
       { label: 'Quality',  items: ['Strict TypeScript', 'Jest', 'Playwright', 'ESLint 9 flat config', 'Zod env validation'] },
     ] satisfies ArchLayer[],
   },
