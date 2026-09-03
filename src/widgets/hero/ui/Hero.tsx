@@ -60,6 +60,14 @@ export function Hero({ cv }: { cv: CvData }) {
 
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-ink-soft">
             <a
+              href={personal.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-rule underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+            >
+              GitHub
+            </a>
+            <a
               href={personal.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"

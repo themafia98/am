@@ -36,6 +36,8 @@ export interface Personal {
   readonly subtitle: string
   readonly location: string
   readonly email: string
+  readonly github: string
+  readonly githubUrl: string
   readonly linkedin: string
   readonly linkedinUrl: string
   readonly phone: string

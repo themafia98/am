@@ -193,6 +193,14 @@ export function Header() {
             {PERSONAL.email}
           </a>
           <a
+            href={PERSONAL.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-accent"
+          >
+            github.com/{PERSONAL.github}
+          </a>
+          <a
             href={PERSONAL.linkedinUrl}
             target="_blank"
             rel="noopener noreferrer"

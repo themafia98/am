@@ -22,6 +22,8 @@ export const PERSONAL: Personal = {
   subtitle: 'React · React Native · TypeScript',
   location: 'Warsaw, Poland',
   email: 'pasha.petrovich98@gmail.com',
+  github: 'themafia98',
+  githubUrl: 'https://github.com/themafia98',
   linkedin: 'pavel-software-anywhere',
   linkedinUrl: 'https://linkedin.com/in/pavel-software-anywhere',
   phone: '+48 516 532 323',
