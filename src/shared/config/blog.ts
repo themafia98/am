@@ -257,6 +257,125 @@ const POSTS: readonly BlogPost[] = [
     ],
   },
   {
+    slug: "react-native-real-world-2026",
+    title:
+      "React Native in 2026: what actually matters in real cross-platform apps",
+    dek: "React Native is easy to start, but the hard part is not writing components. It is building a shared UI system that still feels native, works across platforms, and survives real product pressure.",
+    date: "2026-07-25",
+    readingTime: "8 min read",
+    tags: ["React Native", "Expo", "Mobile", "Architecture", "Cross Platform"],
+    content: [
+      {
+        type: "p",
+        text: "React Native looks simple from the outside. You write components, you render them on mobile, and suddenly you have iOS and Android from one codebase. That is the marketing version. The real version is a bit more honest: React Native is great when you treat it like a shared product platform, not as if it magically removes all platform complexity.",
+      },
+      {
+        type: "h2",
+        text: "The first mistake is thinking it is 'just React'",
+      },
+      {
+        type: "p",
+        text: "The biggest difference is that the UI is still native, but the app logic lives in a JavaScript runtime that is connected to platform APIs. That means a lot of problems are not React problems. They are platform problems: keyboard behavior, scroll gestures, safe areas, Android back navigation, camera permissions, file system access, app lifecycle, and differences in animation timing.",
+      },
+      {
+        type: "p",
+        text: "In real work, this means the architecture matters more than the initial speed. If you build a product as if both platforms are identical, you will hit the same issues later: inconsistent list scrolling, weird keyboard overlap, different gesture handling, and small but expensive release bugs.",
+      },
+      {
+        type: "code",
+        lang: "tsx",
+        code: "import { Platform, KeyboardAvoidingView, ScrollView } from 'react-native'\n\nexport function LoginScreen() {\n  const isAndroid = Platform.OS === 'android'\n\n  return (\n    <KeyboardAvoidingView behavior={isAndroid ? 'height' : 'padding'}>\n      <ScrollView contentInsetAdjustmentBehavior={'automatic'} />\n    </KeyboardAvoidingView>\n  )\n}",
+      },
+      {
+        type: "h2",
+        text: "The real win is a shared design system, not just shared screens",
+      },
+      {
+        type: "p",
+        text: "The projects that work best are not the ones with the most shared screens. They are the ones with a solid shared UI layer: spacing scale, colors, typography tokens, button variants, cards, forms, modal patterns, and a clear set of primitive components. That is where cross-platform work becomes predictable.",
+      },
+      {
+        type: "p",
+        text: "In one of the apps I worked on, we built a white-label UI kit with theme tokens and reusable components. The product was not the same across clients, but the architecture was. That let us change brand colors, spacing, and some product-specific behavior without rewriting each feature. This is usually where the actual business value shows up: the product can scale without duplicating logic everywhere.",
+      },
+      {
+        type: "quote",
+        text: "The most important thing in React Native is not 'how fast can we build screens'. It is 'how much of the product can we share without losing native quality.'",
+      },
+      {
+        type: "h2",
+        text: "Cross-platform code is only 70-80% shared in practice",
+      },
+      {
+        type: "p",
+        text: "The hard truth is that a lot of the code can be shared, but not all of it. The product layer is usually shared. The navigation patterns are often shared. The state logic is often shared. The actual UI details are not always identical: iOS has different list behavior, Android has different back-stack patterns, and devices behave differently depending on keyboard, screen size, and OS version.",
+      },
+      {
+        type: "list",
+        items: [
+          "Shared domain logic and API contracts are easy to reuse and should be treated as first-class code.",
+          "Shared UI primitives are a huge win if they are designed well and kept consistent.",
+          "Platform-specific wrappers should be isolated, not scattered across the app.",
+          "Most product bugs are not caused by React itself — they are caused by ignoring platform differences.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "State and data fetching need a clear boundary",
+      },
+      {
+        type: "p",
+        text: "It is tempting to put everything in screens. In real apps, that becomes unmaintainable fast. The better pattern is to keep screens as composition layers and move business logic to hooks, services, or a shared state layer. That makes it easier to test, easier to change, and easier to reuse across similar flows.",
+      },
+      {
+        type: "code",
+        lang: "tsx",
+        code: "function useUserProfile() {\n  const query = useQuery({\n    queryKey: ['profile'],\n    queryFn: fetchProfile,\n  })\n\n  return {\n    profile: query.data,\n    loading: query.isLoading,\n    error: query.error,\n  }\n}\n\nexport function ProfileScreen() {\n  const { profile, loading } = useUserProfile()\n  return <ProfileContent profile={profile} loading={loading} />\n}",
+      },
+      {
+        type: "h2",
+        text: "Testing is more important than people expect",
+      },
+      {
+        type: "p",
+        text: "A cross-platform app is full of places where one platform quietly breaks the other. That is why testing matters so much. I spent a lot of time on Playwright-style checks and targeted mobile QA, because a UI that looks fine in one environment can still fail in another due to keyboard, focus, gestures, scroll, or layout edge cases.",
+      },
+      {
+        type: "p",
+        text: "This is also where Storybook or a component catalog helps. It gives you a stable way to test UI primitives, theme changes, and complex states without relying on whole app flows every time.",
+      },
+      {
+        type: "h2",
+        text: "Expo is helpful, but it does not remove native work",
+      },
+      {
+        type: "p",
+        text: "Expo makes a lot of the setup and tooling easier. It is a great default for a product team. But it does not change the fact that some features need native modules, native config, or careful release management. The app still needs to be tested on real devices. The app still needs to be prepared for app store release. The app still needs to respect OS-level differences.",
+      },
+      {
+        type: "p",
+        text: "That is why I think the right mindset is not 'React Native removes native work.' It is 'React Native lets us share most of the business logic while still respecting the platform.' That is a much more realistic and useful way to approach mobile product delivery.",
+      },
+      {
+        type: "h2",
+        text: "What I actually value most",
+      },
+      {
+        type: "list",
+        items: [
+          "A strong shared UI layer with tokens and reusable primitives.",
+          "A strict separation between shared logic and platform-specific code.",
+          "Testing and QA that includes real device behavior, not just a happy-path simulator.",
+          "Comfort with the fact that iOS and Android are not the same product, even when they share code.",
+        ],
+      },
+      {
+        type: "p",
+        text: "React Native is not magic. It is a really good way to build a product if you respect the platform. The real skill is not writing React code quickly. It is designing a system that stays maintainable when the product grows, the UI becomes more complex, and the platform differences start to matter.",
+      },
+    ],
+  },
+  {
     slug: "legacy-game-rethinking-2026",
     title:
       "Legacy Game Rethinking: rebuilding an old prototype with cleaner architecture",

@@ -486,6 +486,12 @@ export const SIDE_PROJECTS: PersonalProject[] = [
     url: "https://arena-game-2.web.app/",
     status: ProjectStatus.Live,
     githubRepo: "themafia98/legacy-game-rethinking-2026",
+    relatedLinks: [
+      {
+        label: "GitHub",
+        url: "https://github.com/themafia98/legacy-game-rethinking-2026",
+      },
+    ],
     tags: [
       "TypeScript",
       "Game Architecture",
