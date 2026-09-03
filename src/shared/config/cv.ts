@@ -29,17 +29,17 @@ export const PERSONAL: Personal = {
   currentCompany: 'Solbeg_',
   cvPath: '/api/cv-view',
   cvFileName: CV_PDF_FILENAME,
-  summary: `Frontend Engineer with 6+ years of commercial experience building scalable web and
+  summary: `Frontend Engineer with 7+ years of commercial experience building scalable web and
     mobile applications with React, React Native, and TypeScript. Strong background in
-    component-driven development, modern state management (Redux / Redux Toolkit, MobX, Zustand),
-    and reusable UI systems with Storybook. Experience as SDET with Playwright. Some background in
-    Node.js / Express.js with interest in expanding into backend (NestJS, GraphQL). I feel confident
-    in cross-functional Agile teams developing features end to end.`,
-  yearsOfExperience: 6,
+    component-driven development, modern state management (Redux Toolkit, MobX, Zustand),
+    and reusable UI systems with Storybook. Experience as SDET with Playwright. Node.js / Express.js
+    background from personal projects, with interest in expanding into backend (NestJS, GraphQL).
+    Delivers features end to end in cross-functional Agile teams.`,
+  yearsOfExperience: 7,
 }
 
 export const HERO_STATS: Stat[] = [
-  { value: '6+', label: 'Years XP' },
+  { value: '7+', label: 'Years XP' },
   { value: 'B2', label: 'English' },
 ]
 
@@ -71,11 +71,11 @@ export const JOBS: Job[] = [
     period: 'Jun 2021 - Present',
     current: true,
     summary:
-      'Developed applications of varying complexity using React and React Native across multiple client projects. Worked as an SDET with a focus on automated testing using Playwright.',
+      'React and React Native applications across multiple client projects; also SDET work on Playwright automation.',
     bullets: [
       'Build and maintain scalable web and mobile apps with React, React Native (Expo SDK), and TypeScript; reusable, well-typed components following a component-driven approach.',
-      'Collaborate with cross-functional distributed teams (backend, design, QA, PM); participate in code reviews, Agile ceremonies, frontend estimation, and asynchronous communication workflows using modern collaboration tools.',
-      'Proposed and introduced code review guidelines and best practices, contributing to team-wide process improvements.',
+      'Collaborate with cross-functional distributed teams (backend, design, QA, PM): code reviews, Agile ceremonies, frontend estimation, async communication workflows.',
+      'Proposed and introduced code review guidelines and best practices adopted team-wide.',
       'Work as SDET: design and maintain automated end-to-end testing infrastructure with Playwright, improving regression coverage and release confidence.',
     ],
     projects: [
@@ -85,14 +85,14 @@ export const JOBS: Job[] = [
         highlights: [
           'Drove architectural decisions and built a React Native application from scratch; independently designed and implemented a scalable UI Kit supporting white-label configurations and dark/light themes with a focus on maintainability, reusability, and performance optimization.',
           'Applied Component-Driven Development using Storybook to develop and maintain reusable components; collaborated on cross-platform delivery (iOS, Android, Web via Expo).',
-          'Contributed to performance optimization and test coverage (unit), ensuring maintainable and reliable codebase.',
+          'Improved performance and unit test coverage for a maintainable, reliable codebase.',
         ],
       },
       {
         name: 'Betting Services Admin Panel - Web',
         tech: 'React',
         highlights: [
-          'Contributed to the development and maintenance of a web-based admin panel for managing betting services.',
+          'Developed and maintained a web-based admin panel for managing betting services.',
           'Implemented new features, resolved issues, and adapted existing components for an upcoming UI redesign.',
           'Collaborated closely with backend and QA teams in an Agile workflow.',
         ],
@@ -102,8 +102,8 @@ export const JOBS: Job[] = [
         tech: 'React · Apache Cordova · Playwright',
         highlights: [
           'Maintained and extended React-based components for a cross-platform betting app (iOS via Cordova and Web), ensuring stability and consistency across platforms.',
-          'Integrated and configured Cordova plugins, working with platform-specific (iOS) capabilities and resolving related issues.',
-          'Developed and maintained end-to-end test automation using Playwright, increasing regression coverage and reliability of key user flows.',
+          'Integrated and configured Cordova plugins, working with iOS-specific capabilities.',
+          'Built and maintained Playwright E2E automation, increasing regression coverage of key user flows.',
         ],
       },
       {
@@ -133,10 +133,10 @@ export const JOBS: Job[] = [
     period: 'Apr 2020 - Dec 2021',
     current: false,
     summary:
-      'Contributed to a React app utilizing the Google Maps API, collaborating with backend developers, designers, and stakeholders. Also built a static website with Next.js as a sub-project.',
+      'React app built around the Google Maps API in collaboration with backend developers, designers, and stakeholders; also a static Next.js site as a sub-project.',
     bullets: [
       'Cooperated closely with backend developers to define API contracts and integrate REST endpoints.',
-      'Worked independently on feature delivery, API integration, and responsive UI implementation across web projects.',
+      'Worked independently on feature delivery, API integration, and responsive UI.',
     ],
   },
   {
@@ -147,11 +147,11 @@ export const JOBS: Job[] = [
     period: 'Sep 2019 - Jun 2021',
     current: false,
     summary:
-      'ERP solution for a large enterprise client; participated in migration from class-based components to modern React architecture with hooks and functional components. Contributed to a Next.js sub-project alongside the main product.',
+      'ERP solution for a large enterprise client; migrated class-based components to hooks and functional components. Also contributed to a Next.js sub-project.',
     bullets: [
       'Built reusable UI components and maintained Storybook-based UI systems.',
       'Wrote unit tests with Jest and Enzyme to keep the codebase stable and regression-free.',
-      'Worked on application performance and scalability, including bundle size reduction, rendering optimization, and asset optimization.',
+      'Worked on performance and scalability: bundle size, rendering, and asset optimization.',
     ],
   },
 ]
@@ -160,7 +160,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     label: 'Languages',
     color: BadgeVariant.Cyan,
-    skills: ['JavaScript (ES5, ES6+)', 'TypeScript', 'HTML/HTML5', 'CSS/CSS3'],
+    skills: ['TypeScript', 'JavaScript (ES6+)', 'HTML5', 'CSS3'],
   },
   {
     label: 'Frameworks & Libraries',
@@ -168,24 +168,14 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     skills: ['React', 'React Native (Expo SDK)', 'Next.js (SSR/SSG/ISR)', 'Node.js', 'Apache Cordova'],
   },
   {
-    label: 'State Management',
+    label: 'State & Data',
     color: BadgeVariant.Purple,
-    skills: ['Redux', 'Redux Toolkit', 'MobX', 'Zustand'],
-  },
-  {
-    label: 'Data Fetching & Realtime',
-    color: BadgeVariant.Green,
-    skills: ['Fetch API (native)', 'TanStack React Query', 'Apollo GraphQL', 'WebSockets'],
-  },
-  {
-    label: 'Forms & Validation',
-    color: BadgeVariant.Default,
-    skills: ['Formik', 'React Hook Form', 'Zod'],
+    skills: ['Redux Toolkit', 'MobX', 'Zustand', 'TanStack React Query', 'Apollo GraphQL', 'REST', 'WebSockets', 'React Hook Form', 'Formik', 'Zod'],
   },
   {
     label: 'UI & Styling',
     color: BadgeVariant.Pink,
-    skills: ['Material UI', 'Fluent UI', 'Tailwind CSS', 'SCSS', 'CSS Modules', 'styled-components'],
+    skills: ['Material UI', 'Fluent UI', 'Tailwind CSS', 'SCSS', 'CSS Modules', 'Styled-Components', 'Storybook'],
   },
   {
     label: 'Testing',
@@ -195,7 +185,12 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     label: 'Build & Tooling',
     color: BadgeVariant.Yellow,
-    skills: ['Webpack', 'Babel', 'ESLint', 'Prettier', 'Vite', 'Storybook', 'Monorepo (Turborepo, Nx)', 'Docker', 'Firebase', 'Postman', 'Swagger', 'CI/CD (GitHub, CircleCI, Bitbucket)', 'cloud platforms (GCP)', 'Git'],
+    skills: ['Vite', 'Webpack', 'Babel', 'ESLint', 'Prettier', 'Monorepo (Turborepo, Nx)', 'Docker', 'Firebase', 'Postman', 'Swagger', 'CI/CD (GitHub Actions, CircleCI, Bitbucket)', 'GCP', 'Git'],
+  },
+  {
+    label: 'CMS',
+    color: BadgeVariant.Green,
+    skills: ['WordPress', 'Contentful'],
   },
   {
     label: 'AI Dev Tools',
@@ -205,7 +200,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     label: 'Practices',
     color: BadgeVariant.Cyan,
-    skills: ['Component-Driven Development', 'Feature-Sliced Design', 'MVVM', 'MVC', 'Design Patterns', 'Performance Optimization', 'Micro-frontends', 'Responsive Design', 'KISS', 'DRY', 'TypeScript-first', 'Agile/Scrum'],
+    skills: ['Component-Driven Development', 'Feature-Sliced Design', 'Micro-frontends', 'MVVM', 'MVC', 'Design Patterns', 'Performance Optimization', 'Responsive Design', 'Agile/Scrum'],
   },
 ]
 
