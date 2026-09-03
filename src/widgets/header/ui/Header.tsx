@@ -82,7 +82,7 @@ export function Header() {
             onClick={closeMobile}
             className="font-display text-lg transition-colors hover:text-accent"
           >
-            {PERSONAL.name}
+            Developer portfolio
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex">
