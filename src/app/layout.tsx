@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: 'Pavel Piatrovich - Frontend Engineer',
   description:
-    'Frontend Engineer with 6+ years of experience specialising in React, React Native, and TypeScript. Based in Warsaw, Poland.',
+    'Frontend Engineer with 7+ years of experience specialising in React, React Native, and TypeScript. Based in Warsaw, Poland.',
   keywords: [
     'Frontend Engineer',
     'React Developer',
@@ -23,10 +23,11 @@ export const metadata: Metadata = {
     'Poland',
     'Pavel Piatrovich',
   ],
+  alternates: { canonical: SITE_URL },
   openGraph: {
     title: 'Pavel Piatrovich - Frontend Engineer',
     description:
-      'Frontend Engineer with 6+ years of experience specialising in React, React Native, and TypeScript.',
+      'Frontend Engineer with 7+ years of experience specialising in React, React Native, and TypeScript.',
     type: 'website',
     url: SITE_URL,
   },
