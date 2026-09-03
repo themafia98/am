@@ -48,7 +48,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
       },
       {
         type: 'h2',
-        text: 'The client/server line moved, but state management did not disappear',
+        text: 'The client/server line moved, but state management didn’t disappear',
       },
       {
         type: 'p',
@@ -56,22 +56,22 @@ export const BLOG_POSTS: readonly BlogPost[] = [
       },
       {
         type: 'h2',
-        text: 'Signals did not win, but they did not lose either',
+        text: 'Signals didn’t win, but they didn’t lose either',
       },
       {
         type: 'p',
-        text: 'Solid and Svelte kept making the case for fine-grained reactivity, and for a while it looked like signals might land in React core. They did not — the React team’s bet stayed on the compiler doing the fine-grained work for you at build time instead of asking developers to adopt a new primitive. Both approaches converged on the same user-facing outcome (fewer wasted re-renders without manual tuning), which mostly ended the framework-holy-war version of that debate. It’s a good example of React’s actual strategy this cycle: solve the problem the ecosystem was fighting about, but solve it in a way that doesn’t require anyone to learn a new mental model.',
+        text: 'Solid and Svelte kept making the case for fine-grained reactivity, and for a while it looked like signals might land in React core. They didn’t — the React team’s bet stayed on the compiler doing the fine-grained work for you at build time instead of asking developers to adopt a new primitive. Both approaches converged on the same user-facing outcome (fewer wasted re-renders without manual tuning), which mostly ended the framework-holy-war version of that debate. It’s a good example of React’s actual strategy this cycle: solve the problem the ecosystem was fighting about, but solve it in a way that doesn’t require anyone to learn a new mental model.',
       },
       {
         type: 'h2',
-        text: 'What this means if you are hiring or being hired',
+        text: 'What this means if you’re hiring or being hired',
       },
       {
         type: 'list',
         items: [
           'Knowing when NOT to add "use client" is now a more useful skill than knowing how to optimize a client-side render tree.',
           'Comfort with async/await patterns in components (Suspense boundaries, streaming, Actions) matters more than deep Redux internals.',
-          'TypeScript-first is no longer a preference, it is table stakes — the compiler and Server Actions both lean hard on accurate types for their guarantees to hold.',
+          'TypeScript-first isn’t a preference anymore, it’s table stakes — the compiler and Server Actions both lean hard on accurate types for their guarantees to hold.',
           'The interesting architecture questions moved up a level: not "how do I manage this state" but "does this belong on the server, and if not, why not."',
         ],
       },
