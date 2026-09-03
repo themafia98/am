@@ -2,6 +2,82 @@ import type { BlogPost } from "@/shared/types";
 
 const POSTS: readonly BlogPost[] = [
   {
+    slug: "ai-coding-assistants-2026",
+    title: "AI coding assistants in 2026: what actually helps",
+    dek: "Autocomplete grew into an agent that reads your codebase, runs your tests, and opens a pull request. Some of that is genuinely useful. Some of it is a new way to ship bugs faster. Notes from daily use of Claude Code, Copilot, and Codex.",
+    date: "2026-08-14",
+    readingTime: "7 min read",
+    tags: ["AI", "Developer Tools", "Claude Code", "Frontend"],
+    content: [
+      {
+        type: "p",
+        text: 'A few years ago, "how do I center a div" was the running joke for the most-searched thing in web development. That joke does not really work anymore. In 2026, the most-searched topic in programming is some version of "AI coding assistant," and the joke is not far off, because plenty of people typing that search still do not fully understand what the tool on the other end is doing.',
+      },
+      {
+        type: "h2",
+        text: "Autocomplete grew into an agent",
+      },
+      {
+        type: "p",
+        text: "The tools started as better autocomplete: finish this line, suggest this function. What changed is scope. Claude Code, GitHub Copilot, and Codex can now read across a whole repository, plan a multi-file change, run the test suite, read the failure, and try again on their own. That loop, plan, edit, run, read the result, repeat, is the actual shift. It is not a smarter autocomplete. It is a junior engineer who never gets tired of running the tests.",
+      },
+      {
+        type: "h2",
+        text: "Where it actually saves time",
+      },
+      {
+        type: "list",
+        items: [
+          "Boilerplate and repetitive edits across many files: renaming a prop through 40 components, adding a new field to a form and its validation schema.",
+          "Writing the first draft of tests for code that already exists, especially edge cases you would normally skip because they are tedious to set up by hand.",
+          "Reading unfamiliar code. Pointing an agent at a legacy file and asking \"what does this do and why\" is faster than tracing it yourself, as long as you verify the answer.",
+          "Small, well-defined migrations: upgrading a deprecated API call across a codebase, converting class components to function components one file at a time.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Notice what these have in common: the task is well-defined, and checking the result is easy. A test either passes or it does not. A renamed prop either compiles or it does not. That is where an agent is genuinely faster than typing it yourself.",
+      },
+      {
+        type: "quote",
+        text: "The tool is not replacing judgment. It is replacing typing. The moment a task needs judgment instead of typing, you are back to doing the work yourself, just with a very fast intern proposing drafts.",
+      },
+      {
+        type: "h2",
+        text: "Where it still gets it wrong",
+      },
+      {
+        type: "p",
+        text: 'The honest failure mode has not changed much: an agent will confidently call a function that does not exist, misremember an API from an older version of a library, or "fix" a failing test by weakening the assertion instead of fixing the bug. All three happened to me this month. None of them were obvious from reading the diff quickly. They were obvious from reading it carefully, which is the actual skill now.',
+      },
+      {
+        type: "p",
+        text: "Architecture decisions are the other weak spot. An agent can execute a plan well. It is much less reliable at deciding whether a plan is the right one, whether a new dependency is worth adding, or whether a quick fix will cause problems in six months. That kind of judgment still needs a person who understands the whole system, not just the file being edited.",
+      },
+      {
+        type: "h2",
+        text: "Vibe coding has a real failure mode",
+      },
+      {
+        type: "p",
+        text: "\"Vibe coding\", accepting whatever the agent produces without reading it closely, works fine for a throwaway prototype. It does not work for anything that will run in production, hold user data, or get maintained by someone else next year. The failure is not dramatic. It is quiet: a security check that got skipped, an edge case the tests never covered because the agent wrote both the code and the tests, a dependency that was never actually needed. Nothing crashes on day one. It shows up three months later as a support ticket nobody can explain.",
+      },
+      {
+        type: "list",
+        items: [
+          "Read every diff before it merges, the same way you would review a junior engineer's pull request.",
+          "Keep tests written or reviewed by a person for anything security- or money-related. Do not let the same agent write the code and grade its own test.",
+          "Ask the agent to explain a change you do not understand, and treat a confusing answer as a reason to slow down, not a reason to trust it more.",
+          "Use it for the boring 80%, and spend the time it saved you on the 20% that actually needs a human: the architecture call, the edge case, the security review.",
+        ],
+      },
+      {
+        type: "p",
+        text: "None of this makes the tools less useful. I use Claude Code, Copilot, and Codex every day, and I would not want to go back. But the actual skill in 2026 is not prompting well. It is reviewing well, knowing what a plausible-looking wrong answer looks like, and knowing which 20% of a task you should never fully hand off.",
+      },
+    ],
+  },
+  {
     slug: "native-javascript-2026",
     title:
       "Native JavaScript in 2026: what you can finally delete from package.json",
