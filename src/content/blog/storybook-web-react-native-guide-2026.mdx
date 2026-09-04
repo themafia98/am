@@ -1,0 +1,221 @@
+---
+title: "Storybook in 2026: a practical guide for Web and React Native"
+date: "2026-09-04"
+tags: ["Storybook", "React", "React Native", "Testing", "Frontend"]
+dek: >-
+  Storybook is more than a component gallery. It is a small, repeatable environment for building
+  UI, documenting states, and testing the parts of an interface that are hardest to reach in the app.
+  Here is how I use it on the web and in React Native.
+---
+
+A UI component is usually harder to build than it looks. A button has a default state, but also a loading state, a disabled state, a long label, an error state, a dark theme, and a small screen. In the application, many of these states are hidden behind data, permissions, or a long sequence of clicks.
+
+Storybook gives each state a name and a place where it can be rendered on demand. That is the useful idea. The sidebar is only the visible part of it.
+
+## What Storybook actually is
+
+Let us define three words first:
+
+- A **component** is a reusable piece of UI, such as a button, input, modal, or card.
+- A **story** is one example of that component. For example, `Loading` can be a story for a button.
+- **Storybook** is the tool that displays those examples and lets us check them.
+
+Storybook is a development environment for rendering components in isolation. “In isolation” means that you can see a button without opening the whole application. A story is a small, repeatable example of one component state. Its inputs are visible in code, and anyone on the team can open it without first finding the right user account or API response.
+
+That makes a story useful to several people:
+
+- A developer can build a component without waiting for an API, a particular user account, or a complete screen.
+- A designer or product manager can review real states instead of guessing from a static mockup.
+- A tester can run the same states through interaction, accessibility, visual, or end-to-end checks.
+- A future maintainer can see the intended public surface of a component before changing it.
+
+> “A good story is a small piece of executable documentation: it shows what the component is allowed to be.”
+
+Storybook does not replace application tests. It gives those tests a stable set of examples. It also does not replace a design system. It makes the rules of a design system visible and executable.
+
+The simplest mental model is this: your application answers “how do users reach this screen?”, while Storybook answers “what can this component look and behave like?” Both questions matter, but they are easier to solve separately.
+
+## Why it is worth the setup
+
+The first benefit is speed. Isolating a component removes unrelated application work: routing, authentication, network requests, and the exact state needed to reach a deep screen. You can change the component and see the result in seconds.
+
+The second benefit is state coverage. Teams tend to test the happy path because it is easy to reach. Stories make the awkward states equally easy to reach. A component can have a story called `Loading`, `Empty`, `WithLongTitle`, or `Error`, and those cases can be opened, reviewed, and tested directly.
+
+The third benefit is shared language. “The button looks wrong” is vague. “The `Destructive` story has the wrong focus ring” points to a concrete, reproducible case. That small change improves code review, bug reports, and conversations between engineering and design.
+
+The fourth benefit is safer refactoring. If the component contract is represented by stories, a change can be checked against all important states instead of one screen that happens to use the component today.
+
+For a beginner, this is the main value: Storybook gives you a safe place to learn a component. For an experienced engineer, the value is different: it makes the component contract visible, reviewable, and available to automated tools.
+
+## A mini guide: start with one component
+
+For an existing project, let the official initializer detect the framework and create the basic `.storybook` setup:
+
+```bash
+npx storybook@latest init
+```
+
+Do not begin by writing stories for every component. Pick one component with several real states, such as a button, input, dialog, or card. A small first slice makes it easier to agree on conventions before the story tree becomes another system to maintain.
+
+A basic React story file might look like this:
+
+```tsx
+import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from "./Button";
+
+const meta = {
+  title: "UI/Button",
+  component: Button,
+  parameters: {
+    layout: "centered",
+  },
+  args: {
+    children: "Save changes",
+  },
+} satisfies Meta<typeof Button>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {};
+
+export const Loading: Story = {
+  args: {
+    loading: true,
+  },
+};
+
+export const Destructive: Story = {
+  args: {
+    variant: "destructive",
+  },
+};
+```
+
+The `meta` object describes the component and shared defaults. Each named export is a state that can be rendered independently. `args` are simply the props passed to the component. Type the meta object with `satisfies Meta<typeof Component>`: it keeps the story args connected to the component props and lets TypeScript catch mistakes.
+
+For behavior, prefer a story interaction over a custom test harness when the behavior is visible to a user:
+
+```tsx
+import { expect, userEvent, within } from "storybook/test";
+
+export const SavesChanges: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole("button", { name: "Save changes" }));
+    await expect(canvas.getByText("Saved")).toBeInTheDocument();
+  },
+};
+```
+
+The exact test utilities can vary with the framework version, so the generated configuration should be the source of truth. The principle is simple: the story describes the starting state, and `play` describes what the user does next.
+
+## Storybook best practices that scale
+
+### Keep stories close to the component
+
+Put `Button.stories.tsx` next to `Button.tsx` unless the repository already has a strong reason to use a central stories directory. Colocation makes ownership obvious and makes it less likely that a component changes while its examples quietly become stale.
+
+### Make states explicit
+
+Use args for data that defines the component state: label, variant, value, error, loading, and so on. Avoid hiding important differences in an opaque decorator or a large helper. When a reviewer opens a story, they should be able to understand why it looks different by reading a few lines.
+
+A useful test is this: if a bug report says “the component breaks with a long title,” there should be a story that reproduces it without editing the story file first.
+
+### Use decorators for environment, not product state
+
+Decorators are a good place for a theme provider, router, query client, or a fixed viewport. They are a poor place to hide whether a component is loading, empty, or disabled. Keep product states near the story so they stay discoverable.
+
+### Do not mock the entire application
+
+Mock the boundary that makes the story deterministic: an API response, a clock, a native module, or a browser capability. If every story requires a miniature application inside its decorators, the component probably owns too many responsibilities or the test boundary is in the wrong place.
+
+### Test the important states, not every permutation
+
+A story for every combination of five boolean props creates noise rather than confidence. Cover meaningful states and boundaries: empty content, failure, long content, permissions, loading, keyboard focus, and the platform-specific cases that have caused bugs before.
+
+### Treat stories as a public contract
+
+If a story depends on an internal implementation detail, it will become expensive to maintain. Prefer the same public props and user-visible behavior that the application uses. A story should survive a refactor from one internal component to another when the external behavior is unchanged.
+
+### Add automated checks in layers
+
+A practical progression is:
+
+- Run interaction tests for important behavior.
+- Run accessibility checks for web stories.
+- Run visual regression checks for stable, high-value components.
+- Import portable stories into a test runner when a component needs coverage outside the Storybook UI.
+- Use end-to-end tests for flows that cross routing, backend, permissions, and real device capabilities.
+
+Visual testing is especially useful for shared primitives, but it needs stable fonts, viewport sizes, and data. Otherwise a screenshot change may only describe the CI environment, not a real product change.
+
+## What senior engineers should watch
+
+Storybook is not automatically a good architecture. It can also hide design problems if every story needs a large setup file, many providers, or a full copy of the application.
+
+There are three useful signals:
+
+- **A component is too connected** if it cannot render without routing, a live API, authentication, and global state. Move those boundaries outward, or make the dependencies explicit.
+- **A story is too fragile** if a small internal refactor breaks it even though the public UI did not change. Write stories against public props and user-visible behavior.
+- **The story set is too large** if nobody can tell which states matter. Keep stories for important states and known failure modes, not every possible combination of props.
+
+Stories also create maintenance cost. They need owners, realistic data, and updates when the component contract changes. The right question is not “can we add a story for this?” It is “will this story help us find a bug, explain a decision, or review a real state?”
+
+For a shared component library, stories can become a contract between teams. A breaking change is easier to discuss when it changes a named state such as `WithLongLabel` or `Invalid`. This is one of the less obvious benefits of Storybook: it turns visual assumptions into something a code review can point to.
+
+## What is different on the Web
+
+The web has a mature browser-based Storybook workflow. A component renders in a browser, so you can inspect the DOM, use browser accessibility tooling, test keyboard interaction, and exercise responsive layouts with controlled viewports.
+
+For web components, I usually pay attention to five things:
+
+- **Semantics:** stories should expose the right roles, names, labels, and heading structure. A visually correct button implemented as a `div` is still a broken story.
+- **Keyboard behavior:** add states and interactions for tab order, focus visibility, Escape, Enter, and arrow-key navigation where relevant.
+- **Responsive behavior:** use viewport parameters or a small set of representative viewports. Do not rely on manually resizing the browser until it “looks okay.”
+- **Async states:** model pending, success, empty, and error responses deterministically. Network mocks should be part of the story setup, not a dependency on a live development API.
+- **Themes and user preferences:** include light and dark themes, reduced motion, and high-contrast considerations when the product supports them.
+
+`react-testing-library` and Playwright can complement Storybook, but they solve different problems. A component interaction story is a convenient, visible fixture. A Playwright test is better when you need a real browser, routing, or several components working together.
+
+## What is different in React Native
+
+React Native has two valid Storybook modes, and confusing them causes many setup problems.
+
+**On-device Storybook** runs through the React Native app, Metro, a simulator, or a physical device. Choose it when the component depends on native modules, platform APIs, real gestures, device dimensions, accessibility behavior, or animations that only behave correctly on the device. It gives you the highest fidelity, but it is slower to share and usually needs more integration work in the app entry point and Metro configuration.
+
+**React Native Web Storybook** renders React Native components in a browser through `react-native-web`. Choose it when fast browser-based development, easy sharing, and web-oriented visual review matter more than device-specific fidelity. It is a useful companion, not a perfect substitute: a native module or a gesture can behave differently, and a browser result cannot prove that an iOS or Android screen is correct.
+
+If a codebase supports both, keep the story contract shared and isolate platform setup. For example, the same `Button.stories.tsx` can describe props and states while platform-specific decorators provide the theme, safe area, navigation, or native providers required by each environment.
+
+React Native practices I find particularly important:
+
+- **Render on real targets regularly.** A story that passes in `react-native-web` can still fail on Android because of text measurement, a native dependency, or a platform-specific style.
+- **Control device dimensions.** Include narrow phones, larger phones, and landscape when layout depends on width or height. Also cover dynamic type if the app supports it.
+- **Keep native modules behind boundaries.** Mock them for isolated stories, but maintain at least one device-level check for the integration that matters.
+- **Test gestures as interactions where possible.** A tap story is not enough for a draggable sheet, swipe action, or press-and-hold control. Use the tools supported by the chosen RN Storybook workflow and verify the gesture on device.
+- **Be deliberate about animations.** Freeze or shorten animations for deterministic visual tests, then keep a manual or device-level story for the real motion.
+- **Show platform differences honestly.** If iOS and Android intentionally differ, give the stories clear names or parameters. Do not make one screenshot imply that both platforms have been checked.
+
+For a shared design system, React Native Web can be the quick review surface and on-device Storybook can be the fidelity check. The two environments answer different questions, so keeping both is often cheaper than pretending one is enough.
+
+## A small team workflow
+
+A lightweight workflow is enough to get value:
+
+1. Create the component and its first meaningful stories.
+2. Review the stories with design before wiring the component into a complex screen.
+3. Add an interaction story for behavior that has a regression cost.
+4. Add accessibility checks for web components and device checks for native behavior.
+5. Run visual checks only for components where visual drift matters.
+6. Update or delete stories when the public component contract changes.
+
+Storybook becomes painful when it is treated as a second application that must reproduce every screen. Keep the boundary narrower: components and small UI compositions in isolation, with real application flows covered elsewhere.
+
+## The short version
+
+Use Storybook when a component has states that are difficult to reach, important to review, or expensive to regress. Start with a few explicit stories, keep their setup visible, and let those stories power the right level of testing.
+
+On the web, lean into browser semantics, keyboard interaction, accessibility, responsive viewports, and deterministic network states. In React Native, decide whether you need device fidelity or fast browser feedback, then remember that `react-native-web` is a separate runtime with separate limitations.
+
+The best Storybook setup is not the one with the most stories. It is the one that makes the risky states easy to see before they become someone else's bug.
