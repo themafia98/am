@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { BlogList } from '@/widgets/blog'
-import { BLOG_POSTS } from '@/shared/config/blog'
+import { getAllPosts } from '@/shared/lib/posts'
 import { LABEL_CLASS } from '@/shared/ui/constants'
 import { SITE_URL } from '../constants'
 
@@ -17,12 +17,14 @@ export const metadata: Metadata = {
 }
 
 export default function BlogPage() {
+  const posts = getAllPosts()
+
   return (
     <div className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
       <div className="mb-10 flex items-center gap-5 sm:mb-14">
         <span className={LABEL_CLASS}>Portfolio</span>
         <span className="h-px flex-1 bg-rule" />
-        <span className={LABEL_CLASS}>{BLOG_POSTS.length} posts</span>
+        <span className={LABEL_CLASS}>{posts.length} posts</span>
       </div>
 
       <h1 className="font-display text-[2.75rem] leading-[0.9] tracking-[-0.015em] sm:text-7xl">
@@ -33,7 +35,7 @@ export default function BlogPage() {
       </p>
 
       <div className="mt-14 sm:mt-16">
-        <BlogList posts={BLOG_POSTS} />
+        <BlogList posts={posts} />
       </div>
     </div>
   )

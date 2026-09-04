@@ -1,0 +1,102 @@
+---
+title: "Legacy Game Rethinking: rebuilding an old prototype with cleaner architecture"
+date: "2026-09-03"
+tags: ["Game Development", "TypeScript", "WebAssembly", "Architecture", "Learning"]
+dek: >-
+  A 2019 browser game was rebuilt in 2026 with a cleaner structure, fixed-step simulation, and
+  a WebAssembly hot path. The goal was not to make it look nicer. It was to make it easier to
+  reason about, evolve, and debug.
+---
+
+A lot of old projects are not dead. They are just stuck in the architecture of the time they were built. That is exactly what happened here. The original project was a 2019 canvas game written in JavaScript. For a first project, it worked well: enemies moved, bullets fired, the score was saved, and the game was playable. But the code was also a classic example of student-project architecture: globals, hidden state, tight coupling, and a lot of logic doing several jobs at once.
+
+## The old version was not wrong. It was just messy.
+
+This is a very common pattern. A collision handler also played sounds. Damage logic sometimes wrote to Firebase. Rendering and simulation were mixed together. A few functions had too many responsibilities, and the codebase was hard to extend without breaking something else. That is not a sign of bad engineering. It is a sign of a project built for learning, not for long-term structure.
+
+```ts
+function update() {
+  player.x += 3
+  checkCollisions()
+  renderPlayer()
+  saveScore()
+  playHitSound()
+}
+
+// This mixes gameplay, rendering, persistence, and audio in one place.
+```
+
+The question was not 'how do I make this prettier?' The real question was: what would this game look like if it were designed around systems instead of convenience?
+
+## The first big change: split responsibilities
+
+The rewrite was not about moving from JavaScript to TypeScript alone. The real change was architectural. The game loop became a dedicated system. Movement, collisions, rendering, and audio each got their own clear boundary. The player, enemies, bullets, and pickups became mostly data containers, not logic-heavy objects that know too much about the world.
+
+```ts
+const movementSystem = new MovementSystem()
+const collisionSystem = new CollisionSystem()
+const renderSystem = new RenderSystem()
+const audioSystem = new AudioSystem()
+
+const game = new GameLoop({ fixedStep: 1000 / 60 })
+
+game.addSystem(movementSystem)
+game.addSystem(collisionSystem)
+game.addSystem(renderSystem)
+game.addSystem(audioSystem)
+```
+
+That is a very practical improvement. A collision system checks collisions. A render system renders. An audio system plays sounds. Nothing is trying to do everything at once. This makes debugging easier, and it makes new mechanics easier to add later.
+
+## A fixed-step loop is much more stable
+
+The next major change was the update loop. Instead of trusting the browser frame timing, the project uses a fixed-step simulation. The game updates at a stable 60 Hz, and rendering happens separately. This is a common pattern in game development and it makes the rules of the game much more predictable.
+
+```ts
+let accumulator = 0
+const fixedStep = 1000 / 60
+
+function frame(timestamp: number) {
+  const delta = timestamp - lastTimestamp
+  accumulator += delta
+
+  while (accumulator >= fixedStep) {
+    update(fixedStep)
+    accumulator -= fixedStep
+  }
+
+  render()
+  requestAnimationFrame(frame)
+}
+```
+
+This matters because gameplay logic should not depend on tiny timing differences between frames. If one frame is 16ms and the next is 17ms, the game still behaves consistently. That is exactly the kind of issue that creates weird bugs in otherwise simple games.
+
+## Why WebAssembly was interesting here
+
+The hot path of the game was moved into WebAssembly. Movement, projectile physics, enemy decisions, collision checks, pickups, and combat resolution all run inside the compiled module. The browser stays in charge of input, rendering, and DOM work. That separation is useful for both performance and clarity.
+
+```ts
+export function movePlayer(x: number, dx: number, dt: number): number {
+  return x + dx * dt
+}
+
+export function resolveHit(a: number, b: number): boolean {
+  return Math.abs(a - b) < 20
+}
+```
+
+This is not only a performance optimization. It also forces the project to define what the real critical logic is. Once the game core is separated from browser APIs, it becomes easier to reason about, easier to test, and easier to optimize later.
+
+> “The goal was not to make the same game prettier. It was to make the same game easier to understand, easier to debug, and easier to evolve.”
+
+## Why I still like this project
+
+This project is not trying to become a huge production game. It is a learning project with a very clear purpose: take an old prototype, ask what was wrong with the design, and rebuild it with better boundaries. It is a good example of how a 'legacy' project can still be valuable when it is used as an architecture exercise instead of a nostalgia project.
+
+- One file should not handle movement, sound, collisions, rendering, and saving at the same time.
+- A fixed-step loop makes gameplay rules more stable than a raw browser frame loop.
+- WASM is useful when your logic is CPU-heavy and you want a clean separation from browser code.
+- A project can be old and still be a great way to practice better architecture.
+
+If you want to read more on the concepts behind this approach, these are useful starting points: MDN on requestAnimationFrame, MDN on WebAssembly, and ECS patterns in game architecture. The main lesson is simple: even a small game can teach a lot about architecture if you rebuild it with the right questions in mind.

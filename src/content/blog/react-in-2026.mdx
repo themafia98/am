@@ -1,0 +1,60 @@
+---
+title: "React in 2026: what actually changed"
+date: "2026-09-01"
+tags: ["React", "React Compiler", "Server Components", "Frontend"]
+dek: >-
+  The compiler removed most manual memoization. Server Components stopped being controversial.
+  And the line between "React" and "your framework" almost disappeared. Notes from a frontend
+  engineer who has lived through this shift.
+---
+
+A few years ago, "modern React" meant knowing when to use useMemo, arguing about where state should live, and picking a data-fetching library because the built-in tools weren't enough. In late 2026, most of that debate is over — not because everyone agreed, but because React made the decision for us. The interesting part is not any single feature. It is how much of the daily mental effort of writing React has simply disappeared.
+
+## The compiler removes the memoization work
+
+React Compiler went from an optional experiment to the default choice on any new project this year. In practice, that means useMemo, useCallback, and React.memo, which used to fill half of my code review comments, are now things I rarely write by hand. I only add them when the compiler can't prove a value is stable on its own, usually when a ref escapes into a non-React API. The difference is bigger than it sounds:
+
+```tsx
+// 2023: manual memoization everywhere
+const total = useMemo(() => computeTotal(items), [items])
+const handleSelect = useCallback((id: string) => {
+  setSelected((prev) => [...prev, id])
+}, [])
+
+// 2026: just write the function
+const total = computeTotal(items)
+const handleSelect = (id: string) => {
+  setSelected((prev) => [...prev, id])
+}
+```
+
+One honest problem: the compiler is a static analysis tool, not magic. It quietly skips patterns it can't understand, like mutating props, closures that escape, or certain higher-order components. So teams still need eslint-plugin-react-compiler in CI to catch the components it missed. But the type of failure changed. Before, a stale closure caused a subtle bug in production. Now, it shows up as a lint warning in a pull request. That is a real improvement, not just marketing.
+
+## Server Components stopped being a debate
+
+For a couple of years, "do you even need Server Components" was a fair question. The idea was new, tooling outside Next.js was thin, and many teams shipped fine without them. That question is mostly settled now. Every major React framework — Next.js, React Router's framework mode, TanStack Start — now treats server-first rendering, with small interactive client parts, as the default. It is no longer something you opt into.
+
+What convinced most teams I've worked with was not the performance pitch. It was Actions. You can write a mutation as a plain async function, pass it to a form, and get progressive enhancement, pending states, and optimistic updates, all without setting up a client-side data library. That removed a whole category of boilerplate. useActionState and useOptimistic together cover most of what used to need a hand-written fetch-and-setState dance.
+
+> “The best abstraction is the one you stop thinking about. Nobody asks "should this be a Server Component" anymore. They ask "does this one piece need interactivity" — a smaller, clearer question.”
+
+## The client/server line moved, but state management didn't disappear
+
+A common misunderstanding about Server Components was "you won't need client state management anymore." That was never true, and 2026 made it clear why: server state and client UI state are different problems. TanStack Query, or the framework-native loaders that copy it, still handles anything that comes from the network. Zustand and Redux Toolkit are still doing well for state that truly lives in the browser: open or closed panels, multi-step form drafts, undo history, live cursors. What changed is the size of the job, not whether it exists. The client-state layer got smaller because part of what lived there was really server state in disguise.
+
+## Signals didn't win, but they didn't lose either
+
+Solid and Svelte kept making the case for fine-grained reactivity. For a while, it looked like signals might land in React itself. They didn't. The React team bet on the compiler doing that fine-grained work at build time, instead of asking developers to learn a new primitive. Both approaches reached the same result for users, fewer wasted re-renders without manual tuning, which mostly ended the framework debate about it. This is a good example of React's real strategy in this period: solve the problem people were arguing about, but in a way that doesn't require anyone to learn a new mental model.
+
+## What this means if you're hiring or being hired
+
+- Knowing when to leave out "use client" is now more useful than knowing how to optimize a client-side render tree.
+- Being comfortable with async/await in components (Suspense boundaries, streaming, Actions) matters more than knowing Redux internals deeply.
+- TypeScript-first is no longer a preference. It's required now — the compiler and Server Actions both depend on accurate types to work correctly.
+- The interesting architecture questions moved up a level: not "how do I manage this state" but "does this belong on the server, and if not, why not."
+
+## The unglamorous part: migration debt
+
+None of this is free for existing codebases. Most teams I've talked to run a mix: new features built the 2026 way, and a large amount of older, pre-compiler code left untouched. Rewriting a stable admin panel just for architectural purity is not a good use of a sprint. That is the real day-to-day story behind the conference talks, not a clean break, but a slow and uneven migration. New patterns win by default on anything built from scratch. Old patterns keep working exactly as they always did.
+
+If there's one takeaway, it's this: the biggest wins of this period were not new capabilities. React could already do most of this with enough manual work. The real win was removing decisions. Fewer settings, fewer ways to make mistakes, more of the framework's opinion built in by default. That's a less exciting story than "React gets signals" or "React gets a new hook." But it's the one that actually shows up in how fast a team can ship.

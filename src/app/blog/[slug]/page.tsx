@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { PostHeader, PostBody, PostCta } from '@/widgets/blog'
-import { BLOG_POSTS, getPostBySlug } from '@/shared/config/blog'
+import { getAllPosts, getPostBySlug, loadPostContent } from '@/shared/lib/posts'
 import { SITE_URL } from '../../constants'
 
+export const dynamicParams = false
+
 export function generateStaticParams() {
-  return BLOG_POSTS.map((post) => ({ slug: post.slug }))
+  return getAllPosts().map((post) => ({ slug: post.slug }))
 }
 
 export async function generateMetadata({
@@ -41,10 +43,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const post = getPostBySlug(slug)
   if (!post) notFound()
 
+  const Post = await loadPostContent(slug)
+
   return (
     <article className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
       <PostHeader post={post} />
-      <PostBody blocks={post.content} />
+      <PostBody>
+        <Post />
+      </PostBody>
       <PostCta />
     </article>
   )

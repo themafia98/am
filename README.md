@@ -25,9 +25,15 @@ Structured with **Feature-Sliced Design** (FSD) - layers import only downward:
 src/
 ├── app/                  Next.js App Router (layout, page, globals.css)
 │
+├── content/blog/         Articles as .mdx files - one file per post
+│
+├── mdx-components.tsx    Required by the App Router - re-exports the MDX element map
+│
 ├── shared/               No project deps - safe to import anywhere
 │   ├── config/cv.ts      Single source of truth for all CV data
 │   ├── lib/cn.ts         clsx + tailwind-merge utility
+│   ├── lib/posts.ts      Reads src/content/blog at build time (front matter + reading time)
+│   ├── ui/mdx/           Tailwind element map applied to every article
 │   ├── types/            All TypeScript interfaces and types
 │   └── ui/               Badge · Button · SectionHeader
 │
@@ -79,6 +85,39 @@ Change anything there - name, jobs, skills, contact links - and the entire site 
 
 ---
 
+## Writing Articles
+
+Each post is one `.mdx` file in **`src/content/blog/`**. The filename is the slug, so `react-in-2026.mdx` is served at `/blog/react-in-2026`. Drop a file in, and the list page, the post route and the sitemap pick it up on the next build - nothing is registered by hand.
+
+````mdx
+---
+title: "React in 2026: what actually changed"
+date: "2026-09-01"
+tags: ["React", "Server Components"]
+dek: >-
+  The compiler removed most manual memoization. Server Components stopped being
+  controversial.
+---
+
+The first paragraph gets the serif drop cap.
+
+## A section heading
+
+- a list item
+- another one
+
+> "A pull quote, with the curly quotes typed literally."
+````
+
+- **`title`, `date`, `tags`, `dek`** are all required - a missing or malformed field fails the build with the filename. Quote `title` and `date` (every title contains a colon, and an unquoted date parses as a YAML date object); write `dek` as a `>-` block scalar so quotes and dashes need no escaping.
+- **Reading time is computed** from the word count at 200 wpm - do not put it in the front matter.
+- **Do not leave a blank line between list items.** CommonMark then wraps each item in a paragraph, which breaks the hanging indent around the em dash.
+- Standard markdown works throughout - links, `**bold**`, `inline code`, fenced code blocks with a language tag. Because the files are MDX, a React component can also be imported and used inline.
+- Article typography lives in `src/shared/ui/mdx/index.tsx`, one entry per HTML element. The lead paragraph's drop cap is the exception: it belongs to `PostBody` as a `p:first-of-type` rule.
+- Note for tooling: `next.config.mjs` is `.mjs` rather than `.ts` because `remark-gfm` and `remark-frontmatter` are ESM-only. Turbopack is not used - it only accepts remark plugins as strings and would silently skip them.
+
+---
+
 ## Print / PDF Export
 
 Open in Chrome → Print (Cmd+P) → Save as PDF. The site includes a full `@media print` stylesheet:
@@ -99,7 +138,7 @@ One-click deploy to Vercel:
 3. `VERCEL_PROJECT_PRODUCTION_URL` is set automatically by Vercel for production
 4. Deploy
 
-Security headers (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy) are configured in `next.config.ts`.
+Security headers (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy) are configured in `next.config.mjs`.
 
 ---
 

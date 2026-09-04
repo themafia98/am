@@ -1,0 +1,65 @@
+---
+title: "Native JavaScript in 2026: what you can finally delete from package.json"
+date: "2026-09-02"
+tags: ["JavaScript", "Web APIs", "ECMAScript", "Frontend"]
+dek: >-
+  Cloning objects, updating arrays without mutating them, working with dates, checking
+  equality — JavaScript quietly grew its own standard library. Here's what you can now do
+  without a dependency, and what you still can't.
+---
+
+For years, "plain JavaScript" was not really plain. Every real project used lodash for deep clones, date-fns for dates, uuid for IDs, and a debounce function copied from a Stack Overflow answer everyone has seen. That was never the language's fault — the standard library genuinely had gaps. Writing this in 2026, a lot of those gaps are closed. That changes what a simple, framework-free file of JavaScript looks like day to day.
+
+## You don't need a library to clone or compare objects
+
+structuredClone is built into every major browser and into Node.js now. It is the normal answer to "how do I deep clone this object," not some obscure alternative to JSON.parse(JSON.stringify(x)). That old trick quietly breaks on functions, Dates, Maps, Sets, and undefined values. structuredClone handles all of them correctly.
+
+```js
+// old habit, silently wrong for anything but plain JSON-shaped data
+const copy = JSON.parse(JSON.stringify(state))
+
+// handles Date, Map, Set, ArrayBuffer, circular refs
+const copy = structuredClone(state)
+```
+
+Deep equality is still missing, though. JavaScript has no built-in Object.deepEqual, and I don't expect one — the rules get messy fast (NaN, -0, prototypes, getters). A small library like fast-equals, or a short recursive function, is one of the few dependencies I still think is worth keeping.
+
+## Arrays got new methods that don't mutate
+
+This is the change I use the most. ES2023 added toSorted, toReversed, toSpliced, and with. They work like sort, reverse, splice, and direct index assignment, but they return a new array instead of changing the old one. Before this, updating one item in an array without mutating state took a few lines of code, and every React or Redux project wrote those lines slightly differently.
+
+```js
+// before: spread-and-hope, or a library
+const next = [...items]
+next[index] = updated
+
+// now
+const next = items.with(index, updated)
+
+// same story for sorting without mutating the original
+const sorted = items.toSorted((a, b) => a.value - b.value)
+```
+
+Object.groupBy and Map.groupBy (ES2024) removed most of my remaining lodash.groupBy calls in the same way. One function call replaces a reduce with an accumulator object, and the code reads almost like plain English.
+
+## Temporal finally fixes dates
+
+Temporal shipping in browsers this year is the change I doubted the most, and it happened anyway. The old Date object has been broken since 1995: it can be mutated, months start counting from 0, and time zones cause silent bugs. Every team either lived with this or paid for a library like date-fns or Luxon. Temporal.PlainDate, Temporal.ZonedDateTime, and the rest are immutable, clear about time zones and calendars, and turn "add one month, and handle the end of the month correctly" into one line of code instead of a bug report.
+
+> “A good sign that an API is well designed: the bug reports about it stop sounding like bugs and start sounding like "this is just how it works now." That is close to where Temporal is, a year after it shipped.”
+
+One honest problem: a few libraries still haven't caught up with Temporal yet. And plenty of codebases have years of Date-based logic that nobody wants to rewrite just to make it cleaner. It's the same story everywhere in this industry — new code gets the nice new API, old code keeps working the way it always has.
+
+## New tools for async work and cancelling it
+
+- AbortSignal.any() and AbortSignal.timeout() replace most hand-written helpers for timing out a promise.
+- Promise.withResolvers() replaces the old trick of declaring a mutable let above new Promise, just to grab resolve and reject.
+- Array.fromAsync() turns an async iterable into an array, without writing a for-await loop yourself.
+- Iterator helpers — .map, .filter, .take, .drop, used directly on iterators — let you transform a generator lazily, without building an array in between.
+- crypto.randomUUID() is built in now. I only still install the uuid package for v5, namespace-based UUIDs, which the platform doesn't support yet.
+
+## What this doesn't replace
+
+None of this solves the hard problems that a framework or a library is actually for: reactive state, virtual DOM diffing, routing, form validation, or real translation and formatting beyond what Intl gives you. Native JavaScript closed the gap on small utility functions, the kind that used to justify adding a whole dependency for one function. It was never going to replace the tools that solve real application problems. Thinking "now I can delete React" because of these changes is the same mistake as thinking "now I need a framework" because lodash released a new version.
+
+The practical lesson for a 2026 codebase: before adding a dependency for a simple data utility — cloning, grouping, removing duplicates, sorting without mutating, timing out a promise — check MDN first. There is a good chance the platform already does it, in less code, with fewer bugs, and no extra bytes sent to the browser.

@@ -144,13 +144,6 @@ export interface CvData {
   readonly contactItems: readonly ContactItem[];
 }
 
-export type BlogBlock =
-  | { readonly type: "p"; readonly text: string }
-  | { readonly type: "h2"; readonly text: string }
-  | { readonly type: "quote"; readonly text: string; readonly cite?: string }
-  | { readonly type: "list"; readonly items: readonly string[] }
-  | { readonly type: "code"; readonly code: string; readonly lang?: string };
-
 export interface BlogPost {
   readonly slug: string;
   readonly title: string;
@@ -158,5 +151,4 @@ export interface BlogPost {
   readonly date: string;
   readonly readingTime: string;
   readonly tags: readonly string[];
-  readonly content: readonly BlogBlock[];
 }

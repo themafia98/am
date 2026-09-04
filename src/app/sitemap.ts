@@ -1,11 +1,13 @@
 import type { MetadataRoute } from 'next'
-import { BLOG_POSTS } from '@/shared/config/blog'
+import { getAllPosts } from '@/shared/lib/posts'
 
 const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   : 'http://localhost:3000'
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const posts = getAllPosts()
+
   return [
     {
       url: siteUrl,
@@ -19,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.8,
     },
-    ...BLOG_POSTS.map((post) => ({
+    ...posts.map((post) => ({
       url: `${siteUrl}/blog/${post.slug}`,
       lastModified: new Date(post.date),
       changeFrequency: 'monthly' as const,
