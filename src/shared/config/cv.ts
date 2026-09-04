@@ -297,6 +297,12 @@ export const PERSONAL_PROJECTS: PersonalProject[] = [
       "backed by a type-safe shared contract (TypeScript + Zod) across REST/WS. Planned launch " +
       "across all target platforms by the end of 2026.",
     url: "https://mentara-ai-landing.web.app/",
+    relatedLinks: [
+      {
+        label: "Storybook",
+        url: "https://storybook-production-e655.up.railway.app/",
+      },
+    ],
     // githubRepo: 'themafia98/mentara-ai-landing-page',
     status: ProjectStatus.InProgress,
     tags: [
